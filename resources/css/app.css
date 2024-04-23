@@ -1,0 +1,31 @@
+/*@tailwind base;
+@tailwind components;
+@tailwind utilities;
+*/
+[x-cloak] {
+    display: none;
+}
+
+.socialsneaker-titletext{
+    font-family: "Luckiest Guy", cursive;
+    color: white;
+}
+
+.socialsneaker-login {
+    background-color: rgba(88, 130, 193, 0.2); /* Cambia el último valor (0.7) para ajustar la opacidad */
+}
+
+.socialsneaker-text{
+    color: white;
+    font-weight: bold;
+}
+
+.btn-login{
+    background-color: #003465 ;
+    width: 200px; /* Ajusta el valor según el ancho deseado */
+}
+
+body {
+    /* Establece un fondo con un degradado radial */
+    background: radial-gradient(circle, #4C82AC, #0B2C51);
+}
