@@ -15,9 +15,14 @@
     background-color: rgba(88, 130, 193, 0.2); /* Cambia el último valor (0.7) para ajustar la opacidad */
 }
 
-.socialsneaker-text{
+.socialsneaker-textbold{
     color: white;
     font-weight: bold;
+    font-size: 20px;
+}
+
+.socialsneaker-text{
+    color: white;
 }
 
 .btn-login{

@@ -31,17 +31,21 @@
                                         <div class="form-text socialsneaker-text">Introduce tu contraseña</div>
                                     </div>
                                 </div>
-                                <br><br>
-                                <div class="text-center">
-                                    <input type="submit" value="Iniciar sesión" class="btn btn-primary btn-login">
-                                </div>
-                                <br><br>
                                 <br>
                                 @if(isset($error))
                                 <div class="alert alert-danger">
                                     {{ $error }}
                                 </div>
                                 @endif
+                                <br>
+                                <div class="text-center">
+                                    <input type="submit" value="Iniciar sesión" class="btn btn-primary btn-login socialsneaker-textbold">
+                                </div>
+                                <br><br>
+                                <div class="text-center">
+                                    <div class="form-text socialsneaker-text">¿No tienes cuenta aún? <br><br><a class="socialsneaker-textbold" href="/signupForm">Registrate gratis</a></div>
+                                </div>
+                                <br><br>
                             </form>
                         </div>
                     </div>
