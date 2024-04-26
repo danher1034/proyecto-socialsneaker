@@ -20,13 +20,13 @@
                                 @csrf
                                 <div class="socialsneaker-text">
                                     <div class="mb-3">
-                                        <label class="form-label" for="name"><h5>Nombre de usuario:</h5></label>
+                                        <label class="form-label" for="name"><h5>Nombre de usuario</h5></label>
                                         <input type="text" name="name" id="name" value="{{ old('name') }}" class="form-control">
                                         <div class="form-text socialsneaker-text">Introduce tu nombre de usuario</div>
                                     </div>
                                     <br><br>
                                     <div class="mb-3">
-                                        <label class="form-label" for="password"><h5>Contraseña:</h5></label>
+                                        <label class="form-label" for="password"><h5>Contraseña</h5></label>
                                         <input type="password" name="password" id="password" class="form-control">
                                         <div class="form-text socialsneaker-text">Introduce tu contraseña</div>
                                     </div>

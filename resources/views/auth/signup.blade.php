@@ -16,35 +16,35 @@
                                     <h1 class="mt-1 mb-5 pb-1 socialsneaker-titletext">SOCIALSNEAKER</h1>
                                     <h3 class="mt-1 mb-5 pb-1 socialsneaker-text">Crea tu cuenta</h3>
                                 </div>
-                                <form action="{{route('signup')}}" method="POST">
+                                <form action="{{route('signup')}}" method="POST" onsubmit="return validateForm()">
                                     @csrf
                                     <div class="socialsneaker-text">
                                         <div data-mdb-input-init class="form-outline mb-4">
-                                            <label class="form-label" for="name">Nombre usuario</label>
-                                            <input type="text" name="name" id="name" value="{{old('name')}}" class="form-control" />
+                                            <label class="form-label" for="name_sign"><h5>Nombre de usuario</h5></label>
+                                            <input type="text" name="name" id="name_sign" value="{{old('name')}}" class="form-control" />
                                         </div>
 
                                         <div data-mdb-input-init class="form-outline mb-4">
-                                            <label class="form-label" for="email">Email address</label>
-                                            <input type="email" name="email" id="email" value="{{old('email')}}" class="form-control" />
+                                            <label class="form-label" for="email_sign"><h5>Email address</h5></label>
+                                            <input type="email" name="email" id="email_sign" value="{{old('email')}}" class="form-control" />
                                         </div>
 
                                         <div data-mdb-input-init class="form-outline mb-4">
-                                            <label for="birthday">Cumpleaños:</label><br>
-                                            <input type="date" name="birthday" id="birthday" max="{{ now()->subYears(16)->format('Y-m-d') }}"><br>
+                                            <label class="form-label" for="birthday_sign"><h5>Cumpleaños</h5></label><br>
+                                            <input type="date" name="birthday" id="birthday_sign" max="{{ now()->subYears(16)->format('Y-m-d') }}"><br>
                                         </div>
 
 
                                         <div data-mdb-input-init class="form-outline mb-4">
-                                            <label class="form-label" for="password">Contraseña</label>
-                                            <input type="password" id="password" name="password" class="form-control" aria-describedby="passwordHelpBlock">
-                                            <div id="passwordHelpBlock" class="form-text">
-                                                La contraseña debe tener minimo 8, preferiblemente deberia contener letras y números, y no contener espacios, caracteres especiales ni emoji.
+                                            <label class="form-label" for="password_sign"><h5>Contraseña</h5></label>
+                                            <input type="password" id="password" name="password_sign" class="form-control" aria-describedby="passwordHelpBlock">
+                                            <div id="passwordHelpBlock" class="form-text socialsneaker-text">
+                                                La contraseña debe tener minimo 8 caracteres, preferiblemente deberia contener letras y números, y no contener espacios, caracteres especiales ni emoji.
                                             </div>
                                         </div>
 
                                         <div data-mdb-input-init class="form-outline mb-4">
-                                            <label for="password_confirmation">Repite la contraseña:</label><br>
+                                            <label for="password_confirmation"><h5>Repite la contraseña</h5></label><br>
                                             <input type="password" name="password_confirmation" id="password_confirmation" class="form-control">
                                         </div>
                                     </div>
@@ -58,7 +58,7 @@
                                     @endif
                                     <br>
                                     <div class="text-center">
-                                        <input type="submit" value="Iniciar sesión" class="btn btn-primary btn-login socialsneaker-textbold">
+                                        <input type="submit" value="Regístrate" class="btn btn-primary btn-login socialsneaker-textbold">
                                     </div>
                                     <br><br>
                                     <div class="text-center">
