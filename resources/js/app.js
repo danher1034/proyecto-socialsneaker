@@ -1,10 +1,10 @@
 import './bootstrap';
 
 // Función para validar el formulario antes de enviarlo
-function validateForm() {
+function validateForm(event) {
     // Obtener los valores de los campos del formulario
+    event.preventDefault();
     var name = document.getElementById('name_sign').value;
-    console.log('Nombre:', name)
     var name = document.getElementById('name_sign').value;
     var email = document.getElementById('email_sign').value;
     var birthday = document.getElementById('birthday_sign').value;

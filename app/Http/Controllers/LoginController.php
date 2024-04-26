@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\SignupRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -20,10 +21,10 @@ class LoginController extends Controller
     public function signup (SignupRequest $request) // Crea el usuario en la base de datos
     {
         $user = new User();
-        $user->name = $request->get('name');
-        $user->email = $request->get('email');
-        $user->birthday=$request->get('birthday');
-        $user->password = Hash:: make($request->get('password'));
+        $user->name = $request->get('name_sign');
+        $user->email = $request->get('email_sign');
+        $user->birthday=$request->get('birthday_sign');
+        $user->password = Hash:: make($request->get('password_sign'));
         $user->save();
 
         Auth:: Login($user);
