@@ -44,8 +44,8 @@ class SignupRequest extends FormRequest
             'birthday.date' => 'El cumpleaños tiene que ser tipo fecha.',
             'birthday.before_or_equal' => 'Tienes que tener más de 16 años.',
 
-            'email.required' => 'EL email es obligatorio.',
-            'email.unique' => 'EL email ya existe en el sistema.',
+            'email.required' => 'El email es obligatorio.',
+            'email.unique' => 'El email ya existe en el sistema.',
             'email.min' => 'El email debe tener como mínimo 10 caracteres.',
             'email.max' => 'El email debe tener como máximo 255 caracteres.',
             'email.string' => 'El email debe ser una cadena de texto.',

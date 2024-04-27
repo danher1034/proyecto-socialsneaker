@@ -16,7 +16,7 @@
                                     <h1 class="mt-1 mb-5 pb-1 socialsneaker-titletext">SOCIALSNEAKER</h1>
                                     <h3 class="mt-1 mb-5 pb-1 socialsneaker-text">Crea tu cuenta</h3>
                                 </div>
-                                <form action="{{route('signup')}}" method="POST" onsubmit="return validateForm()">
+                                <form action="{{ route('signup') }}" method="post" onsubmit="return validateForm(event)">
                                     @csrf
                                     <div class="socialsneaker-text">
                                         <div data-mdb-input-init class="form-outline mb-4">
@@ -51,14 +51,16 @@
                                     <br>
                                     @if ($errors->any())
                                         <ul>
-                                            @foreach ($errors->all() as $error)
-                                                <li>{{$error}}</li>
-                                            @endforeach
+                                            <div class="alert alert-danger">
+                                                @foreach ($errors->all() as $error)
+                                                    {{$error}} <br>
+                                                @endforeach
+                                            </div>
                                         </ul>
                                     @endif
                                     <br>
                                     <div class="text-center">
-                                        <input type="submit" value="Regístrate" class="btn btn-primary btn-login socialsneaker-textbold">
+                                        <button type="submit" class="btn btn-primary btn-login socialsneaker-textbold">Registrarse</button>
                                     </div>
                                     <br><br>
                                     <div class="text-center">
