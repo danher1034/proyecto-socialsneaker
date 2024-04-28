@@ -21,9 +21,9 @@ class LoginController extends Controller
     public function signup (SignupRequest $request) // Crea el usuario en la base de datos
     {
         $user = new User();
-        $user->name = $request->get('name_sign');
-        $user->email = $request->get('email_sign');
-        $user->birthday=$request->get('birthday_sign');
+        $user->name = $request->get('usuario');
+        $user->email = $request->get('correo');
+        $user->birthday=$request->get('fechaNacimiento');
         $user->password = Hash:: make($request->get('password_sign'));
         $user->save();
 

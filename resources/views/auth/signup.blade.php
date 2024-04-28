@@ -16,58 +16,92 @@
                                     <h1 class="mt-1 mb-5 pb-1 socialsneaker-titletext">SOCIALSNEAKER</h1>
                                     <h3 class="mt-1 mb-5 pb-1 socialsneaker-text">Crea tu cuenta</h3>
                                 </div>
-                                <form action="{{ route('signup') }}" method="post" onsubmit="return validateForm(event)">
+                                <form action="{{ route('signup') }}" method="post" id="formulario">
                                     @csrf
                                     <div class="socialsneaker-text">
-                                        <div data-mdb-input-init class="form-outline mb-4">
-                                            <label class="form-label" for="name_sign"><h5>Nombre de usuario</h5></label>
-                                            <input type="text" name="name" id="name_sign" value="{{old('name')}}" class="form-control" />
-                                        </div>
-
-                                        <div data-mdb-input-init class="form-outline mb-4">
-                                            <label class="form-label" for="email_sign"><h5>Email address</h5></label>
-                                            <input type="email" name="email" id="email_sign" value="{{old('email')}}" class="form-control" />
-                                        </div>
-
-                                        <div data-mdb-input-init class="form-outline mb-4">
-                                            <label class="form-label" for="birthday_sign"><h5>Cumpleaños</h5></label><br>
-                                            <input type="date" name="birthday" id="birthday_sign" max="{{ now()->subYears(16)->format('Y-m-d') }}"><br>
-                                        </div>
-
-
-                                        <div data-mdb-input-init class="form-outline mb-4">
-                                            <label class="form-label" for="password_sign"><h5>Contraseña</h5></label>
-                                            <input type="password" id="password" name="password_sign" class="form-control" aria-describedby="passwordHelpBlock">
-                                            <div id="passwordHelpBlock" class="form-text socialsneaker-text">
-                                                La contraseña debe tener minimo 8 caracteres, preferiblemente deberia contener letras y números, y no contener espacios, caracteres especiales ni emoji.
+                                        <!-- Grupo: Usuario -->
+                                        <div class="form-outline mb-4" id="grupo__usuario">
+                                            <label for="usuario" class="form-label"><h5>Usuario</h5></label>
+                                            <div class="formulario__grupo-input">
+                                                <input type="text" class="formulario__input" name="usuario" id="usuario">
+                                                <i class="formulario__validacion-estado fas fa-times-circle"></i>
                                             </div>
+                                            <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+                                        </div>
+                                        <br>
+                                        <!-- Grupo: Correo Electronico -->
+                                        <div class="formulario__grupo" id="grupo__correo">
+                                            <label for="correo" class="form-label"><h5>Correo Electrónico</h5></label>
+                                            <div class="formulario__grupo-input">
+                                                <input type="email" class="formulario__input" name="correo" id="correo">
+                                                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                                            </div>
+                                            <p class="formulario__input-error">El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.</p>
+                                        </div>
+                                        <br><br>
+                                        <div class="formulario__grupo" id="grupo__fechaNacimiento">
+                                            <label for="fechaNacimiento" class="form-label"><h5>Fecha de Nacimiento</h5></label>
+                                            <div class="formulario__grupo-input">
+                                                <input type="date" class="formulario__input" name="fechaNacimiento" id="fechaNacimiento" max="{{ now()->subYears(16)->format('Y-m-d') }}">
+                                                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                                            </div>
+                                            <p class="formulario__input-error">Necesita tener mínimo 16 años para usar socialsneaker.</p>
+                                        </div>
+                                        <br><br>
+                                        <!-- Grupo: Contraseña -->
+                                        <div class="formulario__grupo" id="grupo__password">
+                                            <label for="password" class="form-label"><h5>Contraseña</h5></label>
+                                            <div class="formulario__grupo-input">
+                                                <input type="password" class="formulario__input" name="password" id="password">
+                                                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                                            </div>
+                                            <p class="formulario__input-error">La contraseña tiene que ser de 4 a 12 dígitos.</p>
+                                        </div>
+                                        <br><br>
+                                        <!-- Grupo: Contraseña 2 -->
+                                        <div class="formulario__grupo" id="grupo__password2">
+                                            <label for="password2" class="form-label"><h5>Repetir Contraseña</h5></label>
+                                            <div class="formulario__grupo-input">
+                                                <input type="password" class="formulario__input" name="password2" id="password2">
+                                                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                                            </div>
+                                            <p class="formulario__input-error">Ambas contraseñas deben ser iguales.</p>
+                                        </div>
+                                        <br><br>
+                                        <!-- Grupo: Terminos y Condiciones -->
+                                        <div class="formulario__grupo" id="grupo__terminos">
+                                            <label class="form-label">
+                                                <input class="formulario__checkbox" type="checkbox" name="terminos" id="terminos">
+                                                Acepto los <a href="" class="socialsneaker-text">Terminos y Condiciones</a>
+                                            </label>
+                                        </div>
+                                        <br><br>
+                                        <div class="formulario__mensaje" id="formulario__mensaje">
+                                            <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el formulario correctamente. </p>
                                         </div>
 
-                                        <div data-mdb-input-init class="form-outline mb-4">
-                                            <label for="password_confirmation"><h5>Repite la contraseña</h5></label><br>
-                                            <input type="password" name="password_confirmation" id="password_confirmation" class="form-control">
+                                        @if ($errors->any())
+                                            <ul>
+                                                <div class="alert alert-danger">
+                                                    @foreach ($errors->all() as $error)
+                                                        {{$error}} <br>
+                                                    @endforeach
+                                                </div>
+                                            </ul>
+                                        @endif
+
+                                        <div class="text-center">
+                                            <button type="submit" class="btn btn-primary btn-login socialsneaker-textbold">Registrarse</button>
+                                            <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p>
                                         </div>
                                     </div>
-                                    <br>
-                                    @if ($errors->any())
-                                        <ul>
-                                            <div class="alert alert-danger">
-                                                @foreach ($errors->all() as $error)
-                                                    {{$error}} <br>
-                                                @endforeach
-                                            </div>
-                                        </ul>
-                                    @endif
-                                    <br>
-                                    <div class="text-center">
-                                        <button type="submit" class="btn btn-primary btn-login socialsneaker-textbold">Registrarse</button>
-                                    </div>
-                                    <br><br>
+                                </form>
+
+                                <br><br>
                                     <div class="text-center">
                                         <div class="form-text socialsneaker-text">¿Tiene ya cuenta? <br><br><a class="socialsneaker-textbold"  href="/loginForm">Inicia sesión</a></div>
                                     </div>
-                                    <br><br>
-                                </form>
+                                <br><br>
                             </div>
                         </div>
                     </div>

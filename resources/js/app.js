@@ -1,68 +1,124 @@
-import './bootstrap';
+const formulario = document.getElementById('formulario');
+const inputs = document.querySelectorAll('#formulario input');
 
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.querySelector('form');
-    form.addEventListener('submit', function(event) {
-        event.preventDefault(); // Evita que el formulario se envíe automáticamente
-        if (validateForm()) {
-            // Si la validación es exitosa, puedes enviar el formulario aquí
-            this.submit(); // Envía el formulario
-        }
-    });
+const expresiones = {
+    usuario: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
+    password: /^.{4,12}$/, // 4 a 12 digitos.
+    correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+    fechaNacimiento: /^\d{4}\-\d{2}\-\d{2}$/ // Formato YYYY-MM-DD
+};
+
+const campos = {
+    usuario: false,
+    password: false,
+    correo: false,
+    fechaNacimiento: false
+};
+
+const validarFormulario = (e) => {
+    switch (e.target.name) {
+        case "usuario":
+            validarCampo(expresiones.usuario, e.target, 'usuario');
+            break;
+        case "password":
+            validarCampo(expresiones.password, e.target, 'password');
+            validarPassword2();
+            break;
+        case "correo":
+            validarCampo(expresiones.correo, e.target, 'correo');
+            break;
+        case "fechaNacimiento":
+            validarFechaNacimiento(e.target);
+            break;
+    }
+};
+
+const validarCampo = (expresion, input, campo) => {
+    if (expresion.test(input.value)) {
+        document.getElementById(`grupo__${campo}`).classList.remove('formulario__grupo-incorrecto');
+        document.getElementById(`grupo__${campo}`).classList.add('formulario__grupo-correcto');
+        document.querySelector(`#grupo__${campo} i`).classList.add('fa-check-circle');
+        document.querySelector(`#grupo__${campo} i`).classList.remove('fa-times-circle');
+        document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.remove('formulario__input-error-activo');
+        campos[campo] = true;
+    } else {
+        document.getElementById(`grupo__${campo}`).classList.add('formulario__grupo-incorrecto');
+        document.getElementById(`grupo__${campo}`).classList.remove('formulario__grupo-correcto');
+        document.querySelector(`#grupo__${campo} i`).classList.add('fa-times-circle');
+        document.querySelector(`#grupo__${campo} i`).classList.remove('fa-check-circle');
+        document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.add('formulario__input-error-activo');
+        campos[campo] = false;
+    }
+};
+
+const validarPassword2 = () => {
+    const inputPassword1 = document.getElementById('password');
+    const inputPassword2 = document.getElementById('password2');
+
+    if (inputPassword1.value !== inputPassword2.value) {
+        document.getElementById(`grupo__password2`).classList.add('formulario__grupo-incorrecto');
+        document.getElementById(`grupo__password2`).classList.remove('formulario__grupo-correcto');
+        document.querySelector(`#grupo__password2 i`).classList.add('fa-times-circle');
+        document.querySelector(`#grupo__password2 i`).classList.remove('fa-check-circle');
+        document.querySelector(`#grupo__password2 .formulario__input-error`).classList.add('formulario__input-error-activo');
+        campos['password'] = false;
+    } else {
+        document.getElementById(`grupo__password2`).classList.remove('formulario__grupo-incorrecto');
+        document.getElementById(`grupo__password2`).classList.add('formulario__grupo-correcto');
+        document.querySelector(`#grupo__password2 i`).classList.remove('fa-times-circle');
+        document.querySelector(`#grupo__password2 i`).classList.add('fa-check-circle');
+        document.querySelector(`#grupo__password2 .formulario__input-error`).classList.remove('formulario__input-error-activo');
+        campos['password'] = true;
+    }
+};
+
+const validarFechaNacimiento = (input) => {
+    const fechaNacimiento = input.value;
+    const fechaNacimientoDate = new Date(fechaNacimiento);
+    const edadMilisegundos = Date.now() - fechaNacimientoDate.getTime();
+    const edadFecha = new Date(edadMilisegundos);
+
+    const edad = Math.abs(edadFecha.getUTCFullYear() - 1970);
+
+    if (edad < 16) {
+        document.getElementById(`grupo__fechaNacimiento`).classList.add('formulario__grupo-incorrecto');
+        document.getElementById(`grupo__fechaNacimiento`).classList.remove('formulario__grupo-correcto');
+        document.querySelector(`#grupo__fechaNacimiento i`).classList.add('fa-times-circle');
+        document.querySelector(`#grupo__fechaNacimiento i`).classList.remove('fa-check-circle');
+        document.querySelector(`#grupo__fechaNacimiento .formulario__input-error`).classList.add('formulario__input-error-activo');
+        campos['fechaNacimiento'] = false;
+    } else {
+        document.getElementById(`grupo__fechaNacimiento`).classList.remove('formulario__grupo-incorrecto');
+        document.getElementById(`grupo__fechaNacimiento`).classList.add('formulario__grupo-correcto');
+        document.querySelector(`#grupo__fechaNacimiento i`).classList.remove('fa-times-circle');
+        document.querySelector(`#grupo__fechaNacimiento i`).classList.add('fa-check-circle');
+        document.querySelector(`#grupo__fechaNacimiento .formulario__input-error`).classList.remove('formulario__input-error-activo');
+        campos['fechaNacimiento'] = true;
+    }
+};
+
+inputs.forEach((input) => {
+    input.addEventListener('keyup', validarFormulario);
+    input.addEventListener('blur', validarFormulario);
 });
-// Función para validar el formulario antes de enviarlo
-function validateForm() {
-    event.preventDefault();
-    var name = document.getElementById('name_sign').value;
-    var email = document.getElementById('email_sign').value;
-    var birthday = document.getElementById('birthday_sign').value;
-    var password = document.getElementById('password').value;
-    var confirmPassword = document.getElementById('password_confirmation').value;
-    console.log('mau')
-    // Realizar todas las validaciones de JavaScript
-    if (name.trim() === '') {
-        alert('Por favor, introduce un nombre de usuario.');
-        return false;
+
+formulario.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const terminos = document.getElementById('terminos');
+    if (campos.usuario && campos.password && campos.correo && campos.fechaNacimiento && terminos.checked) {
+        formulario.reset();
+
+        document.getElementById('formulario__mensaje-exito').classList.add('formulario__mensaje-exito-activo');
+        setTimeout(() => {
+            document.getElementById('formulario__mensaje-exito').classList.remove('formulario__mensaje-exito-activo');
+        }, 5000);
+
+        document.querySelectorAll('.formulario__grupo-correcto').forEach((icono) => {
+            icono.classList.remove('formulario__grupo-correcto');
+        });
+    } else {
+        document.getElementById('formulario__mensaje').classList.add('formulario__mensaje-activo');
     }
-    if (!validateEmail(email)) {
-        alert('Por favor, introduce una dirección de correo electrónico válida.');
-        return false;
-    }
-    if (!validateBirthday(birthday)) {
-        alert('Debes tener al menos 16 años para registrarte.');
-        return false;
-    }
-    if (password.length < 8) {
-        alert('La contraseña debe tener al menos 8 caracteres.');
-        return false;
-    }
-    if (password !== confirmPassword) {
-        alert('Las contraseñas no coinciden.');
-        return false;
-    }
-
-    // Si todas las validaciones de JavaScript pasan, enviar el formulario
-    return true;
-}
-
-
-// Función para validar un correo electrónico
-function validateEmail(email) {
-    var re = /\S+@\S+\.\S+/;
-    return re.test(email);
-}
-
-// Función para validar la fecha de cumpleaños (debe ser mayor de 16 años)
-function validateBirthday(birthday) {
-    var birthdayDate = new Date(birthday);
-    var today = new Date();
-    var minAge = 16;
-    var minDate = new Date(today.getFullYear() - minAge, today.getMonth(), today.getDate());
-
-    return birthdayDate <= minDate;
-}
-
-
-
-
+});
 

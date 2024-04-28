@@ -16,16 +16,16 @@
                                 <h1 class="mt-1 mb-5 pb-1 socialsneaker-titletext">SOCIALSNEAKER</h1>
                                 <h3 class="mt-1 mb-5 pb-1 socialsneaker-text">Inicia sesión</h3>
                             </div>
-                            <form action="{{ route('login') }}" method="POST">
+                            <form action="{{ route('login') }}" method="POST"> <!-- Formulario para iniciar sesión -->
                                 @csrf
                                 <div class="socialsneaker-text">
-                                    <div class="mb-3">
+                                    <div class="mb-3"> <!-- Campo para el nombre del usuario -->
                                         <label class="form-label" for="name"><h5>Nombre de usuario</h5></label>
                                         <input type="text" name="name" id="name" value="{{ old('name') }}" class="form-control">
                                         <div class="form-text socialsneaker-text">Introduce tu nombre de usuario</div>
                                     </div>
                                     <br><br>
-                                    <div class="mb-3">
+                                    <div class="mb-3"> <!-- Campo para la contraseña del usuario -->
                                         <label class="form-label" for="password"><h5>Contraseña</h5></label>
                                         <input type="password" name="password" id="password" class="form-control">
                                         <div class="form-text socialsneaker-text">Introduce tu contraseña</div>
