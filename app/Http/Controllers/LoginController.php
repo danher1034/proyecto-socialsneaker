@@ -13,7 +13,7 @@ class LoginController extends Controller
     public function signupForm() // Función para mostrar el formulario de registro
     {
         if(Auth::check()){ // En caso de que el usuario ya este logueado redirige a su cuenta
-            return view('auth.login');
+            return view('users.account');
         }else{
             return view('auth.signup');
         }
@@ -30,7 +30,7 @@ class LoginController extends Controller
 
         Auth:: Login($user);
 
-        return view('auth.login');
+        return view('users.account');
     }
 
     public function loginform() // Muestra el formulario para iniciar sesión
