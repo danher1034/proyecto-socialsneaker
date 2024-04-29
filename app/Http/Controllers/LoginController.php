@@ -26,6 +26,7 @@ class LoginController extends Controller
         $user->email = $request->get('email');
         $user->birthday=$request->get('birthday');
         $user->password = Hash:: make($request->get('password'));
+        $user->image_user='';
         $user->save();
 
         Auth:: Login($user);
@@ -94,5 +95,13 @@ class LoginController extends Controller
             $error = 'La contraseña es incorrecta, intentalo de nuevo';
             return view('users.edit', compact('user','error'));
         }
+
+        if($request->hasFile('image_user')){
+            $nombre = Auth::user()->name.'.'.$request->file('image_user')->getClientOriginalExtension();
+            $img =  $request->file('image_user')->storeAs('public/img',$nombre);
+            Auth::user()->image_user = '/img/'.$nombre;
+            Auth::user()->save();
+        }
     }
 }
+//https://www.youtube.com/watch?v=sGRC6cuSu8c
