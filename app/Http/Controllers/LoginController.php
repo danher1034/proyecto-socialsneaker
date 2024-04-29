@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\SignupRequest;
 use Illuminate\Support\Facades\Auth;
@@ -12,7 +13,7 @@ class LoginController extends Controller
     public function signupForm() // Función para mostrar el formulario de registro
     {
         if(Auth::check()){ // En caso de que el usuario ya este logueado redirige a su cuenta
-            return view('users.account');
+            return view('auth.login');
         }else{
             return view('auth.signup');
         }
@@ -21,15 +22,15 @@ class LoginController extends Controller
     public function signup (SignupRequest $request) // Crea el usuario en la base de datos
     {
         $user = new User();
-        $user->name = $request->get('usuario');
-        $user->email = $request->get('correo');
-        $user->birthday=$request->get('fechaNacimiento');
-        $user->password = Hash:: make($request->get('password_sign'));
+        $user->name = $request->get('name');
+        $user->email = $request->get('email');
+        $user->birthday=$request->get('birthday');
+        $user->password = Hash:: make($request->get('password'));
         $user->save();
 
         Auth:: Login($user);
 
-        return view('users.account');
+        return view('auth.login');
     }
 
     public function loginform() // Muestra el formulario para iniciar sesión

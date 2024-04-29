@@ -17,21 +17,25 @@ const campos = {
 
 const validarFormulario = (e) => {
     switch (e.target.name) {
-        case "usuario":
-            validarCampo(expresiones.usuario, e.target, 'usuario');
+        case "name":
+            validarCampo(expresiones.usuario, e.target, 'name');
+            break;
+        case "email":
+            validarCampo(expresiones.correo, e.target, 'email');
+            break;
+        case "birthday":
+            validarFechaNacimiento(e.target);
             break;
         case "password":
             validarCampo(expresiones.password, e.target, 'password');
             validarPassword2();
             break;
-        case "correo":
-            validarCampo(expresiones.correo, e.target, 'correo');
-            break;
-        case "fechaNacimiento":
-            validarFechaNacimiento(e.target);
+        case "password_confirmation":
+            validarPassword2();
             break;
     }
 };
+
 
 const validarCampo = (expresion, input, campo) => {
     if (expresion.test(input.value)) {
@@ -53,23 +57,24 @@ const validarCampo = (expresion, input, campo) => {
 
 const validarPassword2 = () => {
     const inputPassword1 = document.getElementById('password');
-    const inputPassword2 = document.getElementById('password2');
+    const inputPassword2 = document.getElementById('password_confirmation');
 
     if (inputPassword1.value !== inputPassword2.value) {
-        document.getElementById(`grupo__password2`).classList.add('formulario__grupo-incorrecto');
-        document.getElementById(`grupo__password2`).classList.remove('formulario__grupo-correcto');
-        document.querySelector(`#grupo__password2 i`).classList.add('fa-times-circle');
-        document.querySelector(`#grupo__password2 i`).classList.remove('fa-check-circle');
-        document.querySelector(`#grupo__password2 .formulario__input-error`).classList.add('formulario__input-error-activo');
-        campos['password'] = false;
+        document.getElementById(`grupo__password_confirmation`).classList.add('formulario__grupo-incorrecto');
+        document.getElementById(`grupo__password_confirmation`).classList.remove('formulario__grupo-correcto');
+        document.querySelector(`#grupo__password_confirmation i`).classList.add('fa-times-circle');
+        document.querySelector(`#grupo__password_confirmation i`).classList.remove('fa-check-circle');
+        document.querySelector(`#grupo__password_confirmation .formulario__input-error`).classList.add('formulario__input-error-activo');
+        campos['password_confirmation'] = false;
     } else {
-        document.getElementById(`grupo__password2`).classList.remove('formulario__grupo-incorrecto');
-        document.getElementById(`grupo__password2`).classList.add('formulario__grupo-correcto');
-        document.querySelector(`#grupo__password2 i`).classList.remove('fa-times-circle');
-        document.querySelector(`#grupo__password2 i`).classList.add('fa-check-circle');
-        document.querySelector(`#grupo__password2 .formulario__input-error`).classList.remove('formulario__input-error-activo');
-        campos['password'] = true;
+        document.getElementById(`grupo__password_confirmation`).classList.remove('formulario__grupo-incorrecto');
+        document.getElementById(`grupo__password_confirmation`).classList.add('formulario__grupo-correcto');
+        document.querySelector(`#grupo__password_confirmation i`).classList.remove('fa-times-circle');
+        document.querySelector(`#grupo__password_confirmation i`).classList.add('fa-check-circle');
+        document.querySelector(`#grupo__password_confirmation .formulario__input-error`).classList.remove('formulario__input-error-activo');
+        campos['password_confirmation'] = true;
     }
+
 };
 
 const validarFechaNacimiento = (input) => {
@@ -81,6 +86,7 @@ const validarFechaNacimiento = (input) => {
     const edad = Math.abs(edadFecha.getUTCFullYear() - 1970);
 
     if (edad < 16) {
+        // Aquí es donde se produce el error si `input` no corresponde al elemento esperado
         document.getElementById(`grupo__fechaNacimiento`).classList.add('formulario__grupo-incorrecto');
         document.getElementById(`grupo__fechaNacimiento`).classList.remove('formulario__grupo-correcto');
         document.querySelector(`#grupo__fechaNacimiento i`).classList.add('fa-times-circle');
@@ -97,28 +103,39 @@ const validarFechaNacimiento = (input) => {
     }
 };
 
+
 inputs.forEach((input) => {
     input.addEventListener('keyup', validarFormulario);
     input.addEventListener('blur', validarFormulario);
 });
 
+
 formulario.addEventListener('submit', (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Detener el envío inicial del formulario
 
     const terminos = document.getElementById('terminos');
-    if (campos.usuario && campos.password && campos.correo && campos.fechaNacimiento && terminos.checked) {
-        formulario.reset();
 
+    // Verificar si todos los campos son válidos
+    if (campos['name'] && campos['email'] && campos['password'] && campos['password_confirmation'] && campos['fechaNacimiento'] && terminos.checked) {
+        // Si todos los campos son válidos, enviar el formulario
+        formulario.submit();
+
+        // Resetear el formulario y mostrar mensaje de éxito (si es necesario)
+        formulario.reset();
         document.getElementById('formulario__mensaje-exito').classList.add('formulario__mensaje-exito-activo');
         setTimeout(() => {
             document.getElementById('formulario__mensaje-exito').classList.remove('formulario__mensaje-exito-activo');
         }, 5000);
 
+        // Remover las clases de validación correcta después del envío
         document.querySelectorAll('.formulario__grupo-correcto').forEach((icono) => {
             icono.classList.remove('formulario__grupo-correcto');
         });
     } else {
+        // Mostrar mensaje de error porque no todos los campos son válidos
         document.getElementById('formulario__mensaje').classList.add('formulario__mensaje-activo');
     }
 });
+
+
 

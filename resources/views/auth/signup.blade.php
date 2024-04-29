@@ -19,30 +19,31 @@
                                 <form action="{{ route('signup') }}" method="post" id="formulario">
                                     @csrf
                                     <div class="socialsneaker-text">
-                                        <!-- Grupo: Usuario -->
-                                        <div class="form-outline mb-4" id="grupo__usuario">
-                                            <label for="usuario" class="form-label"><h5>Usuario</h5></label>
+                                        <!-- Grupo: Nombre -->
+                                        <div class="form-outline mb-4" id="grupo__name">
+                                            <label for="name" class="form-label"><h5>Nombre</h5></label>
                                             <div class="formulario__grupo-input">
-                                                <input type="text" class="formulario__input" name="usuario" id="usuario">
+                                                <input type="text" class="formulario__input" name="name" id="name">
                                                 <i class="formulario__validacion-estado fas fa-times-circle"></i>
                                             </div>
-                                            <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+                                            <p class="formulario__input-error">El nombre tiene que ser de 4 a 16 dígitos y solo puede contener letras, números y guion bajo.</p>
                                         </div>
                                         <br>
-                                        <!-- Grupo: Correo Electronico -->
-                                        <div class="formulario__grupo" id="grupo__correo">
-                                            <label for="correo" class="form-label"><h5>Correo Electrónico</h5></label>
+                                        <!-- Grupo: Correo Electrónico -->
+                                        <div class="formulario__grupo" id="grupo__email">
+                                            <label for="email" class="form-label"><h5>Correo Electrónico</h5></label>
                                             <div class="formulario__grupo-input">
-                                                <input type="email" class="formulario__input" name="correo" id="correo">
+                                                <input type="email" class="formulario__input" name="email" id="email">
                                                 <i class="formulario__validacion-estado fas fa-times-circle"></i>
                                             </div>
-                                            <p class="formulario__input-error">El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.</p>
+                                            <p class="formulario__input-error">El correo solo puede contener letras, números, puntos, guiones y guion bajo.</p>
                                         </div>
                                         <br><br>
+                                        <!-- Grupo: Fecha de Nacimiento -->
                                         <div class="formulario__grupo" id="grupo__fechaNacimiento">
-                                            <label for="fechaNacimiento" class="form-label"><h5>Fecha de Nacimiento</h5></label>
+                                            <label for="birthday" class="form-label"><h5>Fecha de Nacimiento</h5></label>
                                             <div class="formulario__grupo-input">
-                                                <input type="date" class="formulario__input" name="fechaNacimiento" id="fechaNacimiento" max="{{ now()->subYears(16)->format('Y-m-d') }}">
+                                                <input type="date" class="formulario__input" name="birthday" id="birthday" max="{{ now()->subYears(16)->format('Y-m-d') }}">
                                                 <i class="formulario__validacion-estado fas fa-times-circle"></i>
                                             </div>
                                             <p class="formulario__input-error">Necesita tener mínimo 16 años para usar socialsneaker.</p>
@@ -59,10 +60,11 @@
                                         </div>
                                         <br><br>
                                         <!-- Grupo: Contraseña 2 -->
-                                        <div class="formulario__grupo" id="grupo__password2">
-                                            <label for="password2" class="form-label"><h5>Repetir Contraseña</h5></label>
+                                        <!-- Grupo: Contraseña 2 (Confirmar Contraseña) -->
+                                        <div class="formulario__grupo" id="grupo__password_confirmation">
+                                            <label for="password_confirmation" class="form-label"><h5>Repetir Contraseña</h5></label>
                                             <div class="formulario__grupo-input">
-                                                <input type="password" class="formulario__input" name="password2" id="password2">
+                                                <input type="password" class="formulario__input" name="password_confirmation" id="password_confirmation">
                                                 <i class="formulario__validacion-estado fas fa-times-circle"></i>
                                             </div>
                                             <p class="formulario__input-error">Ambas contraseñas deben ser iguales.</p>
