@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <form action="{{route('users/update',$user)}}" method="POST">
+    <form action="{{ route('users/update', $user) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('put')
         <br>
@@ -25,6 +25,11 @@
         <div data-mdb-input-init class="form-outline mb-4">
             <label for="newpassword_confirmation"><div class="badge bg-secondary text-wrap" style="width: 6rem;">Opcional</div> Repite la nueva contraseña:</label><br><br>
             <input type="password" name="newpassword_confirmation" id="newpassword_confirmation" class="form-control">
+        </div>
+
+        <div data-mdb-input-init class="form-outline mb-4">
+            <label class="form-label" for="image_user">Imagen perfil</label>
+            <input type="file" name="image_user" id="image_user" class="form-control">
         </div>
 
         <div data-mdb-input-init class="form-outline mb-4">

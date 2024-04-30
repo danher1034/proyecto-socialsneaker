@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\SignupRequest;
+use App\Http\Requests\UsereditRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -76,31 +78,42 @@ class LoginController extends Controller
      */
     public function update(UsereditRequest $request, User $user)
     {
-
-        $credentials=[
+        $credentials = [
             'name' => Auth::user()->name,
             'password' => $request->get('password'),
         ];
 
-        if(Auth::guard('web')->attempt($credentials)){
-
+        // Verificar las credenciales del usuario antes de permitir la actualización
+        if (Auth::guard('web')->attempt($credentials)) {
+            // Actualizar los campos del usuario
             $user->birthday = $request->get('birthday');
+
             if ($request->filled('newpassword')) {
                 $user->password = Hash::make($request->get('newpassword'));
             }
+
+            // Procesar la imagen si se ha subido un archivo
+            if ($request->hasFile('image_user')) {
+                $image = $request->file('image_user');
+                $extension = $image->getClientOriginalExtension();
+                $filename = $user->id . '.' . $extension; // Nuevo nombre de archivo
+
+                // Guardar la imagen en el sistema de archivos
+                $path = $image->storeAs('public/img/user_images', $filename);
+
+                // Actualizar la ruta de la imagen en el modelo User
+                $user->image_user = '/storage/img/user_images/' . $filename;
+            }
+
+            // Guardar los cambios en el modelo User
             $user->save();
+
+            // Redirigir a una vista de confirmación
             return view('users.edited');
-
-        } else{
-            $error = 'La contraseña es incorrecta, intentalo de nuevo';
-            return view('users.edit', compact('user','error'));
-        }
-
-        if($request->hasFile('image_user')){
-            $nombre = Auth::user()->name.'.'.$request->file('image_user')->getClientOriginalExtension();
-            $img =  $request->file('image_user')->storeAs('public/img',$nombre);
-            Auth::user()->image_user = '/img/'.$nombre;
-            Auth::user()->save();
+        } else {
+            // Mostrar un mensaje de error si las credenciales no son válidas
+            $error = 'La contraseña es incorrecta, inténtalo de nuevo';
+            return view('users.edit', compact('user', 'error'));
         }
     }
 }
