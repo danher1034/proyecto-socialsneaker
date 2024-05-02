@@ -1,14 +1,8 @@
-@extends('layout')
 
-@section('title')
-    <h1>Editar usuario</h1>
-@endsection
-
-@section('content')
     <form action="{{ route('users/update', $user) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('put')
-        <br>
+
         <div data-mdb-input-init class="form-outline mb-4">
             <label for="birthday">Cumpleaños:</label><br>
             <input type="date" name="birthday" id="birthday" value="{{$user->birthday}}" class="form-control"><br>
@@ -51,6 +45,8 @@
             </div>
         @endif
 
-        <input type="submit" value="enviar">
+        <input type="submit" value="Guardar Cambios">
     </form>
-@endsection
+
+
+

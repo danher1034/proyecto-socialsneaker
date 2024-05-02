@@ -110,5 +110,6 @@
                 </div>
             </div>
         </div>
+        @vite(['resources/js/signup.js'])
     </section>
 @endsection
