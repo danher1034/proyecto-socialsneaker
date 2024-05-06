@@ -31,20 +31,6 @@
             <input type="password" name="password" id="password" class="form-control">
         </div>
 
-
-        <br><br>
-
-        @if($errors->any())
-            Hay errores en el formulario: <br>
-            @foreach ($errors->all() as $error)
-                {{$error}} <br>
-            @endforeach
-        @elseif(isset($error))
-            <div class="alert alert-danger">
-                {{ $error }}
-            </div>
-        @endif
-
         <input type="submit" value="Guardar Cambios">
     </form>
 

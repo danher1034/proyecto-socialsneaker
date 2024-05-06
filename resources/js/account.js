@@ -20,4 +20,10 @@ document.addEventListener('DOMContentLoaded', () => {
         popupBox.innerHTML = ''; // Limpiar el contenido del popup al cerrar
         popupContainer.classList.remove('active');
     }
+
+    // Mostrar ventana modal con mensaje de éxito si existe
+    if (typeof successMessage !== 'undefined' && successMessage !== '') {
+        alert(successMessage); // Aquí puedes usar tu modal personalizado
+    }
 });
+

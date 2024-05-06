@@ -14,15 +14,21 @@
             <div class="row align-items-center mb-3"> <!-- Aquí se ha añadido la clase mb-3 para reducir el margen inferior -->
                 <div class="col"><h2>{{ Auth::user()->name }}</h2></div>
                 <!-- Contenido principal de la página -->
-                <button class="btn show-popup"
-                    data-edit-url="{{route('users/edit', Auth::user())}}">
-                    Editar perfil
-                </button>
+                <div class="col-6"> <!-- Colocamos el botón en una columna auto para que se ajuste automáticamente -->
+                    <button class="btn show-popup" data-edit-url="{{ route('users/edit', Auth::user()) }}">
+                        Editar perfil
+                    </button>
+                </div>
                 <!-- Contenedor del popup -->
                 <div class="popup-container">
                     <div class="popup-box"></div>
-                    <button class="close-btn">Cerrar</button>
+                    <button class="close-btn"></button>
                 </div>
+                @if(Session::has('success_message'))
+                    <script>
+                        var successMessage = "{{ Session::get('success_message') }}";
+                    </script>
+                @endif
             </div>
             <div class="row">
                 <div class="col-4">
@@ -45,4 +51,3 @@
 </div>
     @vite(['resources/js/account.js'])
 @endsection
-

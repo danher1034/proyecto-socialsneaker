@@ -9,6 +9,7 @@ use App\Http\Requests\SignupRequest;
 use App\Http\Requests\UsereditRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -108,13 +109,15 @@ class LoginController extends Controller
             // Guardar los cambios en el modelo User
             $user->save();
 
-            // Redirigir a una vista de confirmación
-            return view('users.edited');
+            // Establecer un mensaje de éxito en la sesión
+            Session::flash('success_message', '¡Perfil actualizado correctamente!');
         } else {
             // Mostrar un mensaje de error si las credenciales no son válidas
-            $error = 'La contraseña es incorrecta, inténtalo de nuevo';
-            return view('users.edit', compact('user', 'error'));
+            Session::flash('success_message', 'No se ha podido actualizar el perfil');
         }
+
+        // Redirigir a la vista de cuenta
+        return redirect()->route('account');
     }
 }
-//https://www.youtube.com/watch?v=sGRC6cuSu8c
+

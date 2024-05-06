@@ -3,11 +3,13 @@
 @tailwind utilities;
 */
 
-body {
-    /* Establece un fondo con un degradado radial */
+.backgroud-nocheck{
     background: radial-gradient(circle, #4C82AC, #0B2C51);
 }
 
+backgroud-check{
+    background: radial-gradient(circle, #4C82AC, #0B2C51);
+}
 
 [x-cloak] {
     display: none;

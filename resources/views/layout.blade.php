@@ -13,11 +13,18 @@
         @vite(['resources/css/app.css','resources/js/app.js'])
         <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
     </head>
-    <body class="d-flex flex-column min-vh-100">
+    @if (Auth::check())
+            <body class="d-flex flex-column min-vh-100 backgroud-check">
+        @else
+            <body class="d-flex flex-column min-vh-100 backgroud-nocheck">
+        @endif
+
         @auth
             @include('partials.nav')  {{-- Para poner el navbar en el layout de la aplicacion --}}
         @endauth
-        <div class="container mt-3">
+
+
+        <div class="container">
             @yield('title')
         </div>
 
