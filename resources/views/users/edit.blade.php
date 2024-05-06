@@ -27,8 +27,8 @@
         </div>
 
         <div data-mdb-input-init class="form-outline mb-4">
-            <label class="form-label" for="password">Contraseña Actual:</label>
-            <input type="password" name="password" id="password" class="form-control">
+            <label class="form-label" for="password"><div class="badge bg-secondary text-wrap" style="width: 6rem;">Obligatorio</div> Contraseña Actual:</label>
+            <input type="password" name="password" id="password" class="form-control" required>
         </div>
 
         <input type="submit" value="Guardar Cambios">

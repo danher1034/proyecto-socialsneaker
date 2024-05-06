@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title')
-
+<br><br>
 @endsection
 
 @section('content')

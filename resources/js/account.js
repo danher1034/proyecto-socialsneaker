@@ -25,5 +25,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeof successMessage !== 'undefined' && successMessage !== '') {
         alert(successMessage); // Aquí puedes usar tu modal personalizado
     }
+
+    if (typeof errorMessage !== 'undefined' && errorMessage !== '') {
+        alert(errorMessage); // Aquí puedes usar tu modal personalizado
+    }
 });
 

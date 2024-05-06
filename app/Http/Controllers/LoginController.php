@@ -113,7 +113,7 @@ class LoginController extends Controller
             Session::flash('success_message', '¡Perfil actualizado correctamente!');
         } else {
             // Mostrar un mensaje de error si las credenciales no son válidas
-            Session::flash('success_message', 'No se ha podido actualizar el perfil');
+            Session::flash('success_message', 'La contraseña actual no es válida');
         }
 
         // Redirigir a la vista de cuenta
