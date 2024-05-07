@@ -18,6 +18,10 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
 
+    public function collection()
+    {
+        return $this->belongsToMany(Collection::class);
+    }
     /**
      * The attributes that are mass assignable.
      *

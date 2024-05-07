@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\CollectionController;
 
 // Ruta para el index
 Route::get('/', function () {return view('index');})->name('index');
@@ -18,3 +19,15 @@ Route::get('account', function() { return view('users.account'); })->name('accou
 // Rutas para el apartado de usuario
 Route::get('users/edit/{user}', [LoginController::class, 'edit'])->name('users/edit');
 Route::put('users/update/{user}', [LoginController::class, 'update'])->name('users/update');
+
+
+Route::get('collections', [CollectionController::class, 'index'])->name('collections');
+Route::get('collections/show/{collection}', [CollectionController::class, 'show'])->name('collections/show');
+Route::get('collections/like/{collection}', [CollectionController::class, 'like'])->name('collections/like');
+Route::get('collections/create', [CollectionController::class, 'create'])->name('collections/create');
+Route::post('collections/store', [CollectionController::class, 'store'])->name('collections/store');
+Route::get('collections/edit/{collection}', [CollectionController::class, 'edit'])->name('collections/edit');
+Route::put('collections/update/{collection}', [CollectionController::class, 'update'])->name('collections/update');
+Route::get('collections/destroy/{collection}', [CollectionController::class, 'destroy'])->name('collections/destroy'); 
+
+
