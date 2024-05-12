@@ -10,13 +10,15 @@ use App\Http\Requests\UsereditRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use App\Models\Collection;
 
 class LoginController extends Controller
 {
     public function signupForm() // Función para mostrar el formulario de registro
     {
         if(Auth::check()){ // En caso de que el usuario ya este logueado redirige a su cuenta
-            return view('users.account');
+            $collections = Collection::orderBy('date')->get();
+            return view('users.account', compact('collections'));
         }else{
             return view('auth.signup');
         }
@@ -34,13 +36,15 @@ class LoginController extends Controller
 
         Auth:: Login($user);
 
-        return view('users.account');
+        $collections = Collection::orderBy('date')->get();
+        return view('users.account', compact('collections'));
     }
 
     public function loginform() // Muestra el formulario para iniciar sesión
     {
         if(Auth::check()){ // En caso de que el usuario ya este logueado redirige a su cuenta
-            return view('users.account');
+            $collections = Collection::orderBy('date')->get();
+            return view('users.account', compact('collections'));
         }else{
             return view('auth.login');
         }
@@ -53,7 +57,9 @@ class LoginController extends Controller
 
         if(Auth::guard('web')->attempt($credentials, $remenberLogin)){
             $request->session()->regenerate();
-            return view('users.account');
+            $collections = Collection::orderBy('date')->get();
+
+        return view('users.account', compact('collections'));
         } else{ // Si no son correctos dará error
             $error = 'La contraseña o el usuario son incorrectos o no existen, intentalo de nuevo';
             return view('auth.login', compact('error'));
@@ -117,7 +123,8 @@ class LoginController extends Controller
         }
 
         // Redirigir a la vista de cuenta
-        return redirect()->route('account');
+        $collections = Collection::orderBy('date')->get();
+        return view('users.account', compact('collections'));
     }
 }
 

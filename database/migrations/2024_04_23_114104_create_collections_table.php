@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id()->autoIncrement();
             $table->text('description');
             $table->date('date');
+            $table->string('image_collection', 80);
             $table->text('tags');
+            $table->foreignId('user_id');
             $table->timestamps();
         });
     }

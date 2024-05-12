@@ -7,6 +7,7 @@ use App\Http\Requests\CollectionsRequest;
 use App\Models\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class CollectionController extends Controller
 {
@@ -33,14 +34,31 @@ class CollectionController extends Controller
      */
     public function store(CollectionsRequest $request)
     {
-        $collection=new Collection();
-        $collection->description=$request->get('description');
-        $collection->date=$request->get('date');
-        $collection->tags=$request->get('tags');
+        $collection = new Collection();
+        $collection->description = $request->input('description');
+        $collection->date = Carbon::now();
+        $collection->user_id = Auth::user()->id;
+        $collection->tags = $request->input('tags');
+        $collection->image_collection = '';
+
         $collection->save();
 
+        if ($request->hasFile('image_collection')) {
+            $image = $request->file('image_collection');
+            $extension = $image->getClientOriginalExtension();
+            $filename = $collection->id . '.' . $extension; // Nuevo nombre de archivo
+
+            // Guardar la imagen en el sistema de archivos
+            $path = $image->storeAs('public/img/collection_images', $filename);
+
+            // Actualizar la ruta de la imagen en el modelo Collection
+            $collection->image_collection = '/storage/img/collection_images/' . $filename;
+        }
+
+        $collection->save();
         return view('collections.stored', compact('collection'));
     }
+
 
     /**
      * Display the specified resource.
@@ -65,7 +83,7 @@ class CollectionController extends Controller
     {
         $collection->description=$request->get('description');
         $collection->date=$request->get('date');
-        $collection->tags=$request->get('tags');    
+        $collection->tags=$request->get('tags');
         $collection->save();
 
         return view('collections.edited', compact('collection'));
@@ -84,5 +102,14 @@ class CollectionController extends Controller
     {
         $collection->delete();
         return redirect()->route('collections');
+    }
+
+    public function account()
+    {
+        $collections = Collection::where('user_id', Auth::user()->id)
+        ->orderBy('date')
+        ->get();
+
+        return view('users.account', compact('collections'));
     }
 }

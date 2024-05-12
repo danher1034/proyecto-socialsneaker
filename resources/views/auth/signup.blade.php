@@ -56,7 +56,7 @@
                                                 <input type="password" class="formulario__input" name="password" id="password">
                                                 <i class="formulario__validacion-estado fas fa-times-circle"></i>
                                             </div>
-                                            <p class="formulario__input-error">La contraseña tiene que ser de 4 a 12 dígitos.</p>
+                                            <p class="formulario__input-error">La contraseña tiene que ser de 8 a 50 dígitos.</p>
                                         </div>
                                         <br><br>
                                         <!-- Grupo: Contraseña 2 -->

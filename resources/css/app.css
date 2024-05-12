@@ -319,3 +319,9 @@ backgroud-check{
 .close-btn:after {
     transform: rotate(-45deg);
 }
+
+/* ----- -----  Estilos para Cuenta ----- ----- */
+
+.title-account{
+    font-size: 50px;
+}

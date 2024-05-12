@@ -3,7 +3,7 @@ const inputs = document.querySelectorAll('#formulario input');
 
 const expresiones = {
     usuario: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
-    password: /^.{4,12}$/, // 4 a 12 digitos.
+    password: /^.{8,50}$/, // 4 a 12 digitos.
     correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
     fechaNacimiento: /^\d{4}\-\d{2}\-\d{2}$/ // Formato YYYY-MM-DD
 };

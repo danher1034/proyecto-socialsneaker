@@ -4,26 +4,39 @@
 @endsection
 
 @section('content')
-    <div class="mb-4 mt-4 row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
+    <div class="mb-5 mt-5 row row-cols-1 row-cols-md-2 row-cols-xl-1 g-4">
         @forelse ($collections as $collection)
-            <div class="card text-center">
-                <div class="card-header"><h2 class="card-title"><a class="link-secondary link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="{{route('collections/show', $collection)}}">{{$collection->name}}</a></h2></div>
+            <div class="card mb-3" style="max-width: 1040px;">
+                <div class="row g-0">
+                  <div class="col-md-5">
+                    <img
+                      src="{{$collection->image_collection}}"
+                      alt="{{$collection->image_collection}}"
+                      class="img-fluid rounded-start"
+                    />
+                  </div>
+                  <div class="col-md-7">
                     <div class="card-body">
-                        <h5 class="card-title">Hola</h5>
-                        <p class="card-text">{{$collection->description}}</p>
-                    </div>
-                    <div class="card-footer text-muted">
-                        <a type="button" class="btn btn-warning" href="{{ route('collections/edit', $collection) }}">Editar</a>
-                        &nbsp;&nbsp;&nbsp;
-                        <a type="button" class="btn btn-danger" href="{{route('collections/destroy', $collection)}}">Eliminar</a>
-                        &nbsp;&nbsp;&nbsp;
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="{{ $collection->user->image_user }}" alt="{{ $collection->user->name }}'s Image" class="img-fluid rounded-circle" style="max-width: 50px;">
+                            <h5 class="card-title">{{ $collection->user->name }}</h5>
+                        </div>
+                      <p class="card-text">
+                        {{$collection->description}}
+                        <br><br>
                         @if (Auth::user()->collection()->where('collection_id', $collection->id)->count()>0)
                             <a href="{{route('collections/like', $collection)}}"><i class="bi bi-heart-fill"></i></a>
-                        @else                               
+                        @else
                             <a href="{{route('collections/like', $collection)}}"><i class="bi bi-heart"></i></a>
                         @endif
+                      </p>
+                      <p class="card-text">
+                        <small class="text-muted">{{$collection->date}}</small>
+                      </p>
                     </div>
+                  </div>
                 </div>
+              </div>
         @empty
         <p>No hay colecciones disponibles.</p>
         @endforelse

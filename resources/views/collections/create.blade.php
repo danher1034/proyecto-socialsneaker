@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-    <form action="{{route('collections/store')}}" method="POST">
+    <form action="{{ route('collections/store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div data-mdb-input-init class="form-outline mb-4">
@@ -16,14 +16,14 @@
         </div>
 
         <div data-mdb-input-init class="form-outline mb-4">
-            <label for="date" class="form-label">Fecha del collectiono:</label><br>
-            <input type="date" name="date" id="date" class="form-control" min="{{ now()->format('Y-m-d') }}"><br>
-        </div>
-
-        <div data-mdb-input-init class="form-outline mb-4">
             <label for="tags" class="form-label">Etiquetas:</label>
             <textarea name="tags" id="tags" value="{{old('tags')}}"  rows="3" class="form-control"></textarea>
             <br>
+        </div>
+
+        <div data-mdb-input-init class="form-outline mb-4">
+            <label class="form-label" for="image_collection">Imagen colección</label>
+            <input type="file" name="image_collection" id="image_collection" class="form-control">
         </div>
 
         @if($errors->any())
