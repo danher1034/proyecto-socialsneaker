@@ -22,6 +22,11 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Collection::class);
     }
+
+    public function likedCollections()
+    {
+        return $this->belongsToMany(Collection::class, 'collection_user', 'user_id', 'collection_id');
+    }
     /**
      * The attributes that are mass assignable.
      *

@@ -16,10 +16,23 @@ class CollectionController extends Controller
      */
     public function index()
     {
-        $collections = Collection::orderBy('date')->get();
+        $collections = Collection::orderBy('created_at', 'desc')->get();
+
+        foreach ($collections as $collection) {
+
+            $createdAt = Carbon::parse($collection->created_at);
+
+            $timeElapsed = $createdAt->diffForHumans([
+                'locale' => 'es',
+            ]);
+
+            $collection->timeElapsed = $timeElapsed;
+        }
 
         return view('collections.index', compact('collections'));
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -36,7 +49,6 @@ class CollectionController extends Controller
     {
         $collection = new Collection();
         $collection->description = $request->input('description');
-        $collection->date = Carbon::now();
         $collection->user_id = Auth::user()->id;
         $collection->tags = $request->input('tags');
         $collection->image_collection = '';
@@ -82,18 +94,26 @@ class CollectionController extends Controller
     public function update(CollectionsRequest $request, Collection $collection)
     {
         $collection->description=$request->get('description');
-        $collection->date=$request->get('date');
         $collection->tags=$request->get('tags');
         $collection->save();
 
         return view('collections.edited', compact('collection'));
     }
 
-    public function like(Collection $collection) // Funcion para dar like a los eventos
+    public function like(Collection $collection)
     {
-        $collection->user()->toggle(Auth::user()->id); // Toggle permite quitar el like si ya existe
+        $user = Auth::user();
+
+        // Toggle the like (add/remove like)
+        if ($user->likedCollections()->where('collection_id', $collection->id)->exists()) {
+            $user->likedCollections()->detach($collection->id); // Remover el like
+        } else {
+            $user->likedCollections()->attach($collection->id); // Agregar el like
+        }
+
         return redirect()->route('collections');
     }
+
 
     /**
      * Remove the specified resource from storage.

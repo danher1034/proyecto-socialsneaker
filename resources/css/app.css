@@ -244,7 +244,7 @@ backgroud-check{
     background: #f2f2f2;
     border-radius: 6px;
     box-shadow: 0 0 10px rgba(0, 0, 0, .1);
-    padding: 30px;
+    padding: 10px;
     transform: scale(0);
     z-index: 1000;
 }
@@ -260,7 +260,7 @@ backgroud-check{
     background: #f2f2f2;
     border-radius: 6px;
     box-shadow: 0 0 10px rgba(0, 0, 0, .1);
-    padding: 30px;
+    padding: 10px;
     transform: scale(0);
     z-index: 1000; /* Asegura que el popup esté por encima del fondo */
 }
@@ -325,3 +325,155 @@ backgroud-check{
 .title-account{
     font-size: 50px;
 }
+
+.image-collection{
+    max-width: 650px;
+    max-height: 600px;
+
+}
+
+.colleccion_card{
+    max-width: 650px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.show-popup-collection {
+    padding: 18px 40px;
+    background: #6e78ff;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 18px;
+    color: #f2f2f2;
+    font-weight: 500;
+  }
+  .popup-container-collection {
+      position: fixed; /* Posición fija en relación con la ventana */
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 999; /* Asegura que el popup esté por encima del resto del contenido */
+  }
+
+  .popup-container-collection.active {
+      opacity: 1;
+      pointer-events: auto;
+      transition: .4s ease;
+  }
+
+  .popup-box-collection {
+      position: relative;
+      max-width: 1200px;
+      max-height: 800px;
+      max-height: 90vh;
+      overflow-y: auto;
+      background: #f2f2f2;
+      border-radius: 6px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+      padding: 30px;
+      transform: scale(0);
+      z-index: 1000;
+  }
+
+  .popup-container-collection.active .popup-box-collection {
+      transform: scale(1);
+      transition: .4s ease;
+      transition-delay: .25s;
+  }
+
+  .popup-container-collection .popup-box-collection {
+      background: #f2f2f2;
+      border-radius: 6px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+      padding: 30px;
+      transform: scale(0);
+      z-index: 1000; /* Asegura que el popup esté por encima del fondo */
+  }
+
+  .popup-box-collection h1 {
+    color: #333;
+    line-height: 1;
+  }
+  .popup-box-collection p {
+    color: #333;
+    margin: 12px 0 20px;
+  }
+  .popup-box-collection .close-btn-collection {
+    width: 100%;
+    height: 45px;
+    background: #6e78ff;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 18px;
+    color: #f2f2f2;
+    font-weight: 500;
+  }
+
+
+  .close-btn-collection {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: #0c1482;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      z-index: 1100;
+  }
+
+  .close-btn-collection:before,
+  .close-btn-collection:after {
+      content: '';
+      position: absolute;
+      width: 2px;
+      height: 20px;
+      background-color: #f2f2f2;
+  }
+
+  .close-btn-collection:before {
+      transform: rotate(45deg);
+  }
+
+  .close-btn-collection:after {
+      transform: rotate(-45deg);
+  }
+
+  .corazon{
+    color: black;
+    font-size: 37px;
+  }
+
+  .corazon-lleno{
+    color: red;
+    font-size: 37px;
+  }
+
+  .comentario{
+    color: black;
+    font-size: 35px;
+  }
+
+  .corazon, .corazon-lleno, .comentario {
+    vertical-align: middle;
+  }
+
+  .like-comentario{
+    align-items: center;
+  }

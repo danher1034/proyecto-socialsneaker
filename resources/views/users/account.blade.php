@@ -11,15 +11,15 @@
             <img src="{{ asset(Auth::user()->image_user) }}" alt="Imagen de Perfil" class="img-fluid img_user_account">
         </div>
         <div class="col">
-            <div class="row align-items-center mb-3"> <!-- Aquí se ha añadido la clase mb-3 para reducir el margen inferior -->
+            <div class="row align-items-center mb-3">
                 <div class="col"><h2 class="fs-1">{{ Auth::user()->name }}</h2></div>
-                <!-- Contenido principal de la página -->
-                <div class="col-6"> <!-- Colocamos el botón en una columna auto para que se ajuste automáticamente -->
+
+                <div class="col-6">
                     <button class="btn show-popup" data-edit-url="{{ route('users/edit', Auth::user()) }}">
                         Editar perfil
                     </button>
                 </div>
-                <!-- Contenedor del popup -->
+
                 <div class="popup-container">
                     <div class="popup-box"></div>
                     <button class="close-btn"></button>

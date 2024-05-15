@@ -17,7 +17,7 @@ class LoginController extends Controller
     public function signupForm() // Función para mostrar el formulario de registro
     {
         if(Auth::check()){ // En caso de que el usuario ya este logueado redirige a su cuenta
-            $collections = Collection::orderBy('date')->get();
+            $collections = Collection::orderBy('created_at')->get();
             return view('users.account', compact('collections'));
         }else{
             return view('auth.signup');
@@ -36,14 +36,14 @@ class LoginController extends Controller
 
         Auth:: Login($user);
 
-        $collections = Collection::orderBy('date')->get();
+        $collections = Collection::orderBy('created_at')->get();
         return view('users.account', compact('collections'));
     }
 
     public function loginform() // Muestra el formulario para iniciar sesión
     {
         if(Auth::check()){ // En caso de que el usuario ya este logueado redirige a su cuenta
-            $collections = Collection::orderBy('date')->get();
+            $collections = Collection::orderBy('created_at')->get();
             return view('users.account', compact('collections'));
         }else{
             return view('auth.login');
@@ -57,7 +57,7 @@ class LoginController extends Controller
 
         if(Auth::guard('web')->attempt($credentials, $remenberLogin)){
             $request->session()->regenerate();
-            $collections = Collection::orderBy('date')->get();
+            $collections = Collection::orderBy('created_at')->get();
 
         return view('users.account', compact('collections'));
         } else{ // Si no son correctos dará error
@@ -123,7 +123,7 @@ class LoginController extends Controller
         }
 
         // Redirigir a la vista de cuenta
-        $collections = Collection::orderBy('date')->get();
+        $collections = Collection::orderBy('created_at')->get();
         return view('users.account', compact('collections'));
     }
 }
