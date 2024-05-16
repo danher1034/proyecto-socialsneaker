@@ -23,6 +23,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Collection::class);
     }
 
+    public function Comment()
+    {
+        return $this->belongsToMany(Comment::class);
+    }
+
     public function likedCollections()
     {
         return $this->belongsToMany(Collection::class, 'collection_user', 'user_id', 'collection_id');

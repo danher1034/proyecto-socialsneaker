@@ -54,4 +54,5 @@
         </div>
     </div>
 </section>
+@vite(['resources/css/signup.css'])
 @endsection

@@ -23,7 +23,7 @@
                             <img
                                 src="{{$collection->image_collection}}"
                                 alt="{{$collection->image_collection}}"
-                                class="img-fluid rounded-start d-block mx-auto"
+                                class="img-fluid rounded-start d-block mx-auto img-collection"
                             />
                     </div>
                     <div class="col-md-7">
@@ -37,13 +37,16 @@
                                             <a href="{{route('collections/like', $collection)}}"><i class="bi bi-heart corazon"></i></a>
                                         @endif
                                     </div>
-                                    <div class="col-2">
-                                        <i class="bi bi-chat comentario" data-edit-url="{{ route('collections/show', $collection) }}"></i>
-                                    </div>
                                 </div>
-                                <br><br>
-                                {{$collection->description}}
                                 <br>
+                                <strong>{{ $collection->user->name }} </strong>{{$collection->description}}
+                                <br><br><br>
+                                <div class="comment-container">
+                                    <form action="#" method="post" class="coment_form" enctype="multipart/form-data">
+                                        <input type="text" name="comment" id="input-coment" placeholder="Comenta algo...">
+                                        <input type="submit" id="comment" value="Enviar">
+                                    </form>
+                                </div>
                                     <a class="btn show-popup-collection" data-edit-url="{{ route('collections/show', $collection) }}">
                                         Editar perfil
                                     </a>
@@ -60,7 +63,7 @@
         @empty
         <p>No hay colecciones disponibles.</p>
         @endforelse
-        @vite(['resources/js/showcollection.js'])
+        @vite(['resources/js/showcollection.js','resources/css/collection.css'])
     </div>
 
 @endsection

@@ -127,9 +127,35 @@ class CollectionController extends Controller
     public function account()
     {
         $collections = Collection::where('user_id', Auth::user()->id)
-        ->orderBy('date')
+        ->orderBy('created_at')
         ->get();
 
         return view('users.account', compact('collections'));
+    }
+
+    public function comment(CollectionsRequest $request)
+    {
+        $collection = new Collection();
+        $collection->description = $request->input('description');
+        $collection->user_id = Auth::user()->id;
+        $collection->tags = $request->input('tags');
+        $collection->image_collection = '';
+
+        $collection->save();
+
+        if ($request->hasFile('image_collection')) {
+            $image = $request->file('image_collection');
+            $extension = $image->getClientOriginalExtension();
+            $filename = $collection->id . '.' . $extension; // Nuevo nombre de archivo
+
+            // Guardar la imagen en el sistema de archivos
+            $path = $image->storeAs('public/img/collection_images', $filename);
+
+            // Actualizar la ruta de la imagen en el modelo Collection
+            $collection->image_collection = '/storage/img/collection_images/' . $filename;
+        }
+
+        $collection->save();
+        return view('collections.stored', compact('collection'));
     }
 }

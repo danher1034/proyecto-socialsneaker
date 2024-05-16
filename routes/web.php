@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CollectionController;
+use App\Http\Controllers\ChatController;
 
 // Ruta para el index
 Route::get('/', function () {return view('index');})->name('index');
@@ -31,3 +32,4 @@ Route::put('collections/update/{collection}', [CollectionController::class, 'upd
 Route::get('collections/destroy/{collection}', [CollectionController::class, 'destroy'])->name('collections/destroy');
 
 
+Route::get('chat', [ChatController::class, 'index'])->name('chat');

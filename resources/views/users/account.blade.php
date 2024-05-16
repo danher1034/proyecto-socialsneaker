@@ -82,5 +82,5 @@
         @endforelse
     </div>
 </div>
-    @vite(['resources/js/account.js'])
+    @vite(['resources/js/account.js','resources/css/account.css'])
 @endsection

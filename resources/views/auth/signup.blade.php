@@ -110,6 +110,6 @@
                 </div>
             </div>
         </div>
-        @vite(['resources/js/signup.js'])
+        @vite(['resources/js/signup.js','resources/css/signup.css'])
     </section>
 @endsection
