@@ -120,3 +120,41 @@
   .title-account{
       font-size: 50px;
   }
+
+  .img_user_account {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+@media only screen and (min-width: 500px) and (max-width: 768px) {
+    .img_user_account {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+}
+
+@media only screen and (min-width: 300px) and (max-width: 500px) {
+    .img_user_account {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    .show-popup {
+        padding: 5px 10px;
+        background: #6e78ff;
+        border: none;
+        outline: none;
+        border-radius: 6px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+        cursor: pointer;
+        font-size: 15px;
+        color: #f2f2f2;
+        font-weight: 500;
+      }
+}

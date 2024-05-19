@@ -5,19 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Collection extends Model
+class Message extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['text', 'date', 'hour', 'user_id', 'receiver_id'];
 
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function comments()
+    public function receiver()
     {
-        return $this->hasMany(Comment::class);
+        return $this->belongsTo(User::class, 'receiver_id');
     }
 }
-

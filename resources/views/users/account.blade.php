@@ -36,10 +36,12 @@
                     <strong>Colecciones</strong><br>
                     20
                 </div>
+                &nbsp;
                 <div class="col-4">
                     <strong>Seguidores</strong><br>
                     425
                 </div>
+                &nbsp;
                 <div class="col-3">
                     <strong>Seguidos</strong><br>
                     34
@@ -53,23 +55,11 @@
     <div>
         @forelse ($collections as $collection)
             <div class="card text-center">
-                <div class="card-header"><h2 class="card-title"><a class="link-secondary link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="{{route('collections/show', $collection)}}">{{$collection->name}}</a></h2></div>
-                    <div class="card-body">
-                        <h5 class="card-title">Hola</h5>
-                        <p class="card-text">{{$collection->description}}</p>
-                    </div>
-                    <div class="card-footer text-muted">
-                        <a type="button" class="btn btn-warning" href="{{ route('collections/edit', $collection) }}">Editar</a>
-                        &nbsp;&nbsp;&nbsp;
-                        <a type="button" class="btn btn-danger" href="{{route('collections/destroy', $collection)}}">Eliminar</a>
-                        &nbsp;&nbsp;&nbsp;
-                        @if (Auth::user()->collection()->where('collection_id', $collection->id)->count()>0)
-                            <a href="{{route('collections/like', $collection)}}"><i class="bi bi-heart-fill"></i></a>
-                        @else
-                            <a href="{{route('collections/like', $collection)}}"><i class="bi bi-heart"></i></a>
-                        @endif
-                    </div>
-                </div>
+                <img
+                    src="{{$collection->image_collection}}"
+                    alt="{{$collection->image_collection}}"
+                    class="img-fluid rounded-start d-block mx-auto img-collection"
+                />
             </div>
         @empty
         <br><br><br>

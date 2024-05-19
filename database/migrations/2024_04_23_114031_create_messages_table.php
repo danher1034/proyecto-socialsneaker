@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('messages', function (Blueprint $table) {
-            $table->id()->autoIncrement();
+            $table->id();
             $table->text('text');
             $table->date('date');
             $table->time('hour');
             $table->foreignId('user_id')->constrained();
-            $table->unique(['user_id'], 'foreing_keys');
+            $table->foreignId('receiver_id')->constrained('users');
             $table->timestamps();
         });
     }
