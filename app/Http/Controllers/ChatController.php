@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Message;
 use App\Models\User;
 use Auth;
+use Illuminate\Support\Facades\DB;
 
 class ChatController extends Controller
 {
@@ -49,6 +50,14 @@ class ChatController extends Controller
 
         return redirect()->route('chat.show', $id);
     }
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        $users = User::where('name', 'LIKE', "%{$search}%")->get();
+        return response()->json($users);
+    }
+
 }
 
 

@@ -31,7 +31,7 @@ class LoginController extends Controller
         $user->email = $request->get('email');
         $user->birthday=$request->get('birthday');
         $user->password = Hash:: make($request->get('password'));
-        $user->image_user='/storage/img/user_images/1.jpg';
+        $user->image_user='/storage/img/user_images/logo.png';
         $user->save();
 
         Auth:: Login($user);
