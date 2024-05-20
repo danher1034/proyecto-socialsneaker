@@ -171,6 +171,25 @@
     height: 0;
 }
 
+.user-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    padding: 10px;
+    width: 100%;  /* Esto asegura que el enlace ocupe todo el ancho del <li> */
+}
+
+.user-link:hover {
+    background: #efefef;
+    border-radius: 3px;
+}
+
+.user-link img {
+    margin-right: 10px;
+}
+
+
 @media only screen and (max-width: 767px) {
     .chat-app .people-list {
         height: 465px;

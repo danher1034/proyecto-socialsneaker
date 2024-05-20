@@ -10,13 +10,13 @@ document.getElementById('search').addEventListener('input', function() {
                     let li = document.createElement('li');
                     li.classList.add('clearfix');
                     li.innerHTML = `
-                        <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
-                        <div class="about">
-                            <div class="name">
-                                <a href="/chat/show/${user.id}">${user.name}</a>
+                        <a href="/chat/show/${user.id}" class="user-link">
+                            <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
+                            <div class="about">
+                                <div class="name">${user.name}</div>
+                                <div class="status">Último mensaje que ha enviado</div>
                             </div>
-                            <div class="status">Último mensaje que ha enviado</div>
-                        </div>
+                        </a>
                     `;
                     usersList.appendChild(li);
                 });
@@ -25,3 +25,5 @@ document.getElementById('search').addEventListener('input', function() {
         // If search is empty, reset the list to show all users or any desired default behavior
     }
 });
+
+
