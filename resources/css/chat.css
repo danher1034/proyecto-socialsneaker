@@ -83,8 +83,12 @@
 }
 
 .chat .chat-history {
+    max-height: 500px; /* Altura máxima del contenedor de mensajes */
+    overflow-y: auto; /* Permite el desplazamiento vertical */
     padding: 20px;
     border-bottom: 2px solid #fff;
+    display: flex;
+    flex-direction: column-reverse;
 }
 
 .chat .chat-history ul {

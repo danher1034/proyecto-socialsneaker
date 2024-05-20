@@ -1,6 +1,7 @@
 @extends('layout')
 
 @section('title')
+@endsection
 
 @section('content')
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
@@ -40,15 +41,14 @@
                     </ul>
                 </div>
                 <div class="chat-message clearfix">
-                    <form action="{{ route('chat.store', $receiver->id) }}" method="POST">
+                    <form id="message-form" action="{{ route('chat.store', $receiver->id) }}" method="POST">
                         @csrf
                         <div class="input-group mb-0">
                             <div class="input-group-prepend">
                                 <button type="submit" class="input-group-text"><i class="fa fa-send"></i></button>
                             </div>
-                            <input type="text" name="text" class="form-control" placeholder="Enter text here...">
+                            <input type="text" name="text" id="message-text" class="form-control" placeholder="Enter text here...">
                         </div>
-
                     </form>
                 </div>
             </div>

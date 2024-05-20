@@ -1,29 +1,34 @@
-document.getElementById('search').addEventListener('input', function() {
-    let search = this.value;
-    if (search.length > 0) {
-        fetch(`{{ route('chat.search') }}?search=${search}`)
-            .then(response => response.json())
-            .then(data => {
-                let usersList = document.getElementById('user-results');
-                usersList.innerHTML = '';
-                data.forEach(user => {
-                    let li = document.createElement('li');
-                    li.classList.add('clearfix');
-                    li.innerHTML = `
-                        <a href="/chat/show/${user.id}" class="user-link">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
-                            <div class="about">
-                                <div class="name">${user.name}</div>
-                                <div class="status">Último mensaje que ha enviado</div>
-                            </div>
-                        </a>
-                    `;
-                    usersList.appendChild(li);
-                });
-            });
-    } else {
-        // If search is empty, reset the list to show all users or any desired default behavior
-    }
+document.getElementById('message-form').addEventListener('submit', function(e) {
+    e.preventDefault(); // Previene el envío tradicional del formulario
+
+    let formData = new FormData(this);
+
+    fetch(this.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            let messageList = document.querySelector('.chat-history ul');
+            let newMessage = document.createElement('li');
+            newMessage.classList.add('clearfix');
+            newMessage.innerHTML = `
+                <div class="message other-message float-right">
+                    ${data.message.text}
+                </div>
+            `;
+            messageList.appendChild(newMessage);
+            document.getElementById('message-text').value = ''; // Limpia el campo de texto
+        } else {
+            console.error('Error:', data.error);
+        }
+    })
+    .catch(error => console.error('Error:', error));
 });
+
 
 

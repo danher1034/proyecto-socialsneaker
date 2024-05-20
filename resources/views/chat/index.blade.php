@@ -2,8 +2,6 @@
 
 @section('title')
 
-@endsection
-
 @section('content')
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
@@ -19,13 +17,13 @@
                     <input type="text" id="search" class="form-control" placeholder="Search...">
                 </div>
                 <ul id="user-results" class="list-unstyled chat-list mt-2 mb-0">
-                    @foreach($users as $user)
+                    @foreach($chats as $chat)
                     <li class="clearfix">
-                        <a href="{{ route('chat.show', $user->id) }}" class="user-link">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar{{ $loop->index + 1 }}.png" alt="avatar">
+                        <a href="{{ route('chat.show', $chat->id) }}" class="user-link">
+                            <img src="{{ $chat->image_user }}" alt="avatar">
                             <div class="about">
-                                <div class="name">{{ $user->name }}</div>
-                                <div class="status">Último mensaje que ha enviado</div>
+                                <div class="name"><strong>{{ $chat->name }}</strong></div>
+                                <div class="status">{{ $chat->last_message_text ?? 'No messages yet' }}</div>
                             </div>
                         </a>
                     </li>
@@ -36,5 +34,6 @@
     </div>
 </div>
 
-@vite(['resources/js/chat.js','resources/css/chat.css'])
+@vite(['resources/js/chat.js', 'resources/css/chat.css'])
 @endsection
+
