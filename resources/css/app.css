@@ -89,6 +89,7 @@ backgroud-check{
 .header .nav-links li{
     display: inline-block;
     padding: 0 20px;
+    margin-top: 12px;
 }
 
 .header .nav-links li:hover,
@@ -141,7 +142,6 @@ backgroud-check{
 
 .header a{
     text-decoration: none;
-    /*borramos el que teniamos en .header .nav-links a*/
 }
 
 .header .overlay {
@@ -195,7 +195,3 @@ backgroud-check{
         right: 35px;
     }
 }
-
-
-
-

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\NewController;
 
 // Ruta para el index
 Route::get('/', function () {return view('index');})->name('index');

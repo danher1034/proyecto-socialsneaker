@@ -26,12 +26,15 @@
                     <div class="card-body">
                         <p class="card-text">
                             <div class="row">
-                                <div class="col-2">
+                                <div class="col-1">
                                     @if (Auth::user()->likedCollections()->where('collection_id', $collection->id)->exists())
                                         <a href="javascript:void(0)" class="like-button" data-id="{{ $collection->id }}"><i class="bi bi-heart-fill corazon-lleno"></i></a>
                                     @else
                                         <a href="javascript:void(0)" class="like-button" data-id="{{ $collection->id }}"><i class="bi bi-heart corazon"></i></a>
                                     @endif
+                                </div>
+                                &nbsp;&nbsp;&nbsp;
+                                <div class="col-1">
                                     <a href="javascript:void(0)" class="show-popup-collection" data-edit-url="{{ route('collections/show', $collection) }}"><i class="bi bi-chat chat"></i></a>
                                 </div>
                             </div>

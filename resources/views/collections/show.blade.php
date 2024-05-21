@@ -1,10 +1,10 @@
 <div class="mb-5 mt-5 row row-cols-1 row-cols-md-1 row-cols-xl-1 g-2 row justify-content-center">
-    <div class="card mb-3" style="max-width: 1540px;">
+    <div class="card mb-3" style="max-width: 1940px;">
         <div class="row g-0">
-            <div class="col-md-4">
-                <img src="{{ $collection->image_collection }}" alt="{{ $collection->image_collection }}" class="img-fluid rounded-start d-block mx-auto img-collection" />
+            <div class="col-md-5">
+                <img src="{{ $collection->image_collection }}" alt="{{ $collection->image_collection }}" class="img-fluid rounded-start img-collection" />
             </div>
-            <div class="col-md-8">
+            <div class="col-md-7">
                 <div class="d-flex align-items-center mb-3">
                     <img src="{{ $collection->user->image_user }}" alt="{{ $collection->user->name }}'s Image" class="img-fluid rounded-circle user-image">
                     <div class="ms-3 flex-grow-1 d-flex flex-column">
