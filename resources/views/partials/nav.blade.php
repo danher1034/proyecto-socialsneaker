@@ -1,6 +1,6 @@
 <header class="header">
     <div class="logo">
-        <a href="/account"><img src="{{ asset(Auth::user()->image_user) }}" alt="Imagen de Perfil"></a>
+        <a href="/account"><img src="{{ asset(Auth::user()->image_user) }}" alt="Imagen de Perfil" class="nav-img-account"></a>
     </div>
     <nav>
         <ul class="nav-links">

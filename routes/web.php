@@ -41,5 +41,4 @@ Route::middleware('auth')->group(function () {
     Route::get('chat/newMessages/{id}', [ChatController::class, 'newMessages'])->name('chat.newMessages');
 });
 
-
-
+Route::get('news', [NewController::class, 'index'])->name('news');

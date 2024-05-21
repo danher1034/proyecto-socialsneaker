@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id()->autoIncrement();
             $table->string('title',50);
             $table->text('description');
-            $table->string('url',10000);
+            $table->text('url');
+            $table->text('tags');
+            $table->text('type');
             $table->date('date');
             $table->boolean('visible')->default(1);
             $table->timestamps();

@@ -29,7 +29,17 @@ class NewController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $new=new News();
+        $new->title=$request->get('name');
+        $new->description=$request->get('description');
+        $new->url=$request->get('location');
+        $new->date=$request->get('date');
+        $new->hour=$request->get('hour');
+        $new->type=$request->get('type');
+        $new->tags=$request->get('tags');
+        $new->save();
+
+        return view('news.stored', compact('new'));
     }
 
     /**

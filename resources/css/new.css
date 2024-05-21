@@ -1,18 +1,15 @@
-.container{
+.container-news{
     max-width: 1200px;
     margin: auto;
+    margin-top: 3%;
 }
 h1{
     text-align: center;
     color:#fc0505 ;
 }
-header{
+.header-news{
     display: flex;
     justify-content: space-between;
-}
-nav{
-    text-align: center;
-    margin-bottom: 20px;
 }
 nav span{
     display: inline-block;
@@ -26,13 +23,13 @@ nav span{
 nav span:hover{
     color: red;
 }
-header input{
+.header-news input{
     padding: 5px 10px;
     border: none;
     border: 2px solid #ccc;
     border-radius: 30px;
 }
-header button{
+.header-news button{
     border: none;
     padding: 7px 10px;
     border-radius: 30px;
