@@ -27,6 +27,10 @@
 
 
         <div class="container">
+            <div class="popup-container">
+                <div class="popup-box"></div>
+                <button class="close-btn"></button>
+            </div>
             @yield('title')
         </div>
 

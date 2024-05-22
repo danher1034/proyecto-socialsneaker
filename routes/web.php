@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\ChatController;
-use App\Http\Controllers\NewController;
+use App\Http\Controllers\NewsController;
 
 // Ruta para el index
 Route::get('/', function () {return view('index');})->name('index');
@@ -41,4 +41,6 @@ Route::middleware('auth')->group(function () {
     Route::get('chat/newMessages/{id}', [ChatController::class, 'newMessages'])->name('chat.newMessages');
 });
 
-Route::get('news', [NewController::class, 'index'])->name('news');
+Route::get('news', [NewsController::class, 'index'])->name('news.index');
+Route::get('news/create', [NewsController::class, 'create'])->name('news/create');
+Route::post('news/store', [NewsController::class, 'store'])->name('news/store');

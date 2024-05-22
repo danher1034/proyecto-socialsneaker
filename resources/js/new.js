@@ -1,25 +1,27 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const showPopup = document.querySelector('.show-popup');
-    const popupContainer = document.querySelector('.popup-container');
-    const closeBtn = document.querySelector('.close-btn');
-    const popupBox = document.querySelector('.popup-box');
+    const categories = document.querySelectorAll('.cat');
+    categories.forEach(category => {
+        category.addEventListener('click', () => {
+            const type = category.getAttribute('data-type');
+            const url = new URL(window.location.href);
 
-    showPopup.onclick = async () => {
-        const editUrl = showPopup.getAttribute('data-edit-url');
-        try {
-            const response = await fetch(editUrl);
-            const content = await response.text();
-            popupBox.innerHTML = content;
-            popupContainer.classList.add('active');
-        } catch (error) {
-            console.error('Error al cargar el contenido:', error);
-        }
-    }
+            if (type === 'all') {
+                window.location.href = url.origin + url.pathname;
+            } else {
+                url.searchParams.set('type', type);
+                window.location.href = url.toString();
+            }
+        });
+    });
 
-    closeBtn.onclick = () => {
-        popupBox.innerHTML = ''; // Limpiar el contenido del popup al cerrar
-        popupContainer.classList.remove('active');
-    }
+    const searchButton = document.getElementById('searchButton');
+    const searchInput = document.getElementById('busqueda');
+    searchButton.addEventListener('click', () => {
+        const search = searchInput.value;
+        const url = new URL(window.location.href);
+        url.searchParams.set('search', search);
+        window.location.href = url.toString();
+    });
 
     // Mostrar ventana modal con mensaje de éxito si existe
     if (typeof successMessage !== 'undefined' && successMessage !== '') {
@@ -30,3 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
         alert(errorMessage); // Aquí puedes usar tu modal personalizado
     }
 });
+
+
+
+

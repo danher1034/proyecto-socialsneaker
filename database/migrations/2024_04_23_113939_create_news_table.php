@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('url');
             $table->text('tags');
             $table->text('type');
-            $table->date('date');
+            $table->string('image_news',200);
             $table->boolean('visible')->default(1);
             $table->timestamps();
         });

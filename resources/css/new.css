@@ -1,17 +1,44 @@
-.container-news{
+.container-news {
     max-width: 1200px;
     margin: auto;
     margin-top: 3%;
 }
-h1{
+.card{
+    max-width: 500px;
+}
+
+h1 {
     text-align: center;
-    color:#fc0505 ;
+    color: #fc0505;
 }
-.header-news{
+
+.header-news {
     display: flex;
+    align-items: center;
     justify-content: space-between;
+    gap: 10px; /* Puedes ajustar el espacio entre los elementos según sea necesario */
+    flex-wrap: wrap; /* Permitir que los elementos se envuelvan en dispositivos pequeños */
 }
-nav span{
+
+.nav-news {
+    display: flex;
+    gap: 10px; /* Espacio entre los elementos del nav */
+    flex-wrap: wrap; /* Permitir que los elementos se envuelvan en dispositivos pequeños */
+}
+
+.busqueda {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Espacio entre el input y el botón */
+    flex-wrap: nowrap; /* Evitar que los elementos se envuelvan en dispositivos pequeños */
+    flex: 1;
+}
+
+.busqueda input {
+    flex: 1;
+}
+
+.nav-news span {
     display: inline-block;
     background-color: #000;
     color: #fff;
@@ -20,54 +47,104 @@ nav span{
     margin: 0 5px;
     cursor: pointer;
 }
-nav span:hover{
+
+.nav-news span:hover {
     color: red;
 }
-.header-news input{
+
+.header-news input {
     padding: 5px 10px;
     border: none;
     border: 2px solid #ccc;
     border-radius: 30px;
 }
-.header-news button{
+
+.header-news button {
     border: none;
     padding: 7px 10px;
     border-radius: 30px;
     border: 2px solid #ccc;
+    cursor: pointer;
 }
-.container-noticias{
+
+.container-noticias {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-gap:30px;
+    grid-gap: 30px;
     padding-bottom: 20px;
 }
-.container-noticias .item{
+
+.container-noticias .item {
     background-color: #eee;
     max-width: 360px;
-    border:2px solid #ccc;
+    border: 2px solid #ccc;
     border-radius: 10px;
     padding: 10px;
     cursor: pointer;
     transition: .3s;
 }
-.container-noticias .item:hover{
+
+.container-noticias .item:hover {
     box-shadow: 0 0 10px 5px #ccc;
 }
-.container-noticias .item:hover h2{
+
+.container-noticias .item:hover h2 {
     text-decoration: underline;
 }
-.container-noticias .item .info_item{
+
+.container-noticias .item .info_item {
     display: flex;
     justify-content: space-between;
     margin-top: 10px;
 }
 
-.container-noticias .item img{
+.container-noticias .item img {
     width: 100%;
 }
-.container-noticias #btnSiguiente{
+
+.container-noticias #btnSiguiente {
     cursor: pointer;
 }
-.container-noticias #btnSiguiente:hover{
+
+.container-noticias #btnSiguiente:hover {
     color: #fc0505;
+}
+
+.button {
+    border: none;
+    padding: 7px 10px;
+    border-radius: 30px;
+    border: 2px solid #ccc;
+}
+
+/* Agrega este nuevo estilo para centrar el botón */
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.title-create{
+    display: flex;
+    justify-content: center;
+}
+
+.image-news{
+    width: 585px;
+    height: 400px;
+}
+
+@media (max-width: 480px) {
+    .nav-news span {
+        padding: 5px; /* Ajustar padding en móviles */
+        margin: 2px; /* Ajustar margen en móviles */
+    }
+
+    .header-news input {
+        width: auto; /* Permitir que el input se ajuste en móviles */
+    }
+
+    .busqueda {
+        flex-wrap: nowrap; /* Mantener el input y el botón en la misma línea */
+    }
 }

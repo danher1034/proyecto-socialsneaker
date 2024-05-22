@@ -15,7 +15,7 @@
         <a onclick="closeNav()" href="#" class="close">&times;</a>
         <div class="overlay-content">
             <br><br><br><br><br>
-            <a href="#">Noticias</a>
+            <a href="/news">Noticias</a>
             <a href="/collections">Colecciones</a>
             <a href="/collections/create">Añadir</a>
             <a href="/chat">Chat</a>

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('collections', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->text('description');
-            $table->string('image_collection', 80);
+            $table->string('image_collection', 200);
             $table->text('tags');
             $table->foreignId('user_id');
             $table->timestamps();

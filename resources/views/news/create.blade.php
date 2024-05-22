@@ -1,34 +1,58 @@
-<form action="{{ route('users/update', $user) }}" method="POST" enctype="multipart/form-data">
+<h2 class="title-create">Crear noticia</h2><br>
+<form action="{{ route('news/store') }}" method="POST" enctype="multipart/form-data">
     @csrf
-    @method('put')
 
-    <div data-mdb-input-init class="form-outline mb-4">
-        <label for="birthday">Cumpleaños:</label><br>
-        <input type="date" name="birthday" id="birthday" value="{{$user->birthday}}" class="form-control"><br>
+    <div class="mb-3">
+        <label class="form-label" for="title"><h5>Título</h5></label>
+        <input type="text" name="title" id="title" value="{{ old('title') }}" class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label" for="description"><h5>Descripción</h5></label>
+        <input type="text" name="description" id="description" value="{{ old('description') }}" class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label" for="url"><h5>Url</h5></label>
+        <input type="text" name="url" id="url" value="{{ old('url') }}" class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label" for="tags"><h5>Etiquetas</h5></label>
+        <input type="text" name="tags" id="tags" value="{{ old('tags') }}" class="form-control">
     </div>
 
     <div data-mdb-input-init class="form-outline mb-4">
-        <label class="form-label" for="newpassword"><div class="badge bg-secondary text-wrap" style="width: 6rem;">Opcional</div> Nueva contraseña:</label>
-        <input type="password" id="newpassword" name="newpassword" class="form-control" aria-describedby="passwordHelpBlock">
-        <div id="passwordHelpBlock" class="form-text">
-            La contraseña debe tener minimo 8, preferiblemente deberia contener letras y números, y no contener espacios, caracteres especiales ni emoji.
-        </div>
+        <label class="form-label" for="type"><h5>Tipo</h5></label><br>
+        <select name="type" id="type">
+            <option value="news">Noticia</option>
+            <option value="event">Evento</option>
+            <option value="launch">Lanzamiento</option>
+        </select>
     </div>
 
-    <div data-mdb-input-init class="form-outline mb-4">
-        <label for="newpassword_confirmation"><div class="badge bg-secondary text-wrap" style="width: 6rem;">Opcional</div> Repite la nueva contraseña:</label><br><br>
-        <input type="password" name="newpassword_confirmation" id="newpassword_confirmation" class="form-control">
+    <div class="mb-3">
+        <label class="form-label" for="image_news"><h5>Imagen noticia</h5></label>
+        <input type="file" name="image_news" id="image_news" class="form-control">
     </div>
 
-    <div data-mdb-input-init class="form-outline mb-4">
-        <label class="form-label" for="image_user">Imagen perfil</label>
-        <input type="file" name="image_user" id="image_user" class="form-control">
+    <div class="mb-3">
+        <label class="form-label" for="visible"><h5>Visible</h5></label>
+        <input type="checkbox" name="visible" id="visible" value="1">
     </div>
 
-    <div data-mdb-input-init class="form-outline mb-4">
-        <label class="form-label" for="password"><div class="badge bg-secondary text-wrap" style="width: 6rem;">Obligatorio</div> Contraseña Actual:</label>
-        <input type="password" name="password" id="password" class="form-control" required>
+    @if($errors->any())
+        Hay errores en el formulario: <br>
+        @foreach ($errors->all() as $error)
+            {{$error}} <br>
+        @endforeach
+    @endif
+
+    <div class="button-container">
+        <input type="submit" value="Enviar" class="button">
     </div>
 
-    <input type="submit" value="Guardar Cambios">
+    @vite(['resources/js/new.js', 'resources/css/new.css'])
 </form>
+
+

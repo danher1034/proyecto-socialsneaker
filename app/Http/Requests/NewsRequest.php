@@ -23,11 +23,10 @@ class NewsRequest extends FormRequest
     {
         return [
             'title' => ['required','string','min:1','max:50'],
-            'description'=> ['required','string','min:4','max:100'],
+            'description'=> ['required','string','min:4','max:10000'],
             'tags'=> ['required','string','min:3','max:1000'],
             'type'=> ['required','string','min:3','max:1000'],
             'url'=> ['required','string','min:5','max:1000'],
-            'date' => ['required', 'date'],
         ];
     }
 
@@ -42,7 +41,7 @@ class NewsRequest extends FormRequest
             'description.required'=>'La descripción es obligatorio',
             'description.string' => 'La descripción debe ser una cadena de texto.',
             'description.min'=>'La descripción debe tener al menos 4 caracteres',
-            'description.max'=>'La descripcióno debe tener menos de 100 caracteres',
+            'description.max'=>'La descripción debe tener menos de 100 caracteres',
 
             'tags.required' => 'Las etiquetas son obligatorias.',
             'tags.string' => 'Las etiquetas deben ser una cadena de texto.',
