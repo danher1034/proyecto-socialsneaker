@@ -110,7 +110,7 @@ backgroud-check{
     display:none;
 }
 
-.header .btn button,
+.header .btn-nav button,
 /**/.header .menu button{
     margin-left: 20px;
     font-weight: 700;
@@ -123,7 +123,7 @@ backgroud-check{
     transition: all 0.3s ease 0s;
 }
 
-.header .btn button:hover,
+.header .btn-nav button:hover,
 /**/.header .menu button:hover{
     background-color: #e2f1f8;
     color: #ffbc0e;
@@ -131,8 +131,8 @@ backgroud-check{
 }
 
 
-/**/@media screen and (max-width: 800px){
-    .nav-links, .btn {
+@media screen and (max-width: 800px){
+    .nav-links, .btn-nav {
         display: none;
     }
     .menu {
@@ -162,6 +162,10 @@ backgroud-check{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.logout-nav-ovelay{
+    margin-top: 20vh;
 }
 
 .header .overlay a{

@@ -30,7 +30,7 @@
                         @endif
                     </p>
                     <div class="comment-container">
-                        <form action="{{ route('collections.comment') }}" method="post" class="coment_form" enctype="multipart/form-data">
+                        <form action="{{ route('collections/comment') }}" method="post" class="coment_form" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="collection_id" value="{{ $collection->id }}">
                             <input type="text" name="text" id="input-coment-{{ $collection->id }}" placeholder="Añade un comentario...">

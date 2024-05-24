@@ -7,6 +7,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\FollowController;
 
 // Ruta para el index
 Route::get('/', function () {return view('index');})->name('index');
@@ -16,22 +17,25 @@ Route::post('signup', [LoginController::class, 'signup'])->name('signup');
 Route::get('loginForm', [LoginController::class, 'loginForm'])->name('loginForm');
 Route::post('login', [LoginController::class, 'login'])->name('login');
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
-// Ruta para la cuenta del usuario y solo podrán entrar si estan logueados
+// Ruta para la cuenta del usuario autenticado
 Route::get('account', [CollectionController::class, 'account'])->name('account')->middleware('auth');
+Route::get('account/{userId}', [CollectionController::class, 'account'])->name('account.user')->middleware('auth');
+Route::post('/follow/{id}', [FollowController::class, 'follow'])->name('follow');
 // Rutas para el apartado de usuario
 Route::get('users/edit/{user}', [LoginController::class, 'edit'])->name('users/edit');
 Route::put('users/update/{user}', [LoginController::class, 'update'])->name('users/update');
+Route::delete('users/delete/{user}', [LoginController::class, 'delete'])->name('users/delete');
 
 Route::get('collections', [CollectionController::class, 'index'])->name('collections');
 Route::get('collections/show/{collection}', [CollectionController::class, 'show'])->name('collections/show');
 
-Route::post('collections/like/{collection}', [CollectionController::class, 'like'])->name('collections.like');
+Route::post('collections/like/{collection}', [CollectionController::class, 'like'])->name('collections/like');
 Route::get('collections/create', [CollectionController::class, 'create'])->name('collections/create');
 Route::post('collections/store', [CollectionController::class, 'store'])->name('collections/store');
 Route::get('collections/edit/{collection}', [CollectionController::class, 'edit'])->name('collections/edit');
 Route::put('collections/update/{collection}', [CollectionController::class, 'update'])->name('collections/update');
 Route::get('collections/destroy/{collection}', [CollectionController::class, 'destroy'])->name('collections/destroy');
-Route::post('/collections/comment', [CollectionController::class, 'comment'])->name('collections.comment');
+Route::post('/collections/comment', [CollectionController::class, 'comment'])->name('collections/comment');
 
 Route::middleware('auth')->group(function () {
     Route::get('chat', [ChatController::class, 'index'])->name('chat');

@@ -13,7 +13,7 @@
                         <div class="d-flex align-items-center mb-3">
                             <img src="{{ $collection->user->image_user }}" alt="{{ $collection->user->name }}'s Image" class="img-fluid rounded-circle" style="max-width: 50px;">
                             <div class="ms-3 flex-grow-1 d-flex flex-column">
-                                <h5 class="card-title mb-0">{{ $collection->user->name }}</h5>
+                                <a href="/account/{{ $collection->user->id}}"><h5 class="card-title mb-0">{{ $collection->user->name }}</h5></a>
                                 <small class="text-muted">{{ $collection->timeElapsed }}</small>
                             </div>
                         </div>
@@ -53,7 +53,7 @@
                                 <br>
                             @endif
                             <div class="comment-container">
-                                <form action="{{ route('collections.comment') }}" method="post" class="coment_form" enctype="multipart/form-data">
+                                <form action="{{ route('collections/comment') }}" method="post" class="coment_form" enctype="multipart/form-data">
                                     @csrf
                                     <input type="hidden" name="collection_id" value="{{ $collection->id }}">
                                     <input type="text" name="text" id="input-coment-{{ $collection->id }}" placeholder="Añade un comentario...">

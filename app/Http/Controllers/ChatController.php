@@ -29,15 +29,9 @@ class ChatController extends Controller
 
         // Obtener los usuarios con los que el usuario autenticado tiene conversaciones
         $chats = User::where('users.id', '!=', $userId)
-            ->leftJoinSub($latestMessages, 'latest_messages', function ($join) use ($userId) {
-                $join->on(function ($join) use ($userId) {
-                    $join->on('users.id', '=', 'latest_messages.user_id')
-                        ->orOn('users.id', '=', 'latest_messages.receiver_id')
-                        ->where(function ($query) use ($userId) {
-                            $query->where('latest_messages.user_id', $userId)
-                                ->orWhere('latest_messages.receiver_id', $userId);
-                        });
-                });
+            ->joinSub($latestMessages, 'latest_messages', function ($join) use ($userId) {
+                $join->on('users.id', '=', 'latest_messages.user_id')
+                     ->orOn('users.id', '=', 'latest_messages.receiver_id');
             })
             ->select('users.*', 'latest_messages.text as last_message_text', 'latest_messages.created_at as last_message_time')
             ->orderBy('last_message_time', 'desc')
@@ -45,8 +39,6 @@ class ChatController extends Controller
 
         return view('chat.index', compact('chats'));
     }
-
-
 
     public function show($id)
     {

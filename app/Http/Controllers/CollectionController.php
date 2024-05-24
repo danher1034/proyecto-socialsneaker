@@ -7,6 +7,7 @@ use App\Http\Requests\CollectionsRequest;
 use App\Http\Requests\CommentsRequest;
 use App\Models\Collection;
 use App\Models\Comment;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
@@ -124,14 +125,21 @@ class CollectionController extends Controller
         return redirect()->route('collections');
     }
 
-    public function account()
+    public function account($userId = null)
     {
-        $collections = Collection::where('user_id', Auth::user()->id)
-        ->orderBy('created_at')
-        ->get();
+        $user = $userId ? User::findOrFail($userId) : Auth::user();
+        $collections = Collection::where('user_id', $user->id)
+            ->orderBy('created_at')
+            ->get();
 
-        return view('users.account', compact('collections'));
+        $followersCount = $user->followers()->count();
+        $followingCount = $user->following()->count();
+        $collectionsCount = $collections->count();
+
+        return view('users.account', compact('user', 'collections', 'followersCount', 'followingCount','collectionsCount'));
     }
+
+
 
     public function comment(CommentsRequest $request)
     {

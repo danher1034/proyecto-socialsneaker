@@ -32,6 +32,16 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Collection::class, 'collection_user', 'user_id', 'collection_id');
     }
+
+    public function followers()
+    {
+        return $this->belongsToMany(User::class, 'follows', 'user_id', 'follower_id');
+    }
+
+    public function following()
+    {
+        return $this->belongsToMany(User::class, 'follows', 'follower_id', 'user_id');
+    }
     /**
      * The attributes that are mass assignable.
      *

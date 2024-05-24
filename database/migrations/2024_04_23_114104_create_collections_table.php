@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('image_collection', 200);
             $table->text('tags');
             $table->foreignId('user_id');
+            $table->boolean('sell')->default(0);
             $table->timestamps();
         });
     }

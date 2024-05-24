@@ -9,7 +9,7 @@
             <li><a class="nav-link" href="/collections/create"><i class="bi bi-plus-circle"></i>&nbsp;&nbsp;<strong>Añadir</strong></a></li>
         </ul>
     </nav>
-    <a class="btn" href="/chat"><button>Chat</button></a>
+    <a class="btn-nav" href="/chat"><button>Chat</button></a>
     <a onclick="openNav()" class="menu" href="#"><button>Menu</button></a>
     <div id="mobile-menu" class="overlay">
         <a onclick="closeNav()" href="#" class="close">&times;</a>
@@ -19,8 +19,7 @@
             <a href="/collections">Colecciones</a>
             <a href="/collections/create">Añadir</a>
             <a href="/chat">Chat</a>
-            <br><br><br><br><br><br><br><br><br><br>
-            <a href="/logout">Cerrar sesión</a>
+            <a href="/logout" class="logout-nav-ovelay">Cerrar sesión</a>
         </div>
     </div>
 </header>

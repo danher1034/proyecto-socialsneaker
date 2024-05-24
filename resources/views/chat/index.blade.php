@@ -14,20 +14,29 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-search"></i></span>
                     </div>
-                    <input type="text" id="search" class="form-control" placeholder="Search...">
+                    <input type="text" id="search" class="form-control" placeholder="Buscar un usuario">
                 </div>
                 <ul id="user-results" class="list-unstyled chat-list mt-2 mb-0">
-                    @foreach($chats as $chat)
-                    <li class="clearfix">
-                        <a href="{{ route('chat.show', $chat->id) }}" class="user-link">
-                            <img src="{{ $chat->image_user }}" alt="avatar">
-                            <div class="about">
-                                <div class="name"><strong>{{ $chat->name }}</strong></div>
-                                <div class="status">{{ $chat->last_message_text ?? 'No messages yet' }}</div>
-                            </div>
-                        </a>
-                    </li>
-                    @endforeach
+                    @if($chats->isEmpty())
+                        <br><br><br>
+                        <li class="clearfix text-center">
+                            <i class="bi bi-chat-text icon-chat"></i>
+                            <br><br>
+                            <p>No tienes ningún chat abierto</p>
+                        </li>
+                    @else
+                        @foreach($chats as $chat)
+                        <li class="clearfix">
+                            <a href="{{ route('chat.show', $chat->id) }}" class="user-link">
+                                <img src="{{ $chat->image_user }}" alt="avatar">
+                                <div class="about">
+                                    <div class="name"><strong>{{ $chat->name }}</strong></div>
+                                    <div class="status">{{ $chat->last_message_text ?? 'No messages yet' }}</div>
+                                </div>
+                            </a>
+                        </li>
+                        @endforeach
+                    @endif
                 </ul>
             </div>
         </div>
@@ -36,4 +45,6 @@
 
 @vite(['resources/js/chat.js', 'resources/css/chat.css'])
 @endsection
+
+
 
