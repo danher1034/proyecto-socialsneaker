@@ -1,28 +1,19 @@
-@extends('layout')
-
-@section('title')
-    <h1 class="h2">Crear collectiono</h1>
-    <br>
-@endsection
-
-@section('content')
+    <h2 class="title-create">Crear noticia</h2><br>
     <form action="{{ route('collections/store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
-        <div data-mdb-input-init class="form-outline mb-4">
-            <label for="description" class="form-label">Descripcion:</label>
-            <textarea name="description" id="description" value="{{old('description')}}" rows="3" class="form-control"></textarea>
-            <br>
+        <div class="mb-3">
+            <label class="form-label" for="description"><h5>Descripción</h5></label>
+            <input type="text" name="description" id="description" value="{{ old('description') }}" class="form-control">
         </div>
 
-        <div data-mdb-input-init class="form-outline mb-4">
-            <label for="tags" class="form-label">Etiquetas:</label>
-            <textarea name="tags" id="tags" value="{{old('tags')}}"  rows="3" class="form-control"></textarea>
-            <br>
+        <div class="mb-3">
+            <label class="form-label" for="tags"><h5>Etiquetas</h5></label>
+            <input type="text" name="tags" id="tags" value="{{ old('tags') }}" class="form-control">
         </div>
 
-        <div data-mdb-input-init class="form-outline mb-4">
-            <label class="form-label" for="image_collection">Imagen colección</label>
+        <div class="mb-3">
+            <label class="form-label" for="image_collection"><h5>Imagen noticia</h5></label>
             <input type="file" name="image_collection" id="image_collection" class="form-control">
         </div>
 
@@ -32,8 +23,11 @@
                 {{$error}} <br>
             @endforeach
         @endif
-
-        <input type="submit" value="enviar">
+        <br>
+        <div class="button-container">
+            <input type="submit" value="Enviar" class="button">
+        </div>
     </form>
     <br><br>
-@endsection
+
+
