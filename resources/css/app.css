@@ -103,7 +103,7 @@ backgroud-check{
 }
 
 .header .nav-links a:hover{
-    color: #ffbc0e;
+    color: #95C2DB;
 }
 
 /**/.menu {
@@ -126,7 +126,7 @@ backgroud-check{
 .header .btn-nav button:hover,
 /**/.header .menu button:hover{
     background-color: #e2f1f8;
-    color: #ffbc0e;
+    color: #95C2DB;
     transform: scale(1.1);
 }
 
@@ -311,7 +311,7 @@ backgroud-check{
 }
 
 .div-footer{
-    background-color: #1b3039;
+    background-color: rgba(33, 49, 63, .95);
     color: white;
 }
 
