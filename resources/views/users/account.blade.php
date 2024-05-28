@@ -15,20 +15,20 @@
                 <div class="col-2 title-user"><strong>{{ $user->name }}</strong></div>
                 <div class="col-1 col-md-4 d-flex align-items-center justify-content-end actions">
                     @if ($user->id == Auth::id())
-                        <button class="btn show-popup-edit" data-edit-url="{{ route('users/edit', $user) }}">
-                            Editar perfil
-                        </button>
-                        <div class="dropdown">
-                            <button class="dropbtn"><strong>⋮</strong></button>
-                            <div class="dropdown-content">
-                                <a href="{{ route('logout') }}">Cerrar sesión</a>
-                                <a href="#" id="delete-account">Eliminar cuenta</a>
-                            </div>
+                    <button class="btn show-popup-edit" data-edit-url="{{ route('users/edit', $user) }}">
+                        Editar perfil
+                    </button>
+                    <div class="dropdown">
+                        <button class="dropbtn">⋮</button>
+                        <div class="dropdown-content">
+                            <a href="{{ route('logout') }}">Cerrar sesión</a>
+                            <a href="#" id="delete-account">Eliminar cuenta</a>
                         </div>
-                        <form id="delete-account-form" action="{{ route('users/delete', $user->id) }}" method="POST" style="display: none;">
-                            @csrf
-                            @method('DELETE')
-                        </form>
+                    </div>
+                    <form id="delete-account-form" action="{{ route('users/delete', $user->id) }}" method="POST" style="display: none;">
+                        @csrf
+                        @method('DELETE')
+                    </form>
                     @else
                         <button type="button" class="btn btn-primary me-3" id="follow-button" data-user-id="{{ $user->id }}">
                             {{ Auth::user()->following()->where('user_id', $user->id)->exists() ? 'Siguiendo' : 'Seguir' }}

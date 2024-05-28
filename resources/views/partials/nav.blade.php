@@ -7,6 +7,7 @@
             <li><a class="nav-link" href="/collections"><i class="bi bi-house-door-fill"></i>&nbsp;&nbsp;<strong>Colecciones</strong></a></li>
             <li><a class="nav-link" href="/news"><i class="bi bi-newspaper"></i>&nbsp;&nbsp;<strong>Noticias</strong></a></li>
             <li><a class="btn show-popup-edit nav-link" data-edit-url="{{ route('collections/create') }}"><i class="bi bi-plus-circle"></i>&nbsp;&nbsp;<strong>Añadir</strong></a></li>
+            <li><a class="nav-link" href="/news"><i class="bi bi-search"></i>&nbsp;&nbsp;<strong>Buscar</strong></a></li>
         </ul>
 
     </nav>

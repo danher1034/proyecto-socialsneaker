@@ -11,7 +11,7 @@
             <span class="cat" data-type="launch">Lanzamientos</span>
             <span class="cat" data-type="event">Eventos</span>
         </nav>
-        <button class="btn show-popup" data-edit-url="{{ route('news/create') }}">
+        <button class="btn show-popup-edit" data-edit-url="{{ route('news/create') }}">
             Añadir noticia
         </button>
         <div class="busqueda">
