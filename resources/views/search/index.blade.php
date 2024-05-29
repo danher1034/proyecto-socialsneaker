@@ -8,14 +8,13 @@
     <div class="busqueda">
         <input type="text" placeholder="Qué desea buscar" id="busqueda" value="{{ request('search') }}" oninput="handleInput()">
     </div>
-
     <div id="search-results">
         <span id="loader" class="loader" style="display: none;"></span>
         @if($searchTerm)
             <br>
             @if($users->isEmpty())
                 <br>
-                <h2>No se encontraron resultados de búsqueda para "{{ $searchTerm }}"</h2>
+                <h2 id="no-results-message" style="display: none;">No se encontraron resultados de búsqueda para "{{ $searchTerm }}"</h2>
             @else
                 <div id="plist" class="people-list">
                     <ul id="user-results" class="list-unstyled chat-list mt-2 mb-0">
@@ -36,5 +35,7 @@
 
         @endif
     </div>
+
+
 @vite(['resources/js/search.js','resources/css/search.css'])
 @endsection
