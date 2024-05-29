@@ -8,6 +8,7 @@ use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\FollowController;
+use App\Http\Controllers\SearchController;
 
 // Ruta para el index
 Route::get('/', function () {return view('index');})->name('index');
@@ -26,9 +27,10 @@ Route::get('users/edit/{user}', [LoginController::class, 'edit'])->name('users/e
 Route::put('users/update/{user}', [LoginController::class, 'update'])->name('users/update');
 Route::delete('users/delete/{user}', [LoginController::class, 'delete'])->name('users/delete');
 
+Route::get('search', [SearchController::class, 'index'])->name('search');
+
 Route::get('collections', [CollectionController::class, 'index'])->name('collections');
 Route::get('collections/show/{collection}', [CollectionController::class, 'show'])->name('collections/show');
-
 Route::post('collections/like/{collection}', [CollectionController::class, 'like'])->name('collections/like');
 Route::get('collections/create', [CollectionController::class, 'create'])->name('collections/create');
 Route::post('collections/store', [CollectionController::class, 'store'])->name('collections/store');

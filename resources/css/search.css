@@ -1,0 +1,117 @@
+.busqueda {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Espacio entre el input y el botón */
+    flex-wrap: nowrap; /* Evitar que los elementos se envuelvan en dispositivos pequeños */
+    flex: 1;
+}
+
+.busqueda input {
+    flex: 1;
+}
+
+.busqueda input {
+    padding: 5px 10px;
+    border: none;
+    border: 2px solid #ccc;
+    border-radius: 30px;
+}
+
+.busqueda button {
+    border: none;
+    padding: 7px 10px;
+    border-radius: 30px;
+    border: 2px solid #ccc;
+    cursor: pointer;
+}
+
+#searchButton {
+    background-color: #1b3039;
+    color: white;
+}
+
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+.user-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    padding: 10px;
+    width: 100%;  /* Esto asegura que el enlace ocupe todo el ancho del <li> */
+}
+
+.user-link:hover {
+    background: #efefef;
+    border-radius: 3px;
+}
+
+.user-link img {
+    margin-right: 10px;
+}
+
+.people-list {
+    transition: .5s;
+}
+
+.people-list .chat-list li {
+    padding: 10px 15px;
+    list-style: none;
+    border-radius: 3px;
+}
+
+.people-list .chat-list li:hover {
+    background: #efefef;
+    cursor: pointer;
+}
+
+.people-list .chat-list li.active {
+    background: #efefef;
+}
+
+.people-list .chat-list li .name {
+    font-size: 15px;
+}
+
+.people-list .chat-list img {
+    width: 45px;
+    border-radius: 50%;
+}
+
+.people-list img {
+    float: left;
+    border-radius: 50%;
+}
+
+.people-list .about {
+    float: left;
+    padding-left: 8px;
+}
+
+.people-list .status {
+    color: #999;
+    font-size: 13px;
+}
+
+
+.loader {
+    margin-top: 15%;
+    margin-left: 40%;
+    width: 20px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    animation: l5 1s infinite linear alternate;
+  }
+  @keyframes l5 {
+      0%  {box-shadow: 20px 0 #000, -20px 0 #0002;background: #000 }
+      33% {box-shadow: 20px 0 #000, -20px 0 #0002;background: #0002}
+      66% {box-shadow: 20px 0 #0002,-20px 0 #000; background: #0002}
+      100%{box-shadow: 20px 0 #0002,-20px 0 #000; background: #000 }
+  }
