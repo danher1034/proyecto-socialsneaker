@@ -5,6 +5,11 @@ return [
     'send' => 'Send',
     'see' => 'See',
     'sees' => 'See the',
-    'comment' => 'comentario',
-    'comments' => 'comentarios',
+    'comment' => 'comment',
+    'comments' => 'comments',
+    'titleadd' => 'Create collection',
+    'description' => 'description',
+    'labels' => 'labels',
+    'imagenews' => 'Image news',
+    'send' => 'Send',
 ];

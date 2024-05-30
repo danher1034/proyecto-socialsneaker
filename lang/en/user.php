@@ -2,7 +2,7 @@
 
 return [
     'editprofile' => 'Edit profile',
-    'signout' => 'Cerrar sesión',
+    'signout' => 'Sign out',
     'deleteaccount' => 'Delete account',
     'collections' => 'Collections',
     'followers' => 'Followers',

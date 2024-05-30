@@ -9,6 +9,7 @@ use App\Http\Controllers\ChatController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\FollowController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\LocaleController;
 
 // Ruta para el index
 Route::get('/', function () {return view('index');})->name('index');
@@ -28,6 +29,8 @@ Route::put('users/update/{user}', [LoginController::class, 'update'])->name('use
 Route::delete('users/delete/{user}', [LoginController::class, 'delete'])->name('users/delete');
 
 Route::get('search', [SearchController::class, 'index'])->name('search');
+
+Route::get('locale/{lang}', [LocaleController::class, 'setLocale'])->name('locale.switch');
 
 Route::get('collections', [CollectionController::class, 'index'])->name('collections');
 Route::get('collections/show/{collection}', [CollectionController::class, 'show'])->name('collections/show');
