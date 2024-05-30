@@ -1,12 +1,22 @@
 document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('busqueda');
-    const loader = document.getElementById('loader');
+    let loader = document.getElementById('loader');
     let timeoutId;
 
     // Función para manejar la entrada del usuario
     window.handleInput = () => {
-        // Mostrar el loader
+        // Mostrar el loader y ocultar el mensaje de no resultados y la lista de personas
         loader.style.display = 'inline-block';
+
+        const noResultsMessage = document.getElementById('no-results-message');
+        if (noResultsMessage) {
+            noResultsMessage.style.display = 'none';
+        }
+
+        const peopleList = document.getElementById('plist');
+        if (peopleList) {
+            peopleList.style.display = 'none';
+        }
 
         // Limpiar cualquier timeout existente
         clearTimeout(timeoutId);
@@ -29,6 +39,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 const doc = parser.parseFromString(html, 'text/html');
                 const results = doc.getElementById('search-results').innerHTML;
                 document.getElementById('search-results').innerHTML = results;
+
+                // Volver a asignar la referencia al loader después de actualizar el DOM
+                loader = document.getElementById('loader');
+
+                // Mostrar u ocultar el mensaje de no resultados según corresponda
+                const noResultsMessage = document.getElementById('no-results-message');
+                if (noResultsMessage) {
+                    noResultsMessage.style.display = noResultsMessage.innerHTML.includes("No se encontraron resultados de búsqueda") ? 'block' : 'none';
+                }
+
+                // Mostrar la lista de personas si hay resultados
+                const peopleList = document.getElementById('plist');
+                if (peopleList) {
+                    peopleList.style.display = 'block';
+                }
+
                 // Ocultar el loader
                 loader.style.display = 'none';
             })
@@ -48,7 +74,3 @@ document.addEventListener('DOMContentLoaded', () => {
         alert(errorMessage); // Aquí puedes usar tu modal personalizado
     }
 });
-
-
-
-
