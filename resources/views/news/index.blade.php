@@ -6,17 +6,17 @@
 <div class="container-news">
     <div class="header-news">
         <nav class="nav-news">
-            <span class="cat" data-type="all">Todas</span>
-            <span class="cat" data-type="news">Noticias</span>
-            <span class="cat" data-type="launch">Lanzamientos</span>
-            <span class="cat" data-type="event">Eventos</span>
+            <span class="cat" data-type="all">@lang('new.all')</span>
+            <span class="cat" data-type="news">@lang('new.news')</span>
+            <span class="cat" data-type="launch">@lang('new.launches')</span>
+            <span class="cat" data-type="event">@lang('new.events')</span>
         </nav>
         <button class="btn show-popup-edit" data-edit-url="{{ route('news/create') }}">
-            Añadir noticia
+            @lang('new.addnew')
         </button>
         <div class="busqueda">
-            <input type="text" placeholder="Qué desea buscar" id="busqueda">
-            <button id="searchButton">Buscar</button>
+            <input type="text" placeholder="@lang('new.searchnew')" id="busqueda">
+            <button id="searchButton">@lang('new.search')</button>
         </div>
     </div>
 
@@ -36,7 +36,7 @@
                 </div>
             </div>
         @empty
-            <p>No hay colecciones disponibles.</p>
+            <p>@lang('new.nonew')</p>
         @endforelse
     </div>
 </div>

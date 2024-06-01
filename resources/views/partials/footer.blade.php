@@ -2,8 +2,8 @@
     <div class="div-footer">
         <!-- Copyright -->
         <div class="text-center p-3">
-        © 2024 Copyright:
-        <a class="text-body" href="">Copyright policies</a> - Desarrollado por Dani Agulló Heredia
+        @lang('partials.copy')
+        <a class="text-body" href="">@lang('partials.copypolicies')</a> - @lang('partials.developed')
         </div>
         <!-- Copyright -->
     </div>

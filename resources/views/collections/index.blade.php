@@ -45,9 +45,9 @@
                                 <br>
                                 <a href="javascript:void(0)" class="show-popup-collection" data-edit-url="{{ route('collections/show', $collection) }}">
                                     @if ($collection->comments->count() < 2)
-                                        Ver el {{ $collection->comments->count() }} comentario
+                                        @lang('collection.see') {{ $collection->comments->count() }} @lang('collection.comment')
                                     @else
-                                        Ver los {{ $collection->comments->count() }} comentarios
+                                        @lang('collection.sees') {{ $collection->comments->count() }} @lang('collection.comments')
                                     @endif
                                 </a>
                                 <br>
@@ -56,7 +56,7 @@
                                 <form action="{{ route('collections/comment') }}" method="post" class="coment_form" enctype="multipart/form-data">
                                     @csrf
                                     <input type="hidden" name="collection_id" value="{{ $collection->id }}">
-                                    <input type="text" name="text" id="input-coment-{{ $collection->id }}" placeholder="Añade un comentario...">
+                                    <input type="text" name="text" id="input-coment-{{ $collection->id }}" placeholder="@lang('collection.addcomment')">
                                     <button type="submit" id="comment-{{ $collection->id }}" class="hidden">Enviar</button>
                                 </form>
                             </div>

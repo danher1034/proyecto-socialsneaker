@@ -46,6 +46,17 @@
                                     <div class="form-text socialsneaker-text">@lang('login.questionlogin')<br><br><a class="socialsneaker-textbold" href="/signupForm">@lang('login.signaccess')</a></div>
                                 </div>
                                 <br><br>
+                                <div class="text-center">
+                                    <div class="dropdown-i">
+                                        <button type="button" class="dropbtn-i">@lang('user.lang')</button>
+                                        <div class="dropdown-content-i">
+                                            <a class="dropdown-item" href="locale/es"><img alt="es" class="img-fluid img_lang_account" src="/storage/img/espana.png"></a>
+                                            <a class="dropdown-item" href="locale/en"><img alt="en" class="img-fluid img_lang_account" src="/storage/img/estados-unidos.png"></a>
+                                            <a class="dropdown-item" href="locale/cn"><img alt="cn" class="img-fluid img_lang_account" src="/storage/img/chino.png"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br><br>
                             </form>
                         </div>
                     </div>

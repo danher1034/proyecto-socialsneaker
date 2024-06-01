@@ -37,15 +37,15 @@ class UsereditRequest extends FormRequest
     {
         return[
 
-            'password.required' => 'La contraseña es obligatoria.',
+            'password.required' => __('requests.password.required.user'),
 
-            'birthday.required' => 'El cumpleaños es obligatorio.',
-            'birthday.date' => 'El cumpleaños tiene que ser tipo fecha.',
-            'birthday.before_or_equal' => 'Tienes que tener más de 16 años.',
+            'birthday.required' =>  __('requests.birthday.required.user'),
+            'birthday.date' =>  __('requests.birthday.date.user'),
+            'birthday.before_or_equal' =>  __('requests.birthday.before_or_equal.user'),
 
-            'newpassword.confirmed' => 'Las contraseñas no coinciden.',
-            'newpassword.min' => 'La contraseña debe tener como mínimo 8 caracteres.',
-            'newpassword.string' => 'La contraseña debe ser una cadena de texto.',
+            'newpassword.confirmed' =>  __('requests.newpassword.confirmed.user'),
+            'newpassword.min' =>  __('requests.newpassword.min.user'),
+            'newpassword.string' =>  __('requests.newpassword.string.user'),
         ];
     }
 }

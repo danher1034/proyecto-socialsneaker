@@ -34,26 +34,26 @@ class SignupRequest extends FormRequest
     public function messages()
     {
         return[
-            'name.required' => 'El nombre de usuario es obligatorio.',
-            'name.min' => 'El nombre de usuario debe tener como mínimo 5 caracteres.',
-            'name.max' => 'El nombre de usuario debe tener como máximo 20 caracteres.',
-            'name.unique' => 'El nombre de usuario ya existe en el sistema.',
-            'name.string' => 'El nombre debe ser una cadena de texto.',
+            'name.required' => __('requests.name.required.sign'),
+            'name.min' => __('requests.name.min.sign'),
+            'name.max' => __('requests.name.max.sign'),
+            'name.unique' => __('requests.name.unique.sign'),
+            'name.string' => __('requests.name.string.sign'),
 
-            'birthday.required' => 'El cumpleaños es obligatorio.',
-            'birthday.date' => 'El cumpleaños tiene que ser tipo fecha.',
-            'birthday.before_or_equal' => 'Tienes que tener más de 16 años.',
+            'birthday.required' => __('requests.birthday.required.sign'),
+            'birthday.date' => __('requests.birthday.date.sign'),
+            'birthday.before_or_equal' => __('requests.birthday.before_or_equal.sign'),
 
-            'email.required' => 'El email es obligatorio.',
-            'email.unique' => 'El email ya existe en el sistema.',
-            'email.min' => 'El email debe tener como mínimo 10 caracteres.',
-            'email.max' => 'El email debe tener como máximo 255 caracteres.',
-            'email.string' => 'El email debe ser una cadena de texto.',
+            'email.required' => __('requests.email.required.sign'),
+            'email.unique' => __('requests.email.unique.sign'),
+            'email.min' => __('requests.email.min.sign'),
+            'email.max' => __('requests.email.max.sign'),
+            'email.string' => __('requests.email.string.sign'),
 
-            'password.required' => 'La contraseña es obligatoria.',
-            'password.confirmed' => 'Las contraseñas no coinciden.',
-            'password.min' => 'La contraseña debe tener como mínimo 8 caracteres.',
-            'password.string' => 'La contraseña debe ser una cadena de texto.',
+            'password.required' => __('requests.password.required.sign'),
+            'password.confirmed' => __('requests.password.confirmed.sign'),
+            'password.min' => __('requests.password.min.sign'),
+            'password.string' => __('requests.password.string.sign'),
         ];
     }
 }

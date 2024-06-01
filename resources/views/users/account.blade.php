@@ -16,13 +16,21 @@
                 <div class="col-1 col-md-4 d-flex align-items-center justify-content-end actions">
                     @if ($user->id == Auth::id())
                     <button class="btn show-popup-edit" data-edit-url="{{ route('users/edit', $user) }}">
-                        Editar perfil
+                        @lang('user.editprofile')
                     </button>
                     <div class="dropdown">
                         <button class="dropbtn">⋮</button>
                         <div class="dropdown-content">
-                            <a href="{{ route('logout') }}">Cerrar sesión</a>
-                            <a href="#" id="delete-account">Eliminar cuenta</a>
+                            <a href="{{ route('logout') }}">@lang('user.signout')</a>
+                            <a href="#" id="delete-account">@lang('user.deleteaccount')</a>
+                            <div class="dropdown-i">
+                                <button class="dropbtn-i">@lang('user.lang')</button>
+                                <div class="dropdown-content-i">
+                                    <a class="dropdown-item" href="locale/es"><img alt="es" class="img-fluid img_lang_account" src="/storage/img/espana.png"></a>
+                                    <a class="dropdown-item" href="locale/en"><img alt="en" class="img-fluid img_lang_account" src="/storage/img/estados-unidos.png"></a>
+                                    <a class="dropdown-item" href="locale/cn"><img alt="cn" class="img-fluid img_lang_account" src="/storage/img/chino.png"></a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <form id="delete-account-form" action="{{ route('users/delete', $user->id) }}" method="POST" style="display: none;">
@@ -31,26 +39,26 @@
                     </form>
                     @else
                         <button type="button" class="btn btn-primary me-3" id="follow-button" data-user-id="{{ $user->id }}">
-                            {{ Auth::user()->following()->where('user_id', $user->id)->exists() ? 'Siguiendo' : 'Seguir' }}
+                            {{ Auth::user()->following()->where('user_id', $user->id)->exists() ? __('user.followed') : __('user.follow') }}
                         </button>
-                        <a href="{{ route('chat.show', $user->id) }}" class="btn btn-secondary">Enviar mensaje</a>
+                        <a href="{{ route('chat.show', $user->id) }}" class="btn btn-secondary">@lang('user.sendmessage')</a>
                     @endif
                 </div>
             </div>
             <br>
             <div class="row">
                 <div class="col-4">
-                    <strong>Colecciones</strong><br>
+                    <strong>@lang('user.collections')</strong><br>
                     {{ $collectionsCount }}
                 </div>
                 &nbsp;
                 <div class="col-4">
-                    <strong>Seguidores</strong><br>
+                    <strong>@lang('user.followers')</strong><br>
                     {{ $followersCount }}
                 </div>
                 &nbsp;
                 <div class="col-3">
-                    <strong>Seguidos</strong><br>
+                    <strong>@lang('user.followed')</strong><br>
                     {{ $followingCount }}
                 </div>
             </div>
@@ -74,7 +82,7 @@
             <div class="text-center">
                 <i class="bi bi-camera icon-camera"></i>
                 <br><br>
-                <p>No tienes colecciones aún</p>
+                <p>@lang('user.textnocolection')</p>
             </div>
         @endforelse
     </div>

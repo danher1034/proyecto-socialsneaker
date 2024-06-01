@@ -59,7 +59,7 @@ class LoginController extends Controller
 
             return redirect()->route('account'); // Aquí es donde se corrige la redirección
         } else {
-            $error = 'La contraseña o el usuario son incorrectos o no existen, intentalo de nuevo';
+            $error = __('requests.passworderror.js');
             return view('auth.login', compact('error'));
         }
     }
@@ -103,9 +103,9 @@ class LoginController extends Controller
 
             $user->save();
 
-            Session::flash('success_message', '¡Perfil actualizado correctamente!');
+            Session::flash('success_message', __('requests.accountedit.js'));
         } else {
-            Session::flash('success_message', 'La contraseña actual no es válida');
+            Session::flash('success_message', __('requests.passwordnovalid.js'));
         }
 
         return redirect()->route('account'); // Aquí es donde se corrige la redirección
@@ -116,9 +116,9 @@ class LoginController extends Controller
         if (Auth::id() == $user->id) {
             Auth::logout();
             $user->delete();
-            return redirect('/')->with('success_message', 'Cuenta eliminada correctamente');
+            return redirect('/')->with('success_message', __('requests.delete.js'));
         } else {
-            return redirect()->back()->with('error_message', 'No autorizado');
+            return redirect()->back()->with('error_message', __('requests.authorized.js'));
         }
     }
 }

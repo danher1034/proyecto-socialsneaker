@@ -30,15 +30,15 @@ class CollectionsRequest extends FormRequest
     public function messages()
     {
         return[
-            'description.required'=>'La descripción es obligatorio',
-            'description.string' => 'La descripción debe ser una cadena de texto.',
-            'description.min'=>'La descripción debe tener al menos 4 caracteres',
-            'description.max'=>'La descripcióno debe tener menos de 100 caracteres',
+            'description.required' => __('requests.description.required.collection'),
+            'description.string' => __('requests.description.string.collection'),
+            'description.min' => __('requests.description.min.collection'),
+            'description.max' => __('requests.description.max.collection'),
 
-            'tags.required' => 'Las etiquetas son obligatorias.',
-            'tags.string' => 'Las etiquetas deben ser una cadena de texto.',
-            'tags.min' => 'Las etiquetas deben tener al menos 3 caracteres.',
-            'tags.max' => 'Las etiquetas no pueden tener más de 1000 caracteres.',
+            'tags.required' => __('requests.tags.required.collection'),
+            'tags.string' => __('requests.tags.string.collection'),
+            'tags.min' => __('requests.tags.min.collection'),
+            'tags.max' => __('requests.tags.max.collection'),
         ];
     }
 }

@@ -4,6 +4,9 @@ return [
     'editprofile' => 'Edit profile',
     'signout' => 'Sign out',
     'deleteaccount' => 'Delete account',
+    'follow' => 'Follow',
+    'followed' => 'Following',
+    'sendmessage' => 'Send Message',
     'collections' => 'Collections',
     'followers' => 'Followers',
     'followed' => 'Followed',
@@ -17,6 +20,7 @@ return [
     'savechanges' => 'Save changes',
     'optional' => 'Optional',
     'required' => 'Required',
+    'lang' => 'Language',
 ];
 
 

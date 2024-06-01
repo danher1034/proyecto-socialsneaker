@@ -12,13 +12,12 @@
             <div class="chat">
                 <div class="chat-header clearfix">
                     <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-lg-6 d-flex align-items-center ">
                             <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
-                                <img src="{{ $receiver->image_user }}" alt="avatar">
+                                <img src="{{ $receiver->image_user }}" alt="avatar" class="img-fluid" style="max-height: 50px; margin-right: 10px;">
                             </a>
                             <div class="chat-about">
-                                <h6 class="m-b-0">{{ $receiver->name }}</h6>
-                                <small>Last seen: 2 hours ago</small>
+                                <h6 class="m-b-0"><strong>{{ $receiver->name }}</strong></h6>
                             </div>
                         </div>
                     </div>
@@ -47,7 +46,7 @@
                             <div class="input-group-prepend">
                                 <button type="submit" class="input-group-text"><i class="fa fa-send"></i></button>
                             </div>
-                            <input type="text" name="text" id="message-text" class="form-control" placeholder="Enter text here...">
+                            <input type="text" name="text" id="message-text" class="form-control" placeholder="@lang('chat.message')">
                         </div>
                     </form>
                 </div>

@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     const followButton = document.getElementById('follow-button');
 
+    // Manejo del primer dropdown
     const dropBtn = document.querySelector('.dropbtn');
     const dropdownContent = document.querySelector('.dropdown-content');
 
@@ -18,6 +19,29 @@ document.addEventListener('DOMContentLoaded', function () {
         };
     }
 
+    const langDropBtn = document.querySelector('.dropbtn-i');
+    const langDropdownContent = document.querySelector('.dropdown-content-i');
+
+    if (langDropBtn && langDropdownContent) {
+        langDropBtn.addEventListener('click', function (event) {
+            event.stopPropagation();
+            langDropdownContent.classList.toggle('show');
+        });
+
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropbtn-i')) {
+                if (langDropdownContent.classList.contains('show')) {
+                    langDropdownContent.classList.remove('show');
+                }
+            }
+        };
+
+        langDropdownContent.addEventListener('click', function(event) {
+            event.stopPropagation();
+        });
+    }
+
+    // Manejo de eliminación de cuenta
     document.getElementById('delete-account').addEventListener('click', function(event) {
         event.preventDefault();
         if (confirm('¿Estás seguro de que quieres eliminar tu cuenta? Esta acción no se puede deshacer.')) {
@@ -25,6 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+    // Manejo del botón de seguir
     if (followButton) {
         followButton.addEventListener('click', function () {
             const userId = this.getAttribute('data-user-id');
@@ -54,3 +79,4 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+

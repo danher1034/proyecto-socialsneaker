@@ -14,72 +14,72 @@
                             <div class="card-body p-md-5 mx-md-4">
                                 <div class="text-center">
                                     <h1 class="mt-1 mb-5 pb-1 socialsneaker-titletext">SOCIALSNEAKER</h1>
-                                    <h3 class="mt-1 mb-5 pb-1 socialsneaker-text">Crea tu cuenta</h3>
+                                    <h3 class="mt-1 mb-5 pb-1 socialsneaker-text">@lang('login.sign')</h3>
                                 </div>
                                 <form action="{{ route('signup') }}" method="post" id="formulario">
                                     @csrf
                                     <div class="socialsneaker-text">
                                         <!-- Grupo: Nombre -->
                                         <div class="form-outline mb-4" id="grupo__name">
-                                            <label for="name" class="form-label"><h5>Nombre</h5></label>
+                                            <label for="name" class="form-label"><h5>@lang('login.namesign')</h5></label>
                                             <div class="formulario__grupo-input">
                                                 <input type="text" class="formulario__input" name="name" id="name">
                                                 <i class="formulario__validacion-estado fas fa-times-circle"></i>
                                             </div>
-                                            <p class="formulario__input-error">El nombre tiene que ser de 4 a 16 dígitos y solo puede contener letras, números y guion bajo.</p>
+                                            <p class="formulario__input-error">@lang('login.errorname')</p>
                                         </div>
                                         <br>
                                         <!-- Grupo: Correo Electrónico -->
                                         <div class="formulario__grupo" id="grupo__email">
-                                            <label for="email" class="form-label"><h5>Correo Electrónico</h5></label>
+                                            <label for="email" class="form-label"><h5>@lang('login.emailsign')</h5></label>
                                             <div class="formulario__grupo-input">
                                                 <input type="email" class="formulario__input" name="email" id="email">
                                                 <i class="formulario__validacion-estado fas fa-times-circle"></i>
                                             </div>
-                                            <p class="formulario__input-error">El correo solo puede contener letras, números, puntos, guiones y guion bajo.</p>
+                                            <p class="formulario__input-error">@lang('login.erroremail')</p>
                                         </div>
                                         <br><br>
                                         <!-- Grupo: Fecha de Nacimiento -->
                                         <div class="formulario__grupo" id="grupo__fechaNacimiento">
-                                            <label for="birthday" class="form-label"><h5>Fecha de Nacimiento</h5></label>
+                                            <label for="birthday" class="form-label"><h5>@lang('login.datesign')</h5></label>
                                             <div class="formulario__grupo-input">
                                                 <input type="date" class="formulario__input" name="birthday" id="birthday" max="{{ now()->subYears(16)->format('Y-m-d') }}">
                                                 <i class="formulario__validacion-estado fas fa-times-circle"></i>
                                             </div>
-                                            <p class="formulario__input-error">Necesita tener mínimo 16 años para usar socialsneaker.</p>
+                                            <p class="formulario__input-error">@lang('login.errordate')</p>
                                         </div>
                                         <br><br>
                                         <!-- Grupo: Contraseña -->
                                         <div class="formulario__grupo" id="grupo__password">
-                                            <label for="password" class="form-label"><h5>Contraseña</h5></label>
+                                            <label for="password" class="form-label"><h5>@lang('login.passwordsign')</h5></label>
                                             <div class="formulario__grupo-input">
                                                 <input type="password" class="formulario__input" name="password" id="password">
                                                 <i class="formulario__validacion-estado fas fa-times-circle"></i>
                                             </div>
-                                            <p class="formulario__input-error">La contraseña tiene que ser de 8 a 50 dígitos.</p>
+                                            <p class="formulario__input-error">@lang('login.errorpassword')</p>
                                         </div>
                                         <br><br>
                                         <!-- Grupo: Contraseña 2 -->
                                         <!-- Grupo: Contraseña 2 (Confirmar Contraseña) -->
                                         <div class="formulario__grupo" id="grupo__password_confirmation">
-                                            <label for="password_confirmation" class="form-label"><h5>Repetir Contraseña</h5></label>
+                                            <label for="password_confirmation" class="form-label"><h5>@lang('login.passwordrepeatsign')</h5></label>
                                             <div class="formulario__grupo-input">
                                                 <input type="password" class="formulario__input" name="password_confirmation" id="password_confirmation">
                                                 <i class="formulario__validacion-estado fas fa-times-circle"></i>
                                             </div>
-                                            <p class="formulario__input-error">Ambas contraseñas deben ser iguales.</p>
+                                            <p class="formulario__input-error">@lang('login.errorrepeat')</p>
                                         </div>
                                         <br><br>
                                         <!-- Grupo: Terminos y Condiciones -->
                                         <div class="formulario__grupo" id="grupo__terminos">
                                             <label class="form-label">
                                                 <input class="formulario__checkbox" type="checkbox" name="terminos" id="terminos">
-                                                Acepto los <a href="" class="socialsneaker-text">Terminos y Condiciones</a>
+                                                @lang('login.acept') <a href="" class="socialsneaker-text">@lang('login.termsandconditions')</a>
                                             </label>
                                         </div>
                                         <br><br>
                                         <div class="formulario__mensaje" id="formulario__mensaje">
-                                            <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el formulario correctamente. </p>
+                                            <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> @lang('login.errorform') </p>
                                         </div>
 
                                         @if ($errors->any())
@@ -93,17 +93,27 @@
                                         @endif
 
                                         <div class="text-center">
-                                            <button type="submit" class="btn btn-primary btn-login socialsneaker-textbold">Registrarse</button>
-                                            <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p>
+                                            <button type="submit" class="btn btn-primary btn-login socialsneaker-textbold">@lang('login.btnsign')</button>
+                                            <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">@lang('login.exitform')</p>
                                         </div>
                                     </div>
                                 </form>
 
                                 <br><br>
                                     <div class="text-center">
-                                        <div class="form-text socialsneaker-text">¿Tiene ya cuenta? <br><br><a class="socialsneaker-textbold"  href="/loginForm">Inicia sesión</a></div>
+                                        <div class="form-text socialsneaker-text">@lang('login.questionsign') <br><br><a class="socialsneaker-textbold"  href="/loginForm">@lang('login.loginaccess')</a></div>
                                     </div>
                                 <br><br>
+                                <div class="text-center">
+                                    <div class="dropdown-i">
+                                        <button type="button" class="dropbtn-i">@lang('user.lang')</button>
+                                        <div class="dropdown-content-i">
+                                            <a class="dropdown-item" href="locale/es"><img alt="es" class="img-fluid img_lang_account" src="/storage/img/espana.png"></a>
+                                            <a class="dropdown-item" href="locale/en"><img alt="en" class="img-fluid img_lang_account" src="/storage/img/estados-unidos.png"></a>
+                                            <a class="dropdown-item" href="locale/cn"><img alt="cn" class="img-fluid img_lang_account" src="/storage/img/chino.png"></a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

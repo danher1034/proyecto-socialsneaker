@@ -21,4 +21,11 @@ return [
     'btnsign' => '注册',
     'questionsign' => '已经有账户了吗？',
     'loginaccess' => '登录',
+    'errorname' => '名称必须是4到16个字符，只能包含字母、数字和下划线。',
+    'erroremail' => '电子邮件只能包含字母、数字、点、破折号和下划线。',
+    'errordate' => '您需要年满16岁才能使用socialsneaker。',
+    'errorpassword' => '密码必须是8到50个字符。',
+    'errorrepeat' => '两次输入的密码必须相同。',
+    'errorform' => '请正确填写表格。',
+    'exitform' => '表单提交成功！',
 ];

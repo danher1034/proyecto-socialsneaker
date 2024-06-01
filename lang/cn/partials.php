@@ -6,6 +6,7 @@ return [
     'add' => '添加',
     'search' => '搜索',
     'chat' => '聊天',
+    'menu' => '菜单',
     'copy' => '© 2024 版权：',
     'copypolicies' => '版权政策',
     'description' => '描述',

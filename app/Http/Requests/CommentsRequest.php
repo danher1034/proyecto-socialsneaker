@@ -30,12 +30,12 @@ class CommentsRequest extends FormRequest
     public function messages()
     {
         return[
-            'text.required'=>'El texto es obligatorio',
-            'text.string' => 'El texto debe ser una cadena de texto.',
-            'text.min'=>'El texto debe tener al menos 1 caracteres',
-            'text.max'=>'El texto debe tener menos de 100 caracteres',
+            'text.required'=> __('requests.text.required.collection'),
+            'text.string' => __('requests.text.string.collection'),
+            'text.min'=>__('requests.text.min.collection'),
+            'text.max'=>__('requests.text.max.collection'),
 
-            'collection_id.required' => 'Error al comentar esta publicación',
+            'collection_id.required' => __('requests.collection_id.required.collection'),
         ];
     }
 }

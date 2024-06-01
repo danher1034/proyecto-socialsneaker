@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         clearTimeout(timeoutId);
 
         // Configurar un nuevo timeout para realizar la búsqueda después de 1 segundo
-        timeoutId = setTimeout(performSearch, 1000);
+        timeoutId = setTimeout(performSearch, 500);
     };
 
     // Función para realizar la búsqueda en tiempo real

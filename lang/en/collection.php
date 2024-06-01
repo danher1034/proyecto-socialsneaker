@@ -1,8 +1,7 @@
 <?php
 
 return [
-    'addcomment' => 'Add a comment',
-    'send' => 'Send',
+    'addcomment' => 'Add a comment ...',
     'see' => 'See',
     'sees' => 'See the',
     'comment' => 'comment',

@@ -4,6 +4,9 @@ return [
     'editprofile' => '编辑个人资料',
     'signout' => '退出登录',
     'deleteaccount' => '删除账户',
+    'follow' => '关注',
+    'followed' => '已关注',
+    'sendmessage' => '发送消息',
     'collections' => '收藏',
     'followers' => '粉丝',
     'followed' => '关注',
@@ -17,6 +20,7 @@ return [
     'savechanges' => '保存更改',
     'optional' => '可选',
     'required' => '必填',
+    'lang' => '语言',
 ];
 
 

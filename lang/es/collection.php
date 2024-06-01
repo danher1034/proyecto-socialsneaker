@@ -1,8 +1,7 @@
 <?php
 
 return [
-    'addcomment' => 'Añadir comentario',
-    'send' => 'Enviar',
+    'addcomment' => 'Añadir comentario ...',
     'see' => 'Ver',
     'sees' => 'Ver los',
     'comment' => 'comentario',

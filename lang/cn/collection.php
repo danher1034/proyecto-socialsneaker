@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'addcomment' => '添加评论',
+    'addcomment' => '添加评论 ...',
     'send' => '发送',
     'see' => '查看',
     'sees' => '查看',

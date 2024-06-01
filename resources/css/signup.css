@@ -136,3 +136,62 @@
 .formulario__grupo-incorrecto .formulario__input {
 	border: 3px solid #bb2929;
 }
+
+/* Estilos para el dropdown de idiomas */
+.dropdown-i {
+    position: relative;
+    display: inline-block;
+    border-radius: 8%;
+}
+
+.dropbtn-i {
+    background-color: #003465 ;
+    width: 200px;
+    color: rgb(255, 255, 255);
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    border-radius: 8%;
+}
+
+.img_lang_account {
+    width: 30px;
+    height: 30px;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content-i {
+    display: none;
+    position: absolute;
+    width: 100%;
+    background-color: #024686;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 8%;
+}
+
+.dropdown-content-i:hover {
+    background-color: #024686;
+}
+/* Links inside the dropdown */
+.dropdown-content-i a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    border-radius: 8%;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content-i a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown-i:hover .dropdown-content-i {display: block;}
+
+/* Show the dropdown menu on click */
+.show {display: block;}
+
+

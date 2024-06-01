@@ -10,11 +10,8 @@
         <div class="col-lg-12">
             <div id="plist" class="people-list">
                 <br>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fa fa-search"></i></span>
-                    </div>
-                    <input type="text" id="search" class="form-control" placeholder="Buscar un usuario">
+                <div class="busqueda">
+                    <input type="text" placeholder="@lang('chat.search')" id="busqueda">
                 </div>
                 <ul id="user-results" class="list-unstyled chat-list mt-2 mb-0">
                     @if($chats->isEmpty())
@@ -22,7 +19,7 @@
                         <li class="clearfix text-center">
                             <i class="bi bi-chat-text icon-chat"></i>
                             <br><br>
-                            <p>No tienes ningún chat abierto</p>
+                            <p>@lang('chat.nochat')</p>
                         </li>
                     @else
                         @foreach($chats as $chat)
@@ -31,7 +28,7 @@
                                 <img src="{{ $chat->image_user }}" alt="avatar">
                                 <div class="about">
                                     <div class="name"><strong>{{ $chat->name }}</strong></div>
-                                    <div class="status">{{ $chat->last_message_text ?? 'No messages yet' }}</div>
+                                    <div class="status">{{ $chat->last_message_text ??  __('chat.nomessages') }}</div>
                                 </div>
                             </a>
                         </li>
