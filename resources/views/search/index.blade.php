@@ -8,6 +8,7 @@
     <div class="busqueda">
         <input type="text" placeholder="@lang('search.search')" id="busqueda" value="{{ request('search') }}" oninput="handleInput()">
     </div>
+    <div id="search-prompt" class="text-center" style="display: {{ request('search') ? 'none' : 'block' }};"><i class="bi bi-search icon-search"></i><br>Busca a cualquiera usuario de socialsneaker ...</div>
     <div id="search-results">
         <span id="loader" class="loader" style="display: none;"></span>
         @if($searchTerm)
@@ -32,10 +33,8 @@
                 </div>
             @endif
         @else
-
         @endif
     </div>
 
-
-@vite(['resources/js/search.js','resources/css/search.css'])
+    @vite(['resources/js/search.js','resources/css/search.css'])
 @endsection

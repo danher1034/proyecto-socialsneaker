@@ -30,6 +30,16 @@
     color: white;
 }
 
+#search-prompt{
+    margin-top: 10%;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.icon-search {
+    font-size: 80px;
+}
+
 .clearfix:after {
     visibility: hidden;
     display: block;
@@ -100,9 +110,8 @@
     font-size: 13px;
 }
 
-
 .loader {
-    margin-top: 25%;
+    margin-top: 20%;
     margin-left: 50%;
     width: 20px;
     aspect-ratio: 1;

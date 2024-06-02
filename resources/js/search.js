@@ -2,11 +2,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('busqueda');
     let loader = document.getElementById('loader');
     let timeoutId;
+    const searchPrompt = document.getElementById('search-prompt');
 
     // Función para manejar la entrada del usuario
     window.handleInput = () => {
+        const search = searchInput.value.trim();
+
         // Mostrar el loader y ocultar el mensaje de no resultados y la lista de personas
         loader.style.display = 'inline-block';
+
+        if (search === "") {
+            searchPrompt.style.display = 'block';
+            loader.style.display = 'none';
+        } else {
+            searchPrompt.style.display = 'none';
+        }
 
         const noResultsMessage = document.getElementById('no-results-message');
         if (noResultsMessage) {
@@ -21,13 +31,13 @@ document.addEventListener('DOMContentLoaded', () => {
         // Limpiar cualquier timeout existente
         clearTimeout(timeoutId);
 
-        // Configurar un nuevo timeout para realizar la búsqueda después de 1 segundo
+        // Configurar un nuevo timeout para realizar la búsqueda después de 0.5 segundo
         timeoutId = setTimeout(performSearch, 500);
     };
 
     // Función para realizar la búsqueda en tiempo real
     const performSearch = () => {
-        const search = searchInput.value;
+        const search = searchInput.value.trim();
         const url = new URL(window.location.href);
         url.searchParams.set('search', search);
 

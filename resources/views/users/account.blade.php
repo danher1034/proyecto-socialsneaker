@@ -87,5 +87,6 @@
         @endforelse
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 @vite(['resources/js/account.js','resources/css/account.css'])
 @endsection

@@ -25,7 +25,7 @@
                 <div class="col-md-12">
                     <div class="card-body">
                         <p class="card-text">
-                            <div class="row">
+                            <div class="row like-comentario">
                                 <div class="col-1">
                                     @if (Auth::user()->likedCollections()->where('collection_id', $collection->id)->exists())
                                         <a href="javascript:void(0)" class="like-button" data-id="{{ $collection->id }}"><i class="bi bi-heart-fill corazon-lleno"></i></a>
@@ -35,8 +35,13 @@
                                 </div>
                                 &nbsp;&nbsp;&nbsp;
                                 <div class="col-1">
-                                    <a href="javascript:void(0)" class="show-popup-collection" data-edit-url="{{ route('collections/show', $collection) }}"><i class="bi bi-chat chat"></i></a>
+                                    <a href="javascript:void(0)" class="show-popup-collection comment-button" data-edit-url="{{ route('collections/show', $collection) }}"><i class="bi bi-chat chat"></i></a>
                                 </div>
+                                @if ($collection->sell == 1)
+                                    <div class="col-1">
+                                        <a type="button" class="btn btn-success sell-button" href="{{ route('chat.show', $collection->user_id) }}">@lang('collection.sell-b')</a>
+                                    </div>
+                                @endif
                             </div>
                             <br>
                             <strong>{{ $collection->user->name }} </strong>{{ $collection->description }}
@@ -75,5 +80,3 @@
     @vite(['resources/js/showcollection.js', 'resources/css/collection.css'])
 </div>
 @endsection
-
-

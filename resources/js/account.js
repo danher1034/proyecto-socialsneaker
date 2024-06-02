@@ -1,3 +1,5 @@
+import Swal from 'sweetalert2';
+
 document.addEventListener('DOMContentLoaded', function () {
     const followButton = document.getElementById('follow-button');
 
@@ -43,10 +45,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Manejo de eliminación de cuenta
     document.getElementById('delete-account').addEventListener('click', function(event) {
-        event.preventDefault();
-        if (confirm('¿Estás seguro de que quieres eliminar tu cuenta? Esta acción no se puede deshacer.')) {
-            document.getElementById('delete-account-form').submit();
-        }
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success"
+              });
+              document.getElementById('delete-account-form').submit();
+            }
+          });
     });
 
     // Manejo del botón de seguir
@@ -79,4 +95,3 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
-

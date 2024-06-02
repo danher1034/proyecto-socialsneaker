@@ -15,6 +15,7 @@
         @vite(['resources/css/app.css','resources/js/app.js'])
         <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
         <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </head>
     @if (Auth::check())
             <body class="d-flex flex-column min-vh-100 backgroud-check">

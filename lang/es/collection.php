@@ -11,4 +11,6 @@ return [
     'labels' => 'Etiquetas',
     'imagenews' => 'Imagenes noticias',
     'send' => 'Enviar',
+    'sell' => '¿En venta?',
+    'sell-b' => 'En venta',
 ];

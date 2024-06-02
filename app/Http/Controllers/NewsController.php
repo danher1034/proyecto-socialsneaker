@@ -37,8 +37,13 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return view('news.create');
+        if (!request()->ajax()) {
+            return redirect()->route('news.index')->withErrors(['error' => 'Acceso no permitido']);
+        }
+
+        return view('news.create'); // Asegúrate de que esta vista sea una vista parcial sin el layout completo
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -51,7 +56,7 @@ class NewsController extends Controller
         $news->url = $request->get('url');
         $news->type = $request->get('type');
         $news->tags = $request->get('tags');
-        $news->visible = $request->get('visible');
+        $news->visible = $request->get('visible') ? 1 : 0;
         $news->image_news = '';
 
 

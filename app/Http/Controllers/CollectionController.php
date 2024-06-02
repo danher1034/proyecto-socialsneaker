@@ -38,9 +38,12 @@ class CollectionController extends Controller
      */
     public function create()
     {
-        return view('collections.create');
-    }
+        if (!request()->ajax()) {
+            return redirect()->route('collections')->withErrors(['error' => 'Acceso no permitido']);
+        }
 
+        return view('collections.create'); // Asegúrate de que esta vista sea una vista parcial sin el layout completo
+    }
     /**
      * Store a newly created resource in storage.
      */
@@ -50,6 +53,7 @@ class CollectionController extends Controller
         $collection->description = $request->input('description');
         $collection->user_id = Auth::user()->id;
         $collection->tags = $request->input('tags');
+        $collection->sell = $request->get('sell') ? 1 : 0;
         $collection->image_collection = '';
 
         $collection->save();
@@ -76,17 +80,31 @@ class CollectionController extends Controller
      */
     public function show($id)
     {
+        if (!request()->ajax()) {
+            return redirect()->route('collections')->withErrors(['error' => 'Acceso no permitido']);
+        }
+
         $collection = Collection::with('comments.user')->findOrFail($id);
+        $createdAt = Carbon::parse($collection->created_at);
+        $collection->timeElapsed = $createdAt->diffForHumans([
+            'locale' => 'es',
+        ]);
+
         return view('collections.show', compact('collection'));
     }
+
 
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Collection $collection) // Formulario para editar el evento
+    public function edit(Collection $collection)
     {
-        return view('collections.edit', compact('collection'));
+        if (!request()->ajax()) {
+            return redirect()->route('collections')->withErrors(['error' => 'Acceso no permitido']);
+        }
+
+        return view('collections.edit', compact('collection')); // Asegúrate de que esta vista sea una vista parcial sin el layout completo
     }
 
     /**
@@ -147,10 +165,15 @@ class CollectionController extends Controller
         $comment->text = $request->input('text');
         $comment->user_id = Auth::user()->id;
         $comment->collection_id = $request->input('collection_id');
-
         $comment->save();
 
-        return redirect()->route('collections')->with('success', 'Comentario añadido exitosamente.');
+        $comment = Comment::with('user')->find($comment->id);
+
+        return response()->json([
+            'success' => true,
+            'comment' => $comment,
+            'message' => 'Comentario añadido exitosamente.'
+        ]);
     }
 
 }

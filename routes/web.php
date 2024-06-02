@@ -33,14 +33,14 @@ Route::get('search', [SearchController::class, 'index'])->name('search');
 Route::get('locale/{lang}', [LocaleController::class, 'setLocale'])->name('locale.switch');
 
 Route::get('collections', [CollectionController::class, 'index'])->name('collections');
-Route::get('collections/show/{collection}', [CollectionController::class, 'show'])->name('collections/show');
+Route::get('collections/show/{collection}', [CollectionController::class, 'show'])->name('collections/show')->middleware('auth');
 Route::post('collections/like/{collection}', [CollectionController::class, 'like'])->name('collections/like');
 Route::get('collections/create', [CollectionController::class, 'create'])->name('collections/create');
 Route::post('collections/store', [CollectionController::class, 'store'])->name('collections/store');
 Route::get('collections/edit/{collection}', [CollectionController::class, 'edit'])->name('collections/edit');
 Route::put('collections/update/{collection}', [CollectionController::class, 'update'])->name('collections/update');
 Route::get('collections/destroy/{collection}', [CollectionController::class, 'destroy'])->name('collections/destroy');
-Route::post('/collections/comment', [CollectionController::class, 'comment'])->name('collections/comment');
+Route::post('collections/comment', [CollectionController::class, 'comment'])->name('collections/comment');
 
 Route::middleware('auth')->group(function () {
     Route::get('chat', [ChatController::class, 'index'])->name('chat');

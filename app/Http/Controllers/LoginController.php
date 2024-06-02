@@ -74,8 +74,13 @@ class LoginController extends Controller
 
     public function edit(User $user)
     {
-        return view('users.edit', compact('user'));
+        if (!request()->ajax()) {
+            return redirect()->route('account')->withErrors(['error' => 'Acceso no permitido']);
+        }
+
+        return view('users.edit', compact('user')); // Asegúrate de que esta vista sea una vista parcial sin el layout completo
     }
+
 
     public function update(UsereditRequest $request, User $user)
     {

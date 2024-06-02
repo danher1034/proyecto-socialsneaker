@@ -1,3 +1,6 @@
+import Swal from 'sweetalert2/dist/sweetalert2.js'
+import 'sweetalert2/src/sweetalert2.scss'
+
 function openNav() {
     document.getElementById("mobile-menu").style.width = "100%";
 }
@@ -15,12 +18,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeBtn = document.querySelector('.close-btn');
     const popupBox = document.querySelector('.popup-box');
 
+    function openNav() {
+        document.getElementById("mobile-menu").style.width = "100%";
+    }
+
+    function closeNav() {
+        document.getElementById("mobile-menu").style.width = "0%";
+    }
+
+    window.openNav = openNav;
+    window.closeNav = closeNav;
+
     if (showPopupButtons && popupContainer && closeBtn && popupBox) {
         showPopupButtons.forEach(button => {
             button.onclick = async () => {
                 const editUrl = button.getAttribute('data-edit-url');
                 try {
-                    const response = await fetch(editUrl);
+                    const response = await fetch(editUrl, {
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    });
                     const content = await response.text();
                     popupBox.innerHTML = content;
                     popupContainer.classList.add('active');
@@ -37,6 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         console.error('Uno o más elementos no fueron encontrados en el DOM.');
     }
+
     if (typeof successMessage !== 'undefined' && successMessage !== '') {
         alert(successMessage); // Aquí puedes usar tu modal personalizado
     }
@@ -45,5 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
         alert(errorMessage); // Aquí puedes usar tu modal personalizado
     }
 });
+
 
 

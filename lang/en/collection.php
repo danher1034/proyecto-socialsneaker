@@ -11,4 +11,6 @@ return [
     'labels' => 'labels',
     'imagenews' => 'Image news',
     'send' => 'Send',
+    'sell' => 'For sale?',
+    'sell-b' => 'For sale',
 ];

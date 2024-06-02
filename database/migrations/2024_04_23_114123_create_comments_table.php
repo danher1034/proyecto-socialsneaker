@@ -16,7 +16,6 @@ return new class extends Migration
             $table->text('text');
             $table->foreignId('collection_id')->constrained();
             $table->foreignId('user_id')->constrained();
-            $table->unique(['collection_id', 'user_id'], 'foreing_keys');
             $table->timestamps();
         });
     }

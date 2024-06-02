@@ -17,6 +17,11 @@
             <input type="file" name="image_collection" id="image_collection" class="form-control">
         </div>
 
+        <div class="mb-3">
+            <label class="form-label" for="sell"><h5>@lang('collection.sell')</h5></label>
+            <input type="checkbox" name="sell" id="sell" value="1">
+        </div>
+
         @if($errors->any())
             @foreach ($errors->all() as $error)
                 {{$error}} <br>

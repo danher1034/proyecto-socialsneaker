@@ -11,4 +11,6 @@ return [
     'description' => '描述',
     'labels' => '标签',
     'imagenews' => '图片新闻',
+    'sell' => '出售？',
+    'sell-b' => '出售',
 ];
