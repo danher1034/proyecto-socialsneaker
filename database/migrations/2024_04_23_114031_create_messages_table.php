@@ -16,8 +16,8 @@ return new class extends Migration
             $table->text('text');
             $table->date('date');
             $table->time('hour');
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('receiver_id')->constrained('users');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('receiver_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

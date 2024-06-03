@@ -38,17 +38,10 @@
                                 </div>
                                 @endif
                                 <br>
-                                <div class="text-center">
+                                <div class="text-center flex-container">
                                     <input type="submit" value="@lang('login.btnlogin')" class="btn btn-primary btn-login socialsneaker-textbold">
-                                </div>
-                                <br><br>
-                                <div class="text-center">
-                                    <div class="form-text socialsneaker-text">@lang('login.questionlogin')<br><br><a class="socialsneaker-textbold" href="/signupForm">@lang('login.signaccess')</a></div>
-                                </div>
-                                <br><br>
-                                <div class="text-center">
                                     <div class="dropdown-i">
-                                        <button type="button" class="dropbtn-i">@lang('user.lang')</button>
+                                        <button type="button" class="dropbtn-i"><img alt="es" class="img-fluid img_lang_account" src="/storage/img/world.png"></button>
                                         <div class="dropdown-content-i">
                                             <a class="dropdown-item" href="locale/es"><img alt="es" class="img-fluid img_lang_account" src="/storage/img/espana.png"></a>
                                             <a class="dropdown-item" href="locale/en"><img alt="en" class="img-fluid img_lang_account" src="/storage/img/estados-unidos.png"></a>
@@ -56,6 +49,11 @@
                                         </div>
                                     </div>
                                 </div>
+                                <br><br>
+                                <div class="text-center">
+                                    <div class="form-text socialsneaker-text">@lang('login.questionlogin')<br><br><a class="socialsneaker-textbold" href="/signupForm">@lang('login.signaccess')</a></div>
+                                </div>
+                                <br><br>
                                 <br><br>
                             </form>
                         </div>

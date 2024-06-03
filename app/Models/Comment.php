@@ -9,6 +9,8 @@ class Comment extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['text', 'collection_id', 'user_id'];
+
     public function collection()
     {
         return $this->belongsTo(Collection::class);
@@ -19,4 +21,5 @@ class Comment extends Model
         return $this->belongsTo(User::class);
     }
 }
+
 

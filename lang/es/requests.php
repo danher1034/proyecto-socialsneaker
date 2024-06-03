@@ -4,7 +4,7 @@ return [
         'description.required.collection'=>'La descripción es obligatorio',
         'description.string.collection' => 'La descripción debe ser una cadena de texto.',
         'description.min.collection'=>'La descripción debe tener al menos 4 caracteres',
-        'description.max.collection'=>'La descripcióno debe tener menos de 100 caracteres',
+        'description.max.collection'=>'La descripción debe tener menos de 100 caracteres',
 
         'tags.required.collection' => 'Las etiquetas son obligatorias.',
         'tags.string.collection' => 'Las etiquetas deben ser una cadena de texto.',

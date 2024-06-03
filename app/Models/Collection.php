@@ -9,6 +9,7 @@ class Collection extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['description', 'image_collection', 'tags', 'user_id', 'sell'];
 
     public function user()
     {
@@ -20,4 +21,5 @@ class Collection extends Model
         return $this->hasMany(Comment::class);
     }
 }
+
 

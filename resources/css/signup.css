@@ -5,8 +5,9 @@
 }
 
 .btn-login{
-    background-color: #003465 ;
+    background-color: #003465;
     width: 200px;
+    margin: 0;
 }
 
 /*Formulario registrarse*/
@@ -141,19 +142,27 @@
 .dropdown-i {
     position: relative;
     display: inline-block;
-    border-radius: 8%;
 }
 
 .dropbtn-i {
-    background-color: #003465 ;
-    width: 200px;
+    background-color: #003465;
+    border: 3px solid #0075FF;
+    width: 62px;
+    height: 43px;
     color: rgb(255, 255, 255);
-    padding: 16px;
+    padding: 8px;
     font-size: 16px;
     border: none;
     cursor: pointer;
-    text-align: left;
+    text-align: center;
     border-radius: 8%;
+}
+
+.flex-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* Adjust the gap between elements as needed */
 }
 
 .img_lang_account {

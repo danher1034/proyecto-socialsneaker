@@ -94,6 +94,14 @@
 
                                         <div class="text-center">
                                             <button type="submit" class="btn btn-primary btn-login socialsneaker-textbold">@lang('login.btnsign')</button>
+                                            <div class="dropdown-i">
+                                                <button type="button" class="dropbtn-i"><img alt="es" class="img-fluid img_lang_account" src="/storage/img/world.png"></button>
+                                                <div class="dropdown-content-i">
+                                                    <a class="dropdown-item" href="locale/es"><img alt="es" class="img-fluid img_lang_account" src="/storage/img/espana.png"></a>
+                                                    <a class="dropdown-item" href="locale/en"><img alt="en" class="img-fluid img_lang_account" src="/storage/img/estados-unidos.png"></a>
+                                                    <a class="dropdown-item" href="locale/cn"><img alt="cn" class="img-fluid img_lang_account" src="/storage/img/chino.png"></a>
+                                                </div>
+                                            </div>
                                             <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">@lang('login.exitform')</p>
                                         </div>
                                     </div>
@@ -104,16 +112,6 @@
                                         <div class="form-text socialsneaker-text">@lang('login.questionsign') <br><br><a class="socialsneaker-textbold"  href="/loginForm">@lang('login.loginaccess')</a></div>
                                     </div>
                                 <br><br>
-                                <div class="text-center">
-                                    <div class="dropdown-i">
-                                        <button type="button" class="dropbtn-i">@lang('user.lang')</button>
-                                        <div class="dropdown-content-i">
-                                            <a class="dropdown-item" href="locale/es"><img alt="es" class="img-fluid img_lang_account" src="/storage/img/espana.png"></a>
-                                            <a class="dropdown-item" href="locale/en"><img alt="en" class="img-fluid img_lang_account" src="/storage/img/estados-unidos.png"></a>
-                                            <a class="dropdown-item" href="locale/cn"><img alt="cn" class="img-fluid img_lang_account" src="/storage/img/chino.png"></a>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>

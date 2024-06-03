@@ -16,7 +16,7 @@ return new class extends Migration
             $table->text('description');
             $table->string('image_collection', 200);
             $table->text('tags');
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->boolean('sell')->default(0);
             $table->timestamps();
         });

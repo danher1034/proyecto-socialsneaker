@@ -43,26 +43,25 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Manejo de eliminación de cuenta
     document.getElementById('delete-account').addEventListener('click', function(event) {
         Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
+            title: messages.delete_confirm_title,
+            text: messages.delete_confirm_text,
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
-          }).then((result) => {
+            confirmButtonText: messages.delete_confirm_button
+        }).then((result) => {
             if (result.isConfirmed) {
-              Swal.fire({
-                title: "Deleted!",
-                text: "Your file has been deleted.",
-                icon: "success"
-              });
-              document.getElementById('delete-account-form').submit();
+                Swal.fire({
+                    title: messages.deleted_title,
+                    text: messages.deleted_text,
+                    icon: "success"
+                });
+                document.getElementById('delete-account-form').submit();
             }
-          });
+        });
     });
 
     // Manejo del botón de seguir

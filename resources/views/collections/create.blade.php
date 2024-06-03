@@ -1,5 +1,5 @@
     <h2 class="title-create">@lang('collection.titleadd')</h2><br>
-    <form action="{{ route('collections/store') }}" method="POST" enctype="multipart/form-data">
+    <form class="collection_form" action="{{ route('collections/store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="mb-3">

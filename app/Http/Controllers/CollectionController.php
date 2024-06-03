@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use App\Http\Requests\CollectionsRequest;
 use App\Http\Requests\CommentsRequest;
 use App\Models\Collection;
@@ -11,6 +12,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Validator;
 
 class CollectionController extends Controller
 {
@@ -32,7 +34,6 @@ class CollectionController extends Controller
         return view('collections.index', compact('collections'));
     }
 
-
     /**
      * Show the form for creating a new resource.
      */
@@ -42,13 +43,25 @@ class CollectionController extends Controller
             return redirect()->route('collections')->withErrors(['error' => 'Acceso no permitido']);
         }
 
-        return view('collections.create'); // Asegúrate de que esta vista sea una vista parcial sin el layout completo
+        return view('collections.create');
     }
+
     /**
      * Store a newly created resource in storage.
      */
     public function store(CollectionsRequest $request)
     {
+        $validator = Validator::make($request->all(), [
+            'description' => 'required|string|max:255',
+            'tags' => 'nullable|string',
+            'sell' => 'boolean',
+            'image_collection' => 'nullable|image',
+        ]);
+
+        if ($validator->fails()) {
+            return $this->handleFailedValidation($validator);
+        }
+
         $collection = new Collection();
         $collection->description = $request->input('description');
         $collection->user_id = Auth::user()->id;
@@ -61,7 +74,7 @@ class CollectionController extends Controller
         if ($request->hasFile('image_collection')) {
             $image = $request->file('image_collection');
             $extension = $image->getClientOriginalExtension();
-            $filename = $collection->id . '.' . $extension; // Nuevo nombre de archivo
+            $filename = $collection->id . '.' . $extension;
 
             // Guardar la imagen en el sistema de archivos
             $path = $image->storeAs('public/img/collection_images', $filename);
@@ -71,9 +84,15 @@ class CollectionController extends Controller
         }
 
         $collection->save();
-        return view('collections.stored', compact('collection'));
+
+        return redirect()->route('account')->with('success', 'Your work has been saved');
     }
 
+    protected function handleFailedValidation($validator)
+    {
+        $errors = $validator->errors()->all();
+        return redirect()->route('account')->withErrors($errors)->withInput();
+    }
 
     /**
      * Display the specified resource.
@@ -93,8 +112,6 @@ class CollectionController extends Controller
         return view('collections.show', compact('collection'));
     }
 
-
-
     /**
      * Show the form for editing the specified resource.
      */
@@ -104,7 +121,7 @@ class CollectionController extends Controller
             return redirect()->route('collections')->withErrors(['error' => 'Acceso no permitido']);
         }
 
-        return view('collections.edit', compact('collection')); // Asegúrate de que esta vista sea una vista parcial sin el layout completo
+        return view('collections.edit', compact('collection'));
     }
 
     /**
@@ -112,11 +129,20 @@ class CollectionController extends Controller
      */
     public function update(CollectionsRequest $request, Collection $collection)
     {
-        $collection->description=$request->get('description');
-        $collection->tags=$request->get('tags');
+        $validator = Validator::make($request->all(), [
+            'description' => 'required|string|max:255',
+            'tags' => 'nullable|string',
+        ]);
+
+        if ($validator->fails()) {
+            return $this->handleFailedValidation($validator);
+        }
+
+        $collection->description = $request->input('description');
+        $collection->tags = $request->input('tags');
         $collection->save();
 
-        return view('collections.edited', compact('collection'));
+        return response()->json(['success' => true, 'message' => 'Your work has been updated']);
     }
 
     public function like(Collection $collection)
@@ -154,10 +180,8 @@ class CollectionController extends Controller
         $followingCount = $user->following()->count();
         $collectionsCount = $collections->count();
 
-        return view('users.account', compact('user', 'collections', 'followersCount', 'followingCount','collectionsCount'));
+        return view('users.account', compact('user', 'collections', 'followersCount', 'followingCount', 'collectionsCount'));
     }
-
-
 
     public function comment(CommentsRequest $request)
     {
@@ -175,5 +199,4 @@ class CollectionController extends Controller
             'message' => 'Comentario añadido exitosamente.'
         ]);
     }
-
 }

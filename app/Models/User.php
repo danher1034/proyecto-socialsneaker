@@ -2,30 +2,53 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
-    use HasApiTokens;
-    use HasFactory;
-    use HasProfilePhoto;
-    use Notifiable;
-    use TwoFactorAuthenticatable;
+    use HasApiTokens, HasFactory, HasProfilePhoto, Notifiable, TwoFactorAuthenticatable;
 
-    public function collection()
+    protected $fillable = [
+        'name', 'email', 'password', 'image_user',
+    ];
+
+    protected $hidden = [
+        'password', 'remember_token', 'two_factor_recovery_codes', 'two_factor_secret',
+    ];
+
+    protected $appends = [
+        'profile_photo_url',
+    ];
+
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+    ];
+
+    public function collections()
     {
-        return $this->belongsToMany(Collection::class);
+        return $this->hasMany(Collection::class);
     }
 
-    public function Comment()
+    public function comments()
     {
-        return $this->belongsToMany(Comment::class);
+        return $this->hasMany(Comment::class);
+    }
+
+    public function messages()
+    {
+        return $this->hasMany(Message::class, 'user_id');
+    }
+
+    public function receivedMessages()
+    {
+        return $this->hasMany(Message::class, 'receiver_id');
     }
 
     public function likedCollections()
@@ -42,49 +65,26 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(User::class, 'follows', 'follower_id', 'user_id');
     }
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'image_user',
-    ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-        'two_factor_recovery_codes',
-        'two_factor_secret',
-    ];
-
-    /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array<int, string>
-     */
-    protected $appends = [
-        'profile_photo_url',
-    ];
-
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
+    public static function boot()
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        parent::boot();
+
+        static::deleting(function ($user) {
+            // Eliminar la imagen del usuario
+            if ($user->image_user) {
+                Storage::delete($user->image_user);
+            }
+
+            // Eliminar relaciones
+            $user->collections()->delete();
+            $user->comments()->delete();
+            $user->messages()->delete();
+            $user->receivedMessages()->delete();
+            $user->likedCollections()->detach();
+            $user->followers()->detach();
+            $user->following()->detach();
+        });
     }
 }
+

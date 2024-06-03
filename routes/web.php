@@ -11,19 +11,19 @@ use App\Http\Controllers\FollowController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\LocaleController;
 
-// Ruta para el index
+
 Route::get('/', function () {return view('index');})->name('index');
-// Rutas para el login y el singup
+
 Route::get('signupForm', [LoginController::class, 'signupForm'])->name('signupForm');
 Route::post('signup', [LoginController::class, 'signup'])->name('signup');
 Route::get('loginForm', [LoginController::class, 'loginForm'])->name('loginForm');
 Route::post('login', [LoginController::class, 'login'])->name('login');
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
-// Ruta para la cuenta del usuario autenticado
-Route::get('account', [CollectionController::class, 'account'])->name('account')->middleware('auth');
+
+Route::get('account', [CollectionController::class, 'account'])->name('account');;
 Route::get('account/{userId}', [CollectionController::class, 'account'])->name('account.user')->middleware('auth');
 Route::post('/follow/{id}', [FollowController::class, 'follow'])->name('follow');
-// Rutas para el apartado de usuario
+
 Route::get('users/edit/{user}', [LoginController::class, 'edit'])->name('users/edit');
 Route::put('users/update/{user}', [LoginController::class, 'update'])->name('users/update');
 Route::delete('users/delete/{user}', [LoginController::class, 'delete'])->name('users/delete');
