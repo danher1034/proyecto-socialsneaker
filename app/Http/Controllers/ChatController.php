@@ -10,7 +10,12 @@ use Illuminate\Support\Facades\DB;
 
 class ChatController extends Controller
 {
-    public function index()
+    /**
+     * Muestra una lista de los chats abiertos del usuario.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function index() // Mostrar los chat abierto del usuario
     {
         $userId = Auth::id();
 
@@ -40,7 +45,13 @@ class ChatController extends Controller
         return view('chat.index', compact('chats'));
     }
 
-    public function show($id)
+    /**
+     * Muestra el chat especificado.
+     *
+     * @param int $id
+     * @return \Illuminate\View\View
+     */
+    public function show($id) // Mostrar el chat
     {
         // Obtener todos los mensajes entre el usuario autenticado y el usuario seleccionado
         $messages = Message::where(function($query) use ($id) {
@@ -56,7 +67,14 @@ class ChatController extends Controller
         return view('chat.show', compact('messages', 'receiver'));
     }
 
-    public function store(Request $request, $id)
+    /**
+     * Almacena un nuevo mensaje en el almacenamiento.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function store(Request $request, $id) // Guardar el mensaje
     {
         // Validar y almacenar un nuevo mensaje
         $request->validate([
@@ -78,8 +96,13 @@ class ChatController extends Controller
         ]);
     }
 
-
-    public function search(Request $request)
+    /**
+     * Busca chats abiertos con usuarios.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function search(Request $request) //Buscar chat abiertos con usuarios
     {
         $search = $request->input('search');
         $users = User::where('name', 'LIKE', "%{$search}%")->get();

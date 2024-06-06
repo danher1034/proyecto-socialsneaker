@@ -8,6 +8,12 @@ use Illuminate\Support\Facades\Session;
 
 class LocaleController extends Controller
 {
+    /**
+     * Establece el idioma de la aplicación según la selección del usuario.
+     *
+     * @param string $lang
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function setLocale($lang)
     {
         if (in_array($lang, ['en', 'es', 'cn'])) {

@@ -1,3 +1,6 @@
+/**
+ * Maneja eventos y validación del formulario de registro.
+ */
 document.addEventListener('DOMContentLoaded', function () {
     const formulario = document.getElementById('formulario');
     const inputs = document.querySelectorAll('#formulario input');
@@ -17,6 +20,10 @@ document.addEventListener('DOMContentLoaded', function () {
         fechaNacimiento: false
     };
 
+    /**
+     * Valida el formulario antes de enviarlo.
+     * @param {Event} e - Evento de envío del formulario.
+     */    
     const validarFormulario = (e) => {
         switch (e.target.name) {
             case "name":
@@ -38,6 +45,12 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
+    /**
+     * Valida un campo de entrada del formulario.
+     * @param {RegExp} expresion - Expresión regular para la validación.
+     * @param {HTMLInputElement} input - Elemento de entrada a validar.
+     * @param {string} campo - Nombre del campo a validar.
+     */
     const validarCampo = (expresion, input, campo) => {
         if (expresion.test(input.value)) {
             document.getElementById(`grupo__${campo}`).classList.remove('formulario__grupo-incorrecto');
@@ -56,6 +69,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
+    /**
+     * Valida la coincidencia de los campos de contraseña.
+     */
     const validarPassword2 = () => {
         const inputPassword1 = document.getElementById('password');
         const inputPassword2 = document.getElementById('password_confirmation');
@@ -77,6 +93,10 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
+    /**
+     * Valida la fecha de nacimiento.
+     * @param {HTMLInputElement} input - Elemento de entrada que contiene la fecha de nacimiento.
+     */
     const validarFechaNacimiento = (input) => {
         const fechaNacimiento = input.value;
         const fechaNacimientoDate = new Date(fechaNacimiento);
@@ -102,16 +122,19 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
+    // Agrega eventos de validación a los campos del formulario
     inputs.forEach((input) => {
         input.addEventListener('keyup', validarFormulario);
         input.addEventListener('blur', validarFormulario);
     });
 
+    // Maneja el evento de envío del formulario
     formulario.addEventListener('submit', (e) => {
         e.preventDefault();
 
         const terminos = document.getElementById('terminos');
 
+        // Verifica si todos los campos están validados y el checkbox de términos está marcado
         if (campos['name'] && campos['email'] && campos['password'] && campos['password_confirmation'] && campos['fechaNacimiento'] && terminos.checked) {
             formulario.submit();
 
@@ -129,6 +152,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+    // Maneja el evento de carga del DOM para el desplegable de idiomas
     document.addEventListener('DOMContentLoaded', function () {
         const langDropBtn = document.querySelector('.dropbtn-i');
         const langDropdownContent = document.querySelector('.dropdown-content-i');

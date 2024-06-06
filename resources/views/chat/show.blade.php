@@ -7,6 +7,7 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
 <div class="container">
+    <br>
     <div class="row clearfix">
         <div class="col-lg-12">
             <div class="chat">
@@ -39,14 +40,12 @@
                         @endforeach
                     </ul>
                 </div>
-                <div class="chat-message clearfix">
+                <div class="chat-message clearfix chat-send">
                     <form id="message-form" action="{{ route('chat.store', $receiver->id) }}" method="POST">
                         @csrf
-                        <div class="input-group mb-0">
-                            <div class="input-group-prepend">
-                                <button type="submit" class="input-group-text"><i class="fa fa-send"></i></button>
-                            </div>
+                        <div class="input-group mb-0 busqueda">
                             <input type="text" name="text" id="message-text" class="form-control" placeholder="@lang('chat.message')">
+                            <button type="submit" class="input-group-text"><i class="fa fa-send color-send"></i></button>
                         </div>
                     </form>
                 </div>

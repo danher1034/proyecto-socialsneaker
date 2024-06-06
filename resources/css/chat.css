@@ -66,6 +66,12 @@
     font-size: 13px;
 }
 
+.chat {
+    display: flex;
+    flex-direction: column;
+    height: 83vh;
+}
+
 .chat .chat-header {
     padding: 15px 20px;
     border-bottom: 2px solid #f4f7f6;
@@ -84,10 +90,8 @@
 }
 
 .chat .chat-history {
-    max-height: 500px;
-    overflow-y: auto; 
-    padding: 20px;
-    border-bottom: 2px solid #fff;
+    flex-grow: 1;
+    overflow-y: auto;
     display: flex;
     flex-direction: column-reverse;
 }
@@ -131,16 +135,20 @@
 }
 
 .chat .chat-history .my-message {
-    background: #d1e7dd;
+    background: #dcdcdc;
 }
 
 .chat .chat-history .other-message {
-    background: #f8d7da;
+    background: #d7e2f8;
     text-align: right;
 }
 
 .chat .chat-message {
+    position: sticky;
+    bottom: 0;
+    background: #fff; /* Para que no se superponga el contenido */
     padding: 20px;
+    border-top: 1px solid #eaeaea;
 }
 
 .online,
@@ -201,20 +209,30 @@
 .busqueda {
     display: flex;
     align-items: center;
-    gap: 5px; /* Espacio entre el input y el botón */
-    flex-wrap: nowrap; /* Evitar que los elementos se envuelvan en dispositivos pequeños */
-    flex: 1;
+    width: 100%;
+    gap: 5px;
 }
 
 .busqueda input {
     flex: 1;
-    padding: 5px 10px;
-    border: none;
+    padding: 8px 10px;
     border: 2px solid #ccc;
-    border-radius: 30px;
+    border-radius: 30px 0 0 30px; /* Borde redondeado izquierdo */
 }
 
+.busqueda button {
+    border: none;
+    background-color: #007bff; /* Color del botón */
+    color: #fff;
+    padding: 8px 20px;
+    border-radius: 0 30px 30px 0; /* Borde redondeado derecho */
+    cursor: pointer;
+    height: 44px;
+}
 
+.busqueda button:hover {
+    background-color: #0056b3; /* Color del botón al pasar el ratón */
+}                                                                                   
 @media only screen and (max-width: 767px) {
     .chat-app .people-list {
         height: 465px;

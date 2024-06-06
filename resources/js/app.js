@@ -1,10 +1,16 @@
 import Swal from 'sweetalert2/dist/sweetalert2.js'
 import 'sweetalert2/src/sweetalert2.scss'
 
+/**
+ * Abre el menú lateral en dispositivos móviles.
+ */
 function openNav() {
     document.getElementById("mobile-menu").style.width = "100%";
 }
 
+/**
+ * Cierra el menú lateral en dispositivos móviles.
+ */
 function closeNav() {
     document.getElementById("mobile-menu").style.width = "0%";
 }
@@ -18,19 +24,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeBtn = document.querySelector('.close-btn');
     const popupBox = document.querySelector('.popup-box');
 
-    function openNav() {
-        document.getElementById("mobile-menu").style.width = "100%";
-    }
 
-    function closeNav() {
-        document.getElementById("mobile-menu").style.width = "0%";
-    }
-
-    window.openNav = openNav;
-    window.closeNav = closeNav;
 
     if (showPopupButtons && popupContainer && closeBtn && popupBox) {
         showPopupButtons.forEach(button => {
+            /**
+             * Maneja el evento de clic en los botones para mostrar el popup de edición.
+             */
             button.onclick = async () => {
                 const editUrl = button.getAttribute('data-edit-url');
                 try {
@@ -47,21 +47,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         });
-
+        /**
+         * Maneja el evento de clic en el botón de cerrar el popup.
+         */
         closeBtn.onclick = () => {
-            popupBox.innerHTML = ''; // Clear the popup content when closing
+            popupBox.innerHTML = ''; // Limpiar el contenido del popup al cerrarlo
             popupContainer.classList.remove('active');
         }
     } else {
         console.error('Uno o más elementos no fueron encontrados en el DOM.');
     }
 
+    /**
+     * Muestra un mensaje de éxito si está definido.
+     */
     if (typeof successMessage !== 'undefined' && successMessage !== '') {
-        alert(successMessage); // Aquí puedes usar tu modal personalizado
+        alert(successMessage);
     }
 
+    /**
+     * Muestra un mensaje de error si está definido.
+     */
     if (typeof errorMessage !== 'undefined' && errorMessage !== '') {
-        alert(errorMessage); // Aquí puedes usar tu modal personalizado
+        alert(errorMessage);
     }
 });
 

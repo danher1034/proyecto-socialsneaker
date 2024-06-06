@@ -7,6 +7,12 @@ use App\Models\User;
 
 class SearchController extends Controller
 {
+    /**
+     * Busca todos los usuarios de la aplicación que cumplan con la condición de la búsqueda.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\View\View
+     */
     public function index(Request $request)
     {
         $searchTerm = $request->input('search');

@@ -7,7 +7,7 @@
 @section('content')
 <div class="container">
     <div class="row align-items-center">
-        <div class="col-3">
+        <div class="col-3 img_account">
             <img src="{{ asset($user->image_user) }}" alt="Imagen de Perfil" class="img-fluid img_user_account">
         </div>
         <div class="col">
@@ -38,10 +38,10 @@
                         @method('DELETE')
                     </form>
                     @else
-                        <button type="button" class="btn btn-primary me-3" id="follow-button" data-user-id="{{ $user->id }}">
+                        <button type="button" class="btn me-3 btn-follow" id="follow-button" data-user-id="{{ $user->id }}">
                             {{ Auth::user()->following()->where('user_id', $user->id)->exists() ? __('user.followed') : __('user.follow') }}
                         </button>
-                        <a href="{{ route('chat.show', $user->id) }}" class="btn btn-secondary">@lang('user.sendmessage')</a>
+                        <a href="{{ route('chat.show', $user->id) }}" class="btn btn-sendmessage">@lang('user.sendmessage')</a>
                     @endif
                 </div>
             </div>
@@ -71,11 +71,7 @@
         @forelse ($collections as $collection)
             <div class="card">
                 <div class="bg-image hover-overlay" data-mdb-ripple-init data-mdb-ripple-color="light">
-                    <img
-                        src="{{$collection->image_collection}}"
-                        alt="{{$collection->image_collection}}"
-                        class="img-fluid rounded-start d-block mx-auto img-collection"
-                    />
+                    <a href="javascript:void(0)" class="show-popup-collection comment-button" data-edit-url="{{ route('collections/show', $collection) }}"><img src="{{$collection->image_collection}}" alt="{{$collection->image_collection}}" class="img-fluid rounded-start d-block mx-auto img-collection-account"/></a>
                 </div>
             </div>
         @empty
@@ -87,6 +83,10 @@
         @endforelse
     </div>
 </div>
+    <div class="popup-container-collection">
+        <div class="popup-box-collection"></div>
+        <button class="close-btn-collection"></button>
+    </div>
 <script>
     const messages = {
         delete_confirm_title: "{{ trans('alert.delete_confirm_title') }}",

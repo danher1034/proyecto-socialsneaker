@@ -1,3 +1,7 @@
+/**
+ * Maneja el envío del formulario de mensaje en el chat.
+ * @param {Event} e - El evento de envío del formulario.
+ */
 document.getElementById('message-form').addEventListener('submit', function(e) {
     e.preventDefault(); // Previene el envío tradicional del formulario
 

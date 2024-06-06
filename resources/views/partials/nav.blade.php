@@ -17,7 +17,7 @@
         <div class="overlay-content">
             <br><br><br><br><br>
             <a href="/news">@lang('partials.news')</a>
-            <a href="/search">@lang('partials.search')</a>
+            <a href="/search">@lang('partials.search')</a>                                                                                                              
             <a href="/collections">@lang('partials.collection')</a>
             <a href="/collections/create">@lang('partials.add')</a>
             <a href="/chat">@lang('partials.chat')</a>

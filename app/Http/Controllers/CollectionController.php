@@ -17,7 +17,9 @@ use Illuminate\Support\Facades\Validator;
 class CollectionController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Muestra todas las colecciones con comentarios y usuarios, y calcula el tiempo transcurrido desde su creación.
+     *
+     * @return \Illuminate\View\View
      */
     public function index()
     {
@@ -35,7 +37,9 @@ class CollectionController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Muestra la vista para crear una nueva colección, solo accesible vía AJAX.
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
     public function create()
     {
@@ -47,7 +51,10 @@ class CollectionController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Almacena una nueva colección en la base de datos.
+     *
+     * @param \App\Http\Requests\CollectionsRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(CollectionsRequest $request)
     {
@@ -88,6 +95,13 @@ class CollectionController extends Controller
         return redirect()->route('account')->with('success', 'Your work has been saved');
     }
 
+    /**
+     * Maneja la validación fallida.
+     *
+     * @param \Illuminate\Support\Facades\Validator $validator
+     * @return \Illuminate\Http\RedirectResponse
+    */
+
     protected function handleFailedValidation($validator)
     {
         $errors = $validator->errors()->all();
@@ -95,7 +109,10 @@ class CollectionController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Muestra una colección específica con sus comentarios y usuario.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
     public function show($id)
     {
@@ -113,7 +130,10 @@ class CollectionController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Muestra la vista para editar una colección, solo accesible vía AJAX.
+     *
+     * @param \App\Models\Collection $collection
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
     public function edit(Collection $collection)
     {
@@ -125,7 +145,11 @@ class CollectionController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualiza una colección existente en la base de datos.
+     *
+     * @param \App\Http\Requests\CollectionsRequest $request
+     * @param \App\Models\Collection $collection
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(CollectionsRequest $request, Collection $collection)
     {
@@ -145,6 +169,12 @@ class CollectionController extends Controller
         return response()->json(['success' => true, 'message' => 'Your work has been updated']);
     }
 
+    /**
+     * Permite a un usuario dar o quitar 'me gusta' a una colección.
+     *
+     * @param \App\Models\Collection $collection
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function like(Collection $collection)
     {
         $user = Auth::user();
@@ -161,7 +191,10 @@ class CollectionController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Elimina una colección de la base de datos.
+     *
+     * @param \App\Models\Collection $collection
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Collection $collection)
     {
@@ -169,6 +202,12 @@ class CollectionController extends Controller
         return redirect()->route('collections');
     }
 
+    /**
+     * Muestra la cuenta del usuario y sus colecciones, así como el número de seguidores y seguidos.
+     *
+     * @param int|null $userId
+     * @return \Illuminate\View\View
+     */
     public function account($userId = null)
     {
         $user = $userId ? User::findOrFail($userId) : Auth::user();
@@ -183,6 +222,12 @@ class CollectionController extends Controller
         return view('users.account', compact('user', 'collections', 'followersCount', 'followingCount', 'collectionsCount'));
     }
 
+    /**
+     * Permite a un usuario agregar un comentario a una colección.
+     *
+     * @param \App\Http\Requests\CommentsRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function comment(CommentsRequest $request)
     {
         $comment = new Comment();

@@ -3,6 +3,15 @@
         align-items: center;
     }
 
+    .card-title{
+        color: black;
+        font-weight: bold;   
+    }
+
+    .title-user{
+        text-decoration: none;
+    }
+
     .sell-button{
         margin-left: 400px;
         width: 90px;
@@ -114,10 +123,10 @@
         position: absolute;
         top: 10px;
         right: 10px;
-        width: 30px;
-        height: 30px;
+        width: 40px;
+        height: 40px;
         border-radius: 50%;
-        background-color: #0c1482;
+        background-color: black;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -249,8 +258,8 @@
 
     .img-collection-show {
         max-height: 500px;
-        max-width: 100%; /* Asegura que la imagen no sobrepase el ancho del contenedor */
-        object-fit: contain; /* Ajusta la imagen dentro del contenedor sin deformarla */
+        max-width: 100%; 
+        object-fit: contain;
     }
 
     .pop{
@@ -427,4 +436,7 @@
             display: none;
         }
     }
+
+
+
 

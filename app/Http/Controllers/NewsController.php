@@ -10,7 +10,10 @@ use Auth;
 class NewsController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Muestra todas las noticias y aplica los filtros si es necesario.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\View\View
      */
     public function index(Request $request)
     {
@@ -33,7 +36,9 @@ class NewsController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Muestra el formulario de creación de noticias.
+     *
+     * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
      */
     public function create()
     {
@@ -46,7 +51,10 @@ class NewsController extends Controller
 
 
     /**
-     * Store a newly created resource in storage.
+     * Almacena una nueva noticia en la base de datos.
+     *
+     * @param \App\Http\Requests\NewsRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(NewsRequest $request)
     {
@@ -76,15 +84,10 @@ class NewsController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
+     * Muestra el formulario de edición de una noticia específica.
+     *
+     * @param string $id
+     * @return void
      */
     public function edit(string $id)
     {
@@ -92,7 +95,11 @@ class NewsController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualiza una noticia específica en la base de datos.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param string $id
+     * @return void
      */
     public function update(Request $request, string $id)
     {
@@ -100,7 +107,10 @@ class NewsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Elimina una noticia específica de la base de datos.
+     *
+     * @param string $id
+     * @return void
      */
     public function destroy(string $id)
     {

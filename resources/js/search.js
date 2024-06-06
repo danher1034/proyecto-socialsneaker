@@ -1,10 +1,15 @@
-document.addEventListener('DOMContentLoaded', () => {
+/**
+ * Maneja eventos y acciones en la página "search".
+ */
+ document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('busqueda');
     let loader = document.getElementById('loader');
     let timeoutId;
     const searchPrompt = document.getElementById('search-prompt');
 
-    // Función para manejar la entrada del usuario
+    /**
+     * Maneja la entrada del usuario en el campo de búsqueda.
+     */
     window.handleInput = () => {
         const search = searchInput.value.trim();
 
@@ -35,7 +40,9 @@ document.addEventListener('DOMContentLoaded', () => {
         timeoutId = setTimeout(performSearch, 500);
     };
 
-    // Función para realizar la búsqueda en tiempo real
+    /**
+     * Realiza la búsqueda en tiempo real.
+     */
     const performSearch = () => {
         const search = searchInput.value.trim();
         const url = new URL(window.location.href);

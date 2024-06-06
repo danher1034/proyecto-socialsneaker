@@ -9,7 +9,7 @@ return [
     'sendmessage' => 'Enviar mensaje',
     'collections' => 'Colecciones',
     'followers' => 'Seguidores',
-    'followed' => 'Seguidos',
+    'followed' => 'Siguiendo',
     'textnocolection' => 'No hay colecciones aún',
     'dateofbirth' => 'Fecha nacimiento',
     'newpassword' => 'Nueva contraseña',

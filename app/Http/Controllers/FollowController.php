@@ -8,6 +8,13 @@ use Illuminate\Support\Facades\Auth;
 
 class FollowController extends Controller
 {
+    /**
+     * Permite a un usuario seguir o dejar de seguir a otro usuario.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function follow(Request $request, $id)
     {
         $user = Auth::user();

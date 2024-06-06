@@ -14,6 +14,11 @@ use App\Models\Collection;
 
 class LoginController extends Controller
 {
+    /**
+     * Muestra el formulario de registro si el usuario no está autenticado.
+     *
+     * @return \Illuminate\View\View
+     */
     public function signupForm()
     {
         if (Auth::check()) {
@@ -24,6 +29,12 @@ class LoginController extends Controller
         }
     }
 
+    /**
+     * Procesa el registro de un nuevo usuario.
+     *
+     * @param \App\Http\Requests\SignupRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function signup(SignupRequest $request)
     {
         $user = new User();
@@ -36,9 +47,14 @@ class LoginController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('account'); // Aquí es donde se corrige la redirección
+        return redirect()->route('account');
     }
 
+    /**
+     * Muestra el formulario de inicio de sesión si el usuario no está autenticado.
+     *
+     * @return \Illuminate\View\View
+     */
     public function loginForm()
     {
         if (Auth::check()) {
@@ -49,6 +65,12 @@ class LoginController extends Controller
         }
     }
 
+    /**
+     * Procesa el inicio de sesión del usuario.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
     public function login(Request $request)
     {
         $credentials = $request->only('name', 'password');
@@ -64,6 +86,12 @@ class LoginController extends Controller
         }
     }
 
+    /**
+     * Cierra la sesión del usuario y lo redirige a la página de inicio de sesión.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\View\View
+     */
     public function logout(Request $request)
     {
         Auth::guard('web')->logout();
@@ -72,6 +100,12 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
+    /**
+     * Muestra el formulario de edición del perfil del usuario si está autenticado.
+     *
+     * @param \App\Models\User $user
+     * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
+     */
     public function edit(User $user)
     {
         if (!request()->ajax()) {
@@ -81,7 +115,13 @@ class LoginController extends Controller
         return view('users.edit', compact('user')); // Asegúrate de que esta vista sea una vista parcial sin el layout completo
     }
 
-
+    /**
+     * Procesa la actualización del perfil del usuario.
+     *
+     * @param \App\Http\Requests\UsereditRequest $request
+     * @param \App\Models\User $user
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(UsereditRequest $request, User $user)
     {
         $credentials = [
@@ -116,6 +156,12 @@ class LoginController extends Controller
         return redirect()->route('account'); // Aquí es donde se corrige la redirección
     }
 
+    /**
+     * Elimina el usuario.
+     *
+     * @param \App\Models\User $user
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function delete(User $user)
     {
         if (Auth::id() == $user->id) {

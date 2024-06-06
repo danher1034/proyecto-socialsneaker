@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 class LocalizationMiddleware
 {
     /**
-     * Handle an incoming request.
+     * Middleware para controlar el idioma de la app
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */

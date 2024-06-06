@@ -1,7 +1,41 @@
 import Swal from 'sweetalert2';
 
 document.addEventListener('DOMContentLoaded', function () {
-    const followButton = document.getElementById('follow-button');
+
+    // Función para manejar formularios de comentarios
+    function handleCommentForms() {
+        // Lógica para manejar formularios de comentarios si es necesario
+    }
+
+    // Delegación de eventos para los popups de colección
+    document.addEventListener('click', async (event) => {
+        if (event.target.classList.contains('show-popup-collection') || event.target.closest('.show-popup-collection')) {
+            const showPopup = event.target.closest('.show-popup-collection');
+            const editUrl = showPopup.getAttribute('data-edit-url');
+            try {
+                const response = await fetch(editUrl, {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                });
+                const content = await response.text();
+                const popupContainer = document.querySelector('.popup-container-collection');
+                const popupBox = document.querySelector('.popup-box-collection');
+                popupBox.innerHTML = content;
+                popupContainer.classList.add('active');
+                handleCommentForms(); // Asegúrate de aplicar el manejador a los formularios en el popup
+            } catch (error) {
+                console.error('Error al cargar el contenido:', error);
+            }
+        }
+
+        if (event.target.classList.contains('close-btn-collection')) {
+            const popupContainer = document.querySelector('.popup-container-collection');
+            const popupBox = document.querySelector('.popup-box-collection');
+            popupBox.innerHTML = '';
+            popupContainer.classList.remove('active');
+        }
+    });
 
     // Manejo del primer dropdown
     const dropBtn = document.querySelector('.dropbtn');
@@ -12,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
             dropdownContent.classList.toggle('show');
         });
 
-        window.onclick = function(event) {
+        window.onclick = function (event) {
             if (!event.target.matches('.dropbtn')) {
                 if (dropdownContent.classList.contains('show')) {
                     dropdownContent.classList.remove('show');
@@ -30,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
             langDropdownContent.classList.toggle('show');
         });
 
-        window.onclick = function(event) {
+        window.onclick = function (event) {
             if (!event.target.matches('.dropbtn-i')) {
                 if (langDropdownContent.classList.contains('show')) {
                     langDropdownContent.classList.remove('show');
@@ -38,12 +72,13 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         };
 
-        langDropdownContent.addEventListener('click', function(event) {
+        langDropdownContent.addEventListener('click', function (event) {
             event.stopPropagation();
         });
     }
 
-    document.getElementById('delete-account').addEventListener('click', function(event) {
+    // Manejar la confirmación de eliminación de cuenta usando SweetAlert2
+    document.getElementById('delete-account').addEventListener('click', function (event) {
         Swal.fire({
             title: messages.delete_confirm_title,
             text: messages.delete_confirm_text,
@@ -64,7 +99,9 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Manejo del botón de seguir
+    // Manejar el evento de clic en el botón de seguir/dejar de seguir
+    const followButton = document.getElementById('follow-button');
+
     if (followButton) {
         followButton.addEventListener('click', function () {
             const userId = this.getAttribute('data-user-id');
@@ -78,19 +115,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 },
                 body: JSON.stringify({ _token: document.querySelector('meta[name="csrf-token"]').getAttribute('content') })
             })
-            .then(response => response.json())
-            .then(data => {
-                if (data.followed) {
-                    followButton.textContent = 'Siguiendo';
-                    followButton.classList.remove('btn-primary');
-                    followButton.classList.add('btn-secondary');
-                } else {
-                    followButton.textContent = 'Seguir';
-                    followButton.classList.remove('btn-secondary');
-                    followButton.classList.add('btn-primary');
-                }
-            })
-            .catch(error => console.error('Error:', error));
+                .then(response => response.json())
+                .then(data => {
+                    if (data.followed) {
+                        followButton.textContent = 'Siguiendo';
+                    } else {
+                        followButton.textContent = 'Seguir';
+                    }
+                })
+                .catch(error => console.error('Error:', error));
         });
     }
 });
+

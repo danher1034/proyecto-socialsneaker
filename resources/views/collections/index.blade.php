@@ -13,7 +13,7 @@
                         <div class="d-flex align-items-center mb-3">
                             <img src="{{ $collection->user->image_user }}" alt="{{ $collection->user->name }}'s Image" class="img-fluid rounded-circle" style="max-width: 50px;">
                             <div class="ms-3 flex-grow-1 d-flex flex-column">
-                                <a href="/account/{{ $collection->user->id}}"><h5 class="card-title mb-0">{{ $collection->user->name }}</h5></a>
+                                <a class="title-user" href="/account/{{ $collection->user->id}}"><h5 class="card-title mb-0">{{ $collection->user->name }}</h5></a>
                                 <small class="text-muted">{{ $collection->timeElapsed }}</small>
                             </div>
                         </div>

@@ -1,4 +1,7 @@
-document.addEventListener('DOMContentLoaded', () => {
+/**
+ * Maneja eventos y acciones en la página "showcollection".
+ */
+ document.addEventListener('DOMContentLoaded', () => {
     // Función para manejar formularios de comentarios
     const handleCommentForms = () => {
         const commentForms = document.querySelectorAll('.coment_form');
@@ -70,6 +73,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const popupContainer = document.querySelector('.popup-container-collection');
     const popupBox = document.querySelector('.popup-box-collection');
 
+    /**
+     * Maneja los eventos de clic para mostrar o cerrar el popup de colección.
+     * Carga el contenido del popup y aplica los manejadores de formularios.
+     */
     document.addEventListener('click', async (event) => {
         if (event.target.classList.contains('show-popup-collection') || event.target.closest('.show-popup-collection')) {
             const showPopup = event.target.closest('.show-popup-collection');
@@ -95,6 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Mostrar ventana modal con mensaje de éxito si existe
     if (typeof successMessage !== 'undefined' && successMessage !== '') {
         alert(successMessage);
     }
@@ -103,6 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
         alert(errorMessage);
     }
 
+    // Maneja los eventos de clic en los botones de "me gusta"
     document.querySelectorAll('.like-button').forEach(button => {
         button.addEventListener('click', async (event) => {
             const collectionId = button.getAttribute('data-id');

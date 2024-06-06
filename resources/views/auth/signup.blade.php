@@ -19,7 +19,6 @@
                                 <form action="{{ route('signup') }}" method="post" id="formulario">
                                     @csrf
                                     <div class="socialsneaker-text">
-                                        <!-- Grupo: Nombre -->
                                         <div class="form-outline mb-4" id="grupo__name">
                                             <label for="name" class="form-label"><h5>@lang('login.namesign')</h5></label>
                                             <div class="formulario__grupo-input">
@@ -29,7 +28,6 @@
                                             <p class="formulario__input-error">@lang('login.errorname')</p>
                                         </div>
                                         <br>
-                                        <!-- Grupo: Correo Electrónico -->
                                         <div class="formulario__grupo" id="grupo__email">
                                             <label for="email" class="form-label"><h5>@lang('login.emailsign')</h5></label>
                                             <div class="formulario__grupo-input">
@@ -39,7 +37,6 @@
                                             <p class="formulario__input-error">@lang('login.erroremail')</p>
                                         </div>
                                         <br><br>
-                                        <!-- Grupo: Fecha de Nacimiento -->
                                         <div class="formulario__grupo" id="grupo__fechaNacimiento">
                                             <label for="birthday" class="form-label"><h5>@lang('login.datesign')</h5></label>
                                             <div class="formulario__grupo-input">
@@ -49,7 +46,6 @@
                                             <p class="formulario__input-error">@lang('login.errordate')</p>
                                         </div>
                                         <br><br>
-                                        <!-- Grupo: Contraseña -->
                                         <div class="formulario__grupo" id="grupo__password">
                                             <label for="password" class="form-label"><h5>@lang('login.passwordsign')</h5></label>
                                             <div class="formulario__grupo-input">
@@ -59,8 +55,6 @@
                                             <p class="formulario__input-error">@lang('login.errorpassword')</p>
                                         </div>
                                         <br><br>
-                                        <!-- Grupo: Contraseña 2 -->
-                                        <!-- Grupo: Contraseña 2 (Confirmar Contraseña) -->
                                         <div class="formulario__grupo" id="grupo__password_confirmation">
                                             <label for="password_confirmation" class="form-label"><h5>@lang('login.passwordrepeatsign')</h5></label>
                                             <div class="formulario__grupo-input">
@@ -70,7 +64,6 @@
                                             <p class="formulario__input-error">@lang('login.errorrepeat')</p>
                                         </div>
                                         <br><br>
-                                        <!-- Grupo: Terminos y Condiciones -->
                                         <div class="formulario__grupo" id="grupo__terminos">
                                             <label class="form-label">
                                                 <input class="formulario__checkbox" type="checkbox" name="terminos" id="terminos">
@@ -90,6 +83,7 @@
                                                     @endforeach
                                                 </div>
                                             </ul>
+                                            <br>
                                         @endif
 
                                         <div class="text-center">
@@ -113,7 +107,7 @@
                                     </div>
                                 <br><br>
                             </div>
-                        </div>
+                        </div>                                                                                                                                                  
                     </div>
                 </div>
             </div>
