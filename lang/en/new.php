@@ -10,6 +10,7 @@ return [
     'search' => 'Search',
     'nonew' => 'No collections available.',
     'createnew' => 'Create news',
+    'editnew' => 'Edit new',
     'title' => 'Title',
     'description' => 'Description',
     'url' => 'URL',

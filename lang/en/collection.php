@@ -13,4 +13,6 @@ return [
     'send' => 'Send',
     'sell' => 'For sale?',
     'sell-b' => 'For sale',
+    'edit' => 'Edit',
+    'delete' => 'Delete',       
 ];

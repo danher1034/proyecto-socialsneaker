@@ -9,6 +9,15 @@
                 <h5 class="card-title mb-0">{{ $collection->user->name }}</h5>
                 <small class="text-muted">{{ $collection->timeElapsed }}</small>
             </div>
+            @if ($collection->user_id == Auth::id())
+                <div class="dropdown">
+                    <button class="dropbtn">⋮</button>
+                    <div class="dropdown-content">
+                        <a href="javascript:void(0)" class="show-popup-collection comment-button" data-edit-url="{{ route('collections/edit', $collection) }}"><i class="bi bi-pen-fill"></i>&nbsp;&nbsp;@lang('collection.edit')</a>
+                        <a href="{{route('collections/destroy', $collection)}}" class="show-popup-collection comment-button"><i class="bi bi-trash"></i>&nbsp;&nbsp;@lang('collection.delete')</a>
+                    </div>
+                </div>
+            @endif
         </div>
         <hr>
         <div class="card-body comments-users-show">
@@ -37,9 +46,12 @@
                     <a href="javascript:void(0)" class="like-button" data-id="{{ $collection->id }}"><i class="bi bi-heart corazon"></i></a>
                 @endif
             </div>
-            <div class="col-1 sell-show">
-                <a type="button" class="btn btn-success sell-button-show" href="{{ route('chat.show', $collection->user_id) }}">@lang('collection.sell-b')</a>
-            </div>
+            @if ($collection->sell == 1)
+                <div class="col-1 sell-show">
+                    <a type="button" class="btn btn-success sell-button-show" href="{{ route('chat.show', $collection->user_id) }}">@lang('collection.sell-b')</a>
+                </div>
+            @endif
+            
         </div>
         <hr>
         <div class="comment-container">
@@ -47,10 +59,11 @@
                 @csrf
                 <input type="hidden" name="collection_id" value="{{ $collection->id }}">
                 <input type="text" name="text" id="input-coment-{{ $collection->id }}" placeholder="@lang('collection.addcomment')">
-                <button type="submit" id="comment-{{ $collection->id }}" class="hidden">Enviar</button>
+                <button type="submit" id="comment-{{ $collection->id }}" class="hidden">@lang('collection.send')</button>
             </form>
         </div>
     </div>
 </div>
+
 
 @vite(['resources/js/showcollection.js', 'resources/css/collection.css'])

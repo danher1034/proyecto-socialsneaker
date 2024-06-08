@@ -13,4 +13,6 @@ return [
     'imagenews' => '图片新闻',
     'sell' => '出售？',
     'sell-b' => '出售',
+    'edit' => '编辑',
+    'delete' => '删去', 
 ];

@@ -31,8 +31,24 @@
                     </a>
                 </div>
                 <div class="card-body">
-                    <a href="{{ $new->url }}"><h5 class="card-title">{{ $new->title }}</h5></a>
-                    <p class="card-text">{{ $new->description }}</p>
+                    <div class="title-line">
+                        <div class="row">
+                            <div class="col-9">
+                                <a href="{{ $new->url }}"><h5 class="card-title">{{ $new->title }}</h5></a>
+                            </div>
+                            &nbsp;
+                            <div class="col-1">
+                                <div class="dropdown">
+                                    <button class="dropbtn">···</button>
+                                    <div class="dropdown-content">
+                                        <a href="javascript:void(0)" class="show-popup-collection comment-button" data-edit-url="{{ route('collections/edit', $new) }}"><i class="bi bi-pen-fill"></i>&nbsp;&nbsp;@lang('collection.edit')</a>
+                                        <a href="{{route('collections/destroy', $new)}}" class="show-popup-collection comment-button"><i class="bi bi-trash"></i>&nbsp;&nbsp;@lang('collection.delete')</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="card-text">{{ $new->description }}</p>
+                    </div>
                 </div>
             </div>
         @empty

@@ -13,4 +13,6 @@ return [
     'send' => 'Enviar',
     'sell' => '¿En venta?',
     'sell-b' => 'En venta',
+    'edit' => 'Editar',
+    'delete' => 'Eliminar',                 
 ];

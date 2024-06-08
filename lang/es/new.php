@@ -10,6 +10,7 @@ return [
     'search' => 'Buscar',
     'nonew' => 'No hay colecciones disponibles.',
     'createnew' => 'Crear noticias',
+    'editnew' => 'Editar noticias',
     'title' => 'Título',
     'description' => 'Descripción',
     'url' => 'Url',

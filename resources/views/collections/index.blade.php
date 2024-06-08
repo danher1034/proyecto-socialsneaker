@@ -62,7 +62,7 @@
                                     @csrf
                                     <input type="hidden" name="collection_id" value="{{ $collection->id }}">
                                     <input type="text" name="text" id="input-coment-{{ $collection->id }}" placeholder="@lang('collection.addcomment')">
-                                    <button type="submit" id="comment-{{ $collection->id }}" class="hidden">Enviar</button>
+                                    <button type="submit" id="comment-{{ $collection->id }}" class="hidden">@lang('collection.send')</button>
                                 </form>
                             </div>
                             <div class="popup-container-collection">

@@ -10,6 +10,7 @@ return [
     'search' => '搜索',
     'nonew' => '没有可用的收藏。',
     'createnew' => '创建新闻',
+    'editnew' => '编辑新',
     'title' => '标题',
     'description' => '描述',
     'url' => '网址',
