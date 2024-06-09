@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Expresiones regulares para validación
     const expresiones = {
-        usuario: /^[a-zA-Z0-9\_\-]{4,16}$/,
+        usuario: /^[a-zA-Z0-9\_\-]{5,16}$/,
         password: /^.{8,50}$/,
         correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
         fechaNacimiento: /^\d{4}\-\d{2}\-\d{2}$/

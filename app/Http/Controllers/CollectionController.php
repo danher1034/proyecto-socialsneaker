@@ -10,6 +10,7 @@ use App\Models\Collection;
 use App\Models\Comment;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
@@ -23,12 +24,27 @@ class CollectionController extends Controller
      */
     public function index()
     {
+        if(isset($locale)){
+            if($locale=='es'){
+                $lang='es';        
+            }
+            
+            if($locale=='en'){
+                $lang='en'; 
+            }
+            
+            if($locale=='cn'){
+                $lang='zh_CN'; 
+            }
+        }                                                                                                                                                                   
+
         $collections = Collection::with(['comments', 'user'])->orderBy('created_at', 'desc')->get();
 
+       
         foreach ($collections as $collection) {
             $createdAt = Carbon::parse($collection->created_at);
             $timeElapsed = $createdAt->diffForHumans([
-                'locale' => 'es',
+                'locale' => $lang,
             ]);
             $collection->timeElapsed = $timeElapsed;
         }
@@ -58,17 +74,6 @@ class CollectionController extends Controller
      */
     public function store(CollectionsRequest $request)
     {
-        $validator = Validator::make($request->all(), [
-            'description' => 'required|string|max:255',
-            'tags' => 'nullable|string',
-            'sell' => 'boolean',
-            'image_collection' => 'nullable|image',
-        ]);
-
-        if ($validator->fails()) {
-            return $this->handleFailedValidation($validator);
-        }
-
         $collection = new Collection();
         $collection->description = $request->input('description');
         $collection->user_id = Auth::user()->id;
@@ -83,16 +88,14 @@ class CollectionController extends Controller
             $extension = $image->getClientOriginalExtension();
             $filename = $collection->id . '.' . $extension;
 
-            // Guardar la imagen en el sistema de archivos
             $path = $image->storeAs('public/img/collection_images', $filename);
 
-            // Actualizar la ruta de la imagen en el modelo Collection
             $collection->image_collection = '/storage/img/collection_images/' . $filename;
         }
 
         $collection->save();
 
-        return redirect()->route('account')->with('success', 'Your work has been saved');
+        return redirect()->route('account')->with('success', __('alert.all_good'));
     }
 
     /**
@@ -153,20 +156,11 @@ class CollectionController extends Controller
      */
     public function update(CollectionsRequest $request, Collection $collection)
     {
-        $validator = Validator::make($request->all(), [
-            'description' => 'required|string|max:255',
-            'tags' => 'nullable|string',
-        ]);
-
-        if ($validator->fails()) {
-            return $this->handleFailedValidation($validator);
-        }
-
         $collection->description = $request->input('description');
         $collection->tags = $request->input('tags');
         $collection->save();
 
-        return response()->json(['success' => true, 'message' => 'Your work has been updated']);
+        return redirect()->route('collections')->with('success', __('alert.all_good'));
     }
 
     /**
@@ -198,8 +192,13 @@ class CollectionController extends Controller
      */
     public function destroy(Collection $collection)
     {
+        if ($collection->image_collection) {
+            $imagePath = str_replace('/storage', 'public', $collection->image_collection);
+            Storage::delete($imagePath);
+        }
+
         $collection->delete();
-        return redirect()->route('collections');
+        return redirect()->route('account');
     }
 
     /**

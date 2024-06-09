@@ -6,4 +6,5 @@ return [
     'delete_confirm_button' => '¡Sí, eliminar!',
     'deleted_title' => '¡Borrado!',
     'deleted_text' => 'Tu usuario ha sido borrado.',
+    'all_good' => 'Guardado con exito',
 ];

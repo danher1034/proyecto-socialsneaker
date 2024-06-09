@@ -42,5 +42,46 @@
         @auth
             @include('partials.footer') {{-- Para poner el footer en el layout de la aplicacion --}}
         @endauth
+
+        <script>
+            const messages = {
+                delete_confirm_title: "{{ trans('alert.delete_confirm_title') }}",
+                delete_confirm_text: "{{ trans('alert.delete_confirm_text') }}",
+                delete_confirm_button: "{{ trans('alert.delete_confirm_button') }}",
+                deleted_title: "{{ trans('alert.deleted_title') }}",
+                deleted_text: "{{ trans('alert.deleted_text') }}"
+            };
+        </script>
+        @if(session('success'))
+            <script>
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "{{ session('success') }}",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            </script>
+        @endif
+
+        @if(session('error'))
+            <script>
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "{{ implode(' ', $errors->all()) }}"
+                });
+            </script>
+        @endif
+
+        @if($errors->any())
+            <script>
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "{{ implode(' ', $errors->all()) }}"
+                });
+            </script>
+        @endif
     </body>
 </html>

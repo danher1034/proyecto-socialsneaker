@@ -67,7 +67,7 @@
                                         <div class="formulario__grupo" id="grupo__terminos">
                                             <label class="form-label">
                                                 <input class="formulario__checkbox" type="checkbox" name="terminos" id="terminos">
-                                                @lang('login.acept') <a href="" class="socialsneaker-text">@lang('login.termsandconditions')</a>
+                                                @lang('login.acept') <a href="https://european-union.europa.eu/privacy-policy-european-union-website_es" class="socialsneaker-text">@lang('login.termsandconditions')</a>
                                             </label>
                                         </div>
                                         <br><br>

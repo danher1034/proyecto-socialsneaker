@@ -27,6 +27,8 @@ Route::get('loginForm', [LoginController::class, 'loginForm'])->name('loginForm'
 Route::post('signup', [LoginController::class, 'signup'])->name('signup');
 Route::post('login', [LoginController::class, 'login'])->name('login');
 
+Route::get('locale/{lang}', [LocaleController::class, 'setLocale'])->name('locale.switch');
+
 Route::middleware('auth')->group(function () {
     Route::get('account', [CollectionController::class, 'account'])->name('account');
     Route::get('account/{userId}', [CollectionController::class, 'account'])->name('account.user');
@@ -37,8 +39,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('users/delete/{user}', [LoginController::class, 'delete'])->name('users/delete');
 
     Route::get('search', [SearchController::class, 'index'])->name('search');
-
-    Route::get('locale/{lang}', [LocaleController::class, 'setLocale'])->name('locale.switch');
 
     Route::get('collections', [CollectionController::class, 'index'])->name('collections');
     Route::get('collections/show/{collection}', [CollectionController::class, 'show'])->name('collections/show');
@@ -56,9 +56,12 @@ Route::middleware('auth')->group(function () {
     Route::get('chat/search', [ChatController::class, 'search'])->name('chat.search');
     Route::get('chat/newMessages/{id}', [ChatController::class, 'newMessages'])->name('chat.newMessages');
 
-    Route::get('news', [NewsController::class, 'index'])->name('news.index');
+    Route::get('news', [NewsController::class, 'index'])->name('news');
     Route::get('news/create', [NewsController::class, 'create'])->name('news/create');
     Route::post('news/store', [NewsController::class, 'store'])->name('news/store');
+    Route::get('news/edit/{news}', [NewsController::class, 'edit'])->name('news/edit');
+    Route::put('news/update/{news}', [NewsController::class, 'update'])->name('news/update');
+    Route::get('news/destroy/{news}', [NewsController::class, 'destroy'])->name('news/destroy');
 
     Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 });

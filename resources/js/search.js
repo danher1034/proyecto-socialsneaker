@@ -63,7 +63,7 @@
                 // Mostrar u ocultar el mensaje de no resultados según corresponda
                 const noResultsMessage = document.getElementById('no-results-message');
                 if (noResultsMessage) {
-                    noResultsMessage.style.display = noResultsMessage.innerHTML.includes("No se encontraron resultados de búsqueda") ? 'block' : 'none';
+                    noResultsMessage.style.display = noResultsMessage.innerHTML.includes(translations.nosearch) ? 'block' : 'none';
                 }
 
                 // Mostrar la lista de personas si hay resultados

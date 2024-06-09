@@ -22,4 +22,7 @@ return [
     'imagenew'=>'Imagen noticias',
     'visible'=> 'Visible',
     'send'=>'Enviar',
+    'edit' => 'Editar',
+    'delete' => 'Eliminar',
+    'novisible' => 'No visible', 
 ];

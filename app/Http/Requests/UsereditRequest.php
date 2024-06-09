@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Password; // Add this line
 
 class UsereditRequest extends FormRequest
 {
@@ -21,13 +22,13 @@ class UsereditRequest extends FormRequest
      */
     public function rules(): array
     {
-        $rules= [
+        $rules = [
             'birthday' => ['required', 'date', 'before_or_equal:' . now()->subYears(16)->format('Y-m-d')],
             'password' => ['required'],
         ];
 
-        if(!empty($this->request->get('newpassword'))){
-            $rules['newpassword']=['string','min:8', 'confirmed', Rules\Password::default()];
+        if (!empty($this->request->get('newpassword'))) {
+            $rules['newpassword'] = ['string', 'min:8', 'confirmed', Password::default()]; // Correct the class reference
         }
 
         return $rules;
@@ -35,8 +36,7 @@ class UsereditRequest extends FormRequest
 
     public function messages()
     {
-        return[
-
+        return [
             'password.required' => __('requests.password.required.user'),
 
             'birthday.required' =>  __('requests.birthday.required.user'),
@@ -49,4 +49,3 @@ class UsereditRequest extends FormRequest
         ];
     }
 }
-

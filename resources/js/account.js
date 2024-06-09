@@ -2,40 +2,6 @@ import Swal from 'sweetalert2';
 
 document.addEventListener('DOMContentLoaded', function () {
 
-    // Función para manejar formularios de comentarios
-    function handleCommentForms() {
-        // Lógica para manejar formularios de comentarios si es necesario
-    }
-
-    // Delegación de eventos para los popups de colección
-    document.addEventListener('click', async (event) => {
-        if (event.target.classList.contains('show-popup-collection') || event.target.closest('.show-popup-collection')) {
-            const showPopup = event.target.closest('.show-popup-collection');
-            const editUrl = showPopup.getAttribute('data-edit-url');
-            try {
-                const response = await fetch(editUrl, {
-                    headers: {
-                        'X-Requested-With': 'XMLHttpRequest'
-                    }
-                });
-                const content = await response.text();
-                const popupContainer = document.querySelector('.popup-container-collection');
-                const popupBox = document.querySelector('.popup-box-collection');
-                popupBox.innerHTML = content;
-                popupContainer.classList.add('active');
-                handleCommentForms(); // Asegúrate de aplicar el manejador a los formularios en el popup
-            } catch (error) {
-                console.error('Error al cargar el contenido:', error);
-            }
-        }
-
-        if (event.target.classList.contains('close-btn-collection')) {
-            const popupContainer = document.querySelector('.popup-container-collection');
-            const popupBox = document.querySelector('.popup-box-collection');
-            popupBox.innerHTML = '';
-            popupContainer.classList.remove('active');
-        }
-    });
 
     // Manejo del primer dropdown
     const dropBtn = document.querySelector('.dropbtn');

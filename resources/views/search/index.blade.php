@@ -8,7 +8,7 @@
     <div class="busqueda">
         <input type="text" placeholder="@lang('search.search')" id="busqueda" value="{{ request('search') }}" oninput="handleInput()">
     </div>
-    <div id="search-prompt" class="text-center" style="display: {{ request('search') ? 'none' : 'block' }};"><i class="bi bi-search icon-search"></i><br>Busca a cualquiera usuario de socialsneaker ...</div>
+    <div id="search-prompt" class="text-center" style="display: {{ request('search') ? 'none' : 'block' }};"><i class="bi bi-search icon-search"></i><br>@lang('search.search')</div>
     <div id="search-results">
         <span id="loader" class="loader" style="display: none;"></span>
         @if($searchTerm)
@@ -36,5 +36,12 @@
         @endif
     </div>
 
-    @vite(['resources/js/search.js','resources/css/search.css'])
+    <script>
+        const translations = {
+            search: @json(__('search.search')),
+            nosearch: @json(__('search.nosearch'))
+        };
+    </script>
+
+    @vite(['resources/js/search.js', 'resources/css/search.css'])
 @endsection

@@ -149,11 +149,12 @@ class LoginController extends Controller
             $user->save();
 
             Session::flash('success_message', __('requests.accountedit.js'));
+            return redirect()->route('account')->with('success', __('alert.all_good'));
         } else {
             Session::flash('success_message', __('requests.passwordnovalid.js'));
+            return redirect()->route('account')->with('error', 'Error');
         }
-
-        return redirect()->route('account'); // Aquí es donde se corrige la redirección
+        
     }
 
     /**
@@ -165,6 +166,10 @@ class LoginController extends Controller
     public function delete(User $user)
     {
         if (Auth::id() == $user->id) {
+            if ($user->image_user) {
+                $imagePath = str_replace('/storage', 'public', $user->image_user);
+                Storage::delete($imagePath);
+            }
             Auth::logout();
             $user->delete();
             return redirect('/')->with('success_message', __('requests.delete.js'));

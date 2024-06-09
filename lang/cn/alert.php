@@ -6,4 +6,5 @@ return [
     'delete_confirm_button' => '是的，删除它！',
     'deleted_title' => '已删除！',
     'deleted_text' => '您的文件已被删除。',
+    'all_good' => '成功保存',
 ];

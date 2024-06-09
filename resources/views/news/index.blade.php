@@ -9,11 +9,16 @@
             <span class="cat" data-type="all">@lang('new.all')</span>
             <span class="cat" data-type="news">@lang('new.news')</span>
             <span class="cat" data-type="launch">@lang('new.launches')</span>
-            <span class="cat" data-type="event">@lang('new.events')</span>
+            <span class="cat" data-type="event">@lang('new.events')</span> 
         </nav>
-        <button class="btn show-popup-edit" data-edit-url="{{ route('news/create') }}">
-            @lang('new.addnew')
-        </button>
+        @if ( Auth::user()->rol == 'admin')
+        <div class="admin-control">
+            <button class="cat" data-type="novisible">@lang('new.novisible')</button>
+            <button class="btn show-popup-edit" data-edit-url="{{ route('news/create') }}">
+                @lang('new.addnew')
+            </button>
+        </div>
+        @endif
         <div class="busqueda">
             <input type="text" placeholder="@lang('new.searchnew')" id="busqueda">
             <button id="searchButton">@lang('new.search')</button>
@@ -23,7 +28,11 @@
     <br><br>
     <div class="container-noticias">
         @forelse ($news as $new)
-            <div class="card">
+            @if ( Auth::user()->rol == 'admin' && $new->visible=='0')
+                <div class="card-admin">
+            @else
+                <div class="card">
+            @endif 
                 <div class="bg-image hover-overlay" data-mdb-ripple-init data-mdb-ripple-color="light">
                     <img src="{{ $new->image_news }}" class="img-fluid image-news"/>
                     <a href="#!">
@@ -37,15 +46,17 @@
                                 <a href="{{ $new->url }}"><h5 class="card-title">{{ $new->title }}</h5></a>
                             </div>
                             &nbsp;
-                            <div class="col-1">
-                                <div class="dropdown">
-                                    <button class="dropbtn">···</button>
-                                    <div class="dropdown-content">
-                                        <a href="javascript:void(0)" class="show-popup-collection comment-button" data-edit-url="{{ route('collections/edit', $new) }}"><i class="bi bi-pen-fill"></i>&nbsp;&nbsp;@lang('collection.edit')</a>
-                                        <a href="{{route('collections/destroy', $new)}}" class="show-popup-collection comment-button"><i class="bi bi-trash"></i>&nbsp;&nbsp;@lang('collection.delete')</a>
+                            @if ( Auth::user()->rol == 'admin')
+                                <div class="col-1">
+                                    <div class="dropdown">
+                                        <button class="dropbtn">···</button>
+                                        <div class="dropdown-content">
+                                            <a href="javascript:void(0)" class="show-popup-new comment-button" data-edit-url="{{ route('news/edit', $new) }}"><i class="bi bi-pen-fill"></i>&nbsp;&nbsp;@lang('new.edit')</a>
+                                            <a href="{{route('news/destroy', $new)}}" class="show-popup-new comment-button"><i class="bi bi-trash"></i>&nbsp;&nbsp;@lang('new.delete')</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            @endif
                         </div>
                         <p class="card-text">{{ $new->description }}</p>
                     </div>
@@ -54,6 +65,10 @@
         @empty
             <p>@lang('new.nonew')</p>
         @endforelse
+    </div>
+    <div class="popup-container-new">
+        <div class="popup-box-new"></div>
+        <button class="close-btn-new"></button>
     </div>
 </div>
 @vite(['resources/js/new.js', 'resources/css/new.css'])

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\NewsRequest;
 use App\Models\News;
+use Illuminate\Support\Facades\Storage;
 use Auth;
 
 class NewsController extends Controller
@@ -19,10 +20,12 @@ class NewsController extends Controller
     {
         $query = News::query();
 
-        if ($request->has('type') && $request->get('type') !== 'all') {
+        // Filtrar por tipo de noticia si se ha especificado
+        if ($request->has('type') && $request->get('type') !== 'all' && $request->get('type') !== 'novisible') {
             $query->where('type', $request->get('type'));
         }
 
+        // Filtrar por término de búsqueda si se ha especificado
         if ($request->has('search')) {
             $search = $request->get('search');
             $query->where(function ($q) use ($search) {
@@ -31,9 +34,18 @@ class NewsController extends Controller
             });
         }
 
+        // Filtrar por visibilidad si se ha especificado
+        if ($request->get('type') === 'novisible') {
+            $query->where('visible', 0);
+        } else {
+            $query->where('visible', 1);
+        }
+
         $news = $query->get();
         return view('news.index', compact('news'));
     }
+
+
 
     /**
      * Muestra el formulario de creación de noticias.
@@ -43,10 +55,10 @@ class NewsController extends Controller
     public function create()
     {
         if (!request()->ajax()) {
-            return redirect()->route('news.index')->withErrors(['error' => 'Acceso no permitido']);
+            return redirect()->route('news')->withErrors(['error' => 'Acceso no permitido']);
         }
 
-        return view('news.create'); // Asegúrate de que esta vista sea una vista parcial sin el layout completo
+        return view('news.create');
     }
 
 
@@ -80,40 +92,59 @@ class NewsController extends Controller
 
         $news->save();
 
-        return redirect()->route('news.index');
+        return redirect()->route('news')->with('success', __('alert.all_good'));
+    }
+
+     /**
+     * Muestra la vista para editar una noticia, solo accesible vía AJAX.
+     *
+     * @param \App\Models\News $collection
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
+    public function edit(News $news)
+    {
+        if (!request()->ajax()) {
+            return redirect()->route('news')->withErrors(['error' => 'Acceso no permitido']);
+        }
+
+        return view('news.edit', compact('news'));
     }
 
     /**
-     * Muestra el formulario de edición de una noticia específica.
+     * Actualiza una colección existente en la base de datos.
      *
-     * @param string $id
-     * @return void
+     * @param \App\Http\Requests\NewsRequest $request
+     * @param \App\Models\News $news
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function edit(string $id)
+    public function update(NewsRequest $request, News $news)
     {
-        //
+        $news->title = $request->input('title');
+        $news->description = $request->input('description');
+        $news->url = $request->input('url');
+        $news->type = $request->input('type');
+        $news->tags = $request->input('tags');
+        $news->visible = $request->input('visible') ? 1 : 0;
+        $news->save();
+    
+        return redirect()->route('news')->with('success', __('alert.all_good'));
     }
+    
 
     /**
-     * Actualiza una noticia específica en la base de datos.
+     * Elimina una colección de la base de datos.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param string $id
-     * @return void
+     * @param \App\Models\News $news
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, string $id)
+    public function destroy(News $news)
     {
-        //
-    }
+        if ($news->image_news) {
+            $imagePath = str_replace('/storage', 'public', $news->image_news);
+            Storage::delete($imagePath);
+        }
 
-    /**
-     * Elimina una noticia específica de la base de datos.
-     *
-     * @param string $id
-     * @return void
-     */
-    public function destroy(string $id)
-    {
-        //
+        $news->delete();
+        return redirect()->route('news');
     }
 }

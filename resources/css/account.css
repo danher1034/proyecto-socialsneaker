@@ -8,27 +8,21 @@
     margin-top: 3%;
     margin-bottom: 8%;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    grid-gap: 30px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
     padding-bottom: 20px;
 }
 
 .card {
-    width: 350px;
+    width: 100%;
     height: 350px;
+    margin-top: 10px;
 }
 
 .img-collection-account {
-    width: 350px; 
+    width: 100%;                                                                    
     height: 350px; 
     object-fit: cover;
-}
-
-.container-account {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    grid-gap: 30px;
-    padding-bottom: 20px;
 }
 
 .container-account .item {
@@ -330,26 +324,54 @@
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1400px) {
+    .container-account {
+        max-width: 1200px;
+        margin: auto;
+        margin-top: 3%;
+        margin-bottom: 8%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        padding-bottom: 20px;
+    }
+    
     .card {
-        width: 300px;
-        height: 300px;
+        width: 100%;
+        height: 350px;
+        margin-top: 10px;
     }
     
     .img-collection-account {
-        width: 300px; 
-        height: 300px; 
+        width: 100%;                                                                    
+        height: 350px; 
         object-fit: cover;
-    }
-    
-    .container-account {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        grid-gap: 30px;
-        padding-bottom: 20px;
     }
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
+    .container-account {
+        max-width: 1200px;
+        margin: auto;
+        margin-top: 3%;
+        margin-bottom: 8%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        padding-bottom: 20px;
+    }
+    
+    .card {
+        width: 100%;
+        height: 250px;
+        margin-top: 10px;
+    }
+    
+    .img-collection-account {
+        width: 100%;                                                                    
+        height: 250px; 
+        object-fit: cover;
+    }
+
     .img_user_account {
         width: 180px;
         height: 180px;
@@ -358,23 +380,6 @@
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
-    .card {
-        width: 250px;
-        height: 250px;
-    }
-    
-    .img-collection-account {
-        width: 250px; 
-        height: 250px; 
-        object-fit: cover;
-    }
-    
-    .container-account {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        grid-gap: 30px;
-        padding-bottom: 20px;
-    }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 992px) {
@@ -407,23 +412,29 @@
         font-weight: 500;
     }
 
+    .container-account {
+        max-width: 1200px;
+        margin: auto;
+        margin-top: 3%;
+        margin-bottom: 8%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        padding-bottom: 20px;
+    }
+    
     .card {
-        width: 200px;
+        width: 100%;
         height: 200px;
+        margin-top: 10px;
     }
     
     .img-collection-account {
-        width: 200px; 
+        width: 100%;                                                                    
         height: 200px; 
         object-fit: cover;
     }
-    
-    .container-account {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        grid-gap: 30px;
-        padding-bottom: 20px;
-    }
+
 }
 
 @media only screen and (min-width: 576px) and (max-width: 768px) {
@@ -457,23 +468,29 @@
         font-weight: 500;
     }
 
+    .container-account {
+        max-width: 1200px;
+        margin: auto;
+        margin-top: 3%;
+        margin-bottom: 8%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        padding-bottom: 20px;
+    }
+    
     .card {
-        width: 140px;
+        width: 100%;
         height: 140px;
+        margin-top: 10px;
     }
     
     .img-collection-account {
-        width: 140px; 
+        width: 100%;                                                                    
         height: 140px; 
         object-fit: cover;
     }
-    
-    .container-account {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-        grid-gap: 30px;
-        padding-bottom: 20px;
-    }
+
 }
 
 
@@ -508,22 +525,27 @@
         font-weight: 500;
     }
 
+    .container-account {
+        max-width: 1200px;
+        margin: auto;
+        margin-top: 3%;
+        margin-bottom: 8%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        padding-bottom: 20px;
+    }
+    
     .card {
-        width: 120px;
-        height: 120px;
+        width: 100%;
+        height: 140px;
+        margin-top: 10px;
     }
     
     .img-collection-account {
-        width: 120px; 
-        height: 120px; 
+        width: 100%;                                                                    
+        height: 140px; 
         object-fit: cover;
-    }
-    
-    .container-account {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-        grid-gap: 30px;
-        padding-bottom: 20px;
     }
 }
 
@@ -562,21 +584,26 @@
         font-size: 12px;
     }
 
+    .container-account {
+        max-width: 1200px;
+        margin: auto;
+        margin-top: 3%;
+        margin-bottom: 8%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        padding-bottom: 20px;
+    }
+    
     .card {
-        width: 80px;
-        height: 80px;
+        width: 100%;
+        height: 100px;
+        margin-top: 10px;
     }
     
     .img-collection-account {
-        width: 80px; 
-        height: 80px; 
+        width: 100%;                                                                    
+        height: 100px; 
         object-fit: cover;
-    }
-    
-    .container-account {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-        grid-gap: 30px;
-        padding-bottom: 20px;
     }
 }

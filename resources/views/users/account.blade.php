@@ -87,37 +87,7 @@
         <div class="popup-box-collection"></div>
         <button class="close-btn-collection"></button>
     </div>
-<script>
-    const messages = {
-        delete_confirm_title: "{{ trans('alert.delete_confirm_title') }}",
-        delete_confirm_text: "{{ trans('alert.delete_confirm_text') }}",
-        delete_confirm_button: "{{ trans('alert.delete_confirm_button') }}",
-        deleted_title: "{{ trans('alert.deleted_title') }}",
-        deleted_text: "{{ trans('alert.deleted_text') }}"
-    };
-</script>
-    @if(session('success'))
-        <script>
-            Swal.fire({
-                position: "center",
-                icon: "success",
-                title: "{{ session('success') }}",
-                showConfirmButton: false,
-                timer: 1500
-            });
-        </script>
-    @endif
-
-    @if($errors->any())
-        <script>
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "{{ implode(' ', $errors->all()) }}"
-            });
-        </script>
-    @endif
 
 
-@vite(['resources/js/account.js','resources/css/account.css'])
+    @vite(['resources/css/account.css','resources/js/account.js','resources/js/showcollection.js'])
 @endsection

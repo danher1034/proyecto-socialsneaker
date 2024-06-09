@@ -22,4 +22,7 @@ return [
     'imagenew' => '新闻图片',
     'visible' => '可见',
     'send' => '发送',
+    'edit' => '编辑',
+    'delete' => '删去', 
+    'novisible' => '不可见', 
 ];

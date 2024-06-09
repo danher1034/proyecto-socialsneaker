@@ -13,7 +13,9 @@ backgroud-check{
 }
 
 /* ----- -----  Estilos para texto blanco ----- ----- */
-
+.copypolicies{
+    color: white;
+}
 .socialsneaker-titletext{
     font-family: "Luckiest Guy", cursive;
     color: white;
