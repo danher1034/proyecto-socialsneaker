@@ -24,19 +24,21 @@ class CollectionController extends Controller
      */
     public function index()
     {
-        if(isset($locale)){
-            if($locale=='es'){
-                $lang='es';        
-            }
+
+            $locale = Session::get('locale', 'es');
+
+            // Establece el idioma basado en el valor del locale
+            if ($locale == 'es') {
+                $lang = 'es';
+            } 
             
-            if($locale=='en'){
-                $lang='en'; 
-            }
+            if ($locale == 'en') {
+                $lang = 'en';
+            } 
             
-            if($locale=='cn'){
-                $lang='zh_CN'; 
-            }
-        }                                                                                                                                                                   
+            if ($locale == 'cn') {
+                $lang = 'zh_CN';
+            }                                                                                                                                                              
 
         $collections = Collection::with(['comments', 'user'])->orderBy('created_at', 'desc')->get();
 
