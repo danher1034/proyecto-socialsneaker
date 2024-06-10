@@ -5,7 +5,7 @@
 
         <div data-mdb-input-init class="form-outline mb-4">
             <label for="birthday">@lang('user.dateofbirth')</label><br>
-            <input type="date" name="birthday" id="birthday" value="{{$user->birthday}}" class="form-control"><br>
+            <input type="date" name="birthday" id="birthday" value="{{$user->birthday}}" class="form-control" max="{{ now()->subYears(16)->format('Y-m-d') }}"><br>
         </div>
 
         <div data-mdb-input-init class="form-outline mb-4">

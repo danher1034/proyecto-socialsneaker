@@ -38,9 +38,9 @@
                         @method('DELETE')
                     </form>
                     @else
-                        <button type="button" class="btn me-3 btn-follow" id="follow-button" data-user-id="{{ $user->id }}">
-                            {{ Auth::user()->following()->where('user_id', $user->id)->exists() ? __('user.followed') : __('user.follow') }}
-                        </button>
+                    <button type="button" class="btn me-3 btn-follow" id="follow-button" data-user-id="{{ $user->id }}">
+                        {{ Auth::user()->following()->where('user_id', $user->id)->exists() ? __('user.followed') : __('user.follow') }}
+                    </button>
                         <a href="{{ route('chat.show', $user->id) }}" class="btn btn-sendmessage">@lang('user.sendmessage')</a>
                     @endif
                 </div>
@@ -75,6 +75,7 @@
                 </div>
             </div>
         @empty
+        <div></div>
             <div class="text-center">
                 <i class="bi bi-camera icon-camera"></i>
                 <br><br>

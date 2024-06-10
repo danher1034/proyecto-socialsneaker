@@ -166,7 +166,7 @@ class LoginController extends Controller
     public function delete(User $user)
     {
         if (Auth::id() == $user->id) {
-            if ($user->image_user) {
+            if ($user->image_user !== '/storage/img/user_images/logo.png') {
                 $imagePath = str_replace('/storage', 'public', $user->image_user);
                 Storage::delete($imagePath);
             }

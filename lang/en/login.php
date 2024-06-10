@@ -21,7 +21,7 @@ return [
     'btnsign' => 'Sign up',
     'questionsign' => 'Do you already have an account?',
     'loginaccess' => 'Login',
-    'errorname' => 'The name must be between 4 and 16 characters and can only contain letters, numbers, and underscores.',
+    'errorname' => 'The name must be between 5 and 16 characters and can only contain letters, numbers, and underscores.',
     'erroremail' => 'The email can only contain letters, numbers, dots, dashes, and underscores.',
     'errordate' => 'You need to be at least 16 years old to use socialsneaker.',
     'errorpassword' => 'The password must be between 8 and 50 characters.',

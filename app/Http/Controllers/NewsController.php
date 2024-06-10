@@ -35,7 +35,7 @@ class NewsController extends Controller
         }
 
         // Filtrar por visibilidad si se ha especificado
-        if ($request->get('type') === 'novisible') {
+        if ($request->get('type') === 'novisible' && Auth::user()->rol =='admin') {
             $query->where('visible', 0);
         } else {
             $query->where('visible', 1);
@@ -77,7 +77,7 @@ class NewsController extends Controller
         $news->type = $request->get('type');
         $news->tags = $request->get('tags');
         $news->visible = $request->get('visible') ? 1 : 0;
-        $news->image_news = '';
+        $news->image_news = '/storage/img/logo.png';
 
 
         $news->save();

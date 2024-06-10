@@ -71,12 +71,10 @@ class User extends Authenticatable
         parent::boot();
 
         static::deleting(function ($user) {
-            // Eliminar la imagen del usuario
             if ($user->image_user) {
                 Storage::delete($user->image_user);
             }
 
-            // Eliminar relaciones
             $user->collections()->delete();
             $user->comments()->delete();
             $user->messages()->delete();
